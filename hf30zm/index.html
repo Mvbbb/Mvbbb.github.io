@@ -1,0 +1,810 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<title>计算机网络学习总结[转载][1] - Yu</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://mvbbb.github.io/hf30zm/">
+<link rel="icon" type="image/x-icon" href="/images/web.png">
+
+<meta name="description" content="前言 这篇文章是我搜集各种资料之后整合出来的，仅用作个人学习使用。如有侵权请联系我，我立马删除。 本篇包含  预备知识 应用层 传输层  部分内容待完善  数据链路层结构不够清晰 TCP 可靠传输部分没写">
+<meta property="og:type" content="website">
+<meta property="og:title" content="计算机网络学习总结[转载][1]">
+<meta property="og:url" content="https://mvbbb.github.io/hf30zm/index.html">
+<meta property="og:site_name" content="Yu">
+<meta property="og:description" content="前言 这篇文章是我搜集各种资料之后整合出来的，仅用作个人学习使用。如有侵权请联系我，我立马删除。 本篇包含  预备知识 应用层 传输层  部分内容待完善  数据链路层结构不够清晰 TCP 可靠传输部分没写">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mvbbb.github.io/hf30zm/images/avatar.jpg">
+<meta property="article:published_time" content="2021-01-02T03:37:56.000Z">
+<meta property="article:modified_time" content="2021-02-03T04:20:59.129Z">
+<meta property="article:author" content="Mvbbb">
+<meta property="article:tag" content="NetWork">
+<meta property="article:tag" content="TCP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mvbbb.github.io/hf30zm/images/avatar.jpg">
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"Mvbbb","description":"Who i am,who u are","image":"https://mvbbb.github.io/images/avatar.jpg"},"url":"https://mvbbb.github.io","image":"https://mvbbb.github.io/images/avatar.jpg","description":"Who i am,who u are","author":{"@type":"Person","name":"Mvbbb","description":"Who i am,who u are","image":"https://mvbbb.github.io/images/avatar.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"}},{"@context":"http://schema.org","@type":"Article","articleSection":"计算机网络","url":"https://mvbbb.github.io/hf30zm/","headline":"计算机网络学习总结[转载][1]","image":"https://mvbbb.github.io/images/avatar.jpg","datePublished":"2021-01-02T03:37:56.000Z","dateModified":"2021-02-03T04:20:59.129Z","keywords":"NetWork,TCP","description":"前言\n这篇文章是我搜集各种资料之后整合出来的，仅用作个人学习使用。如有侵权请联系我，我立马删除。\n本篇包含\n\n预备知识\n应用层\n传输层\n\n部分内容待完善\n\n数据链路层结构不够清晰\nTCP 可靠传输部分没写\n","publisher":{"@type":"Organization","name":"Yu","logo":{"@type":"ImageObject","url":"https://mvbbb.github.io/images/avatar.jpg"}},"author":{"@type":"Person","name":"Mvbbb","description":"Who i am,who u are","image":"https://mvbbb.github.io/images/avatar.jpg"},"inLanguage":{"@type":"Language","alternateName":"en"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://mvbbb.github.io/hf30zm/"}}]</script><link rel="alternate" type="application/atom+xml" title="Yu" href="/rss2.xml">
+<script async="" src="//www.googletagmanager.com/gtag/js?id=UA-160027215-1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','UA-160027215-1');</script>
+<meta name="theme-color" content=""><script type="application/json" is="state">{&q;api/aGYzMHpt.json&q;:{&q;title&q;:&q;计算机网络学习总结[转载][1]&q;,&q;date&q;:&q;2021-01-02T03:37:56.000Z&q;,&q;date_formatted&q;:{&q;ll&q;:&q;Jan 2, 2021&q;,&q;L&q;:&q;01/02/2021&q;,&q;MM-DD&q;:&q;01-02&q;},&q;link&q;:&q;hf30zm&q;,&q;comments&q;:true,&q;tags&q;:[&q;NetWork&q;,&q;TCP&q;],&q;categories&q;:[&q;计算机网络&q;],&q;updated&q;:&q;2021-02-03T04:20:59.129Z&q;,&q;content&q;:&q;&l;h1 id=\&q;前言\&q;&g;前言&l;a title=\&q;#前言\&q; href=\&q;#前言\&q;&g;&l;/a&g;&l;/h1&g;\n&l;p&g;这篇文章是我搜集各种资料之后整合出来的，&l;strong&g;仅用作个人学习使用&l;/strong&g;。如有侵权请联系我，我立马删除。&l;br&g;\n本篇包含&l;/p&g;\n&l;ul&g;\n&l;li&g;预备知识&l;/li&g;\n&l;li&g;应用层&l;/li&g;\n&l;li&g;传输层&l;/li&g;\n&l;/ul&g;\n&l;p&g;部分内容待完善&l;/p&g;\n&l;ol&g;\n&l;li&g;数据链路层结构不够清晰&l;/li&g;\n&l;li&g;TCP 可靠传输部分没写&l;/li&g;\n&l;/ol&g;\n&l;a id=\&q;more\&q;&g;&l;/a&g;\n&l;h1 id=\&q;预备知识\&q;&g;预备知识&l;a title=\&q;#预备知识\&q; href=\&q;#预备知识\&q;&g;&l;/a&g;&l;/h1&g;\n&l;h2 id=\&q;计算机网络发展的四个阶段\&q;&g;计算机网络发展的四个阶段&l;a title=\&q;#计算机网络发展的四个阶段\&q; href=\&q;#计算机网络发展的四个阶段\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;第一阶段（60-年代初期到-60-年代中期）\&q;&g;第一阶段（60 年代初期到 60 年代中期）&l;a title=\&q;#第一阶段（60-年代初期到-60-年代中期）\&q; href=\&q;#第一阶段（60-年代初期到-60-年代中期）\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;面向终端的计算机网络：主机是网络的中心和控制者，终端（键盘和显示器）分布在各处并与主机相连，用户通过本地的终端使用远程的主机。只提供终端和主机之间的通信，子网之间无法通信。&l;/p&g;\n&l;h3 id=\&q;第二阶段（60-年代中期到-70-年代中期）\&q;&g;第二阶段（60 年代中期到 70 年代中期）&l;a title=\&q;#第二阶段（60-年代中期到-70-年代中期）\&q; href=\&q;#第二阶段（60-年代中期到-70-年代中期）\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;采用分组交换技术实现计算机  —  计算机之间的通信，使计算机网络的结构、概念都发生了变化，形成了通信子网和资源子网的网络结构。&l;/p&g;\n&l;ul&g;\n&l;li&g;第二代计算机网络是计算机网络的“形成与发展”阶段&l;/li&g;\n&l;li&g;美国的 ARPA 网就是第二代网络的代表: ARPA&l;/li&g;\n&l;/ul&g;\n&l;h3 id=\&q;第三阶段（70-年代中期到-80-年代末期）\&q;&g;第三阶段（70 年代中期到 80 年代末期）&l;a title=\&q;#第三阶段（70-年代中期到-80-年代末期）\&q; href=\&q;#第三阶段（70-年代中期到-80-年代末期）\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;现代计算机网络互连阶段，特征是网络体系结构的形成和网络协议的标准化。  &l;br&g;\n      在计算机通信系统的基础之上，重视网络体系结构和协议标准化的研究，建立全网统一的通信规则，用通信协议软件来实现网络内部及网络与网络之间的通信，通过网络操作系统，对网络资源进行管理，极大的简化了用户的使用，使计算机网络对用户提供透明服务  。 &l;br&g;\n1981 年国际标准化组织(ISO)制订：开放体系互联基本参考模型（OSI/RM），实现不同厂家生产的计算机之间实现互连。&l;br&g;\nTCP/IP 协议也是诞生于该阶段。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609562706939-cc384bc3-efa3-4658-8fb4-d0b6cf39cf3d.png#align=left&a;amp;display=inline&a;amp;height=395&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=944365-8f04f1321143fd6a.png&a;amp;originHeight=395&a;amp;originWidth=620&a;amp;size=31180&a;amp;status=done&a;amp;style=none&a;amp;width=620\&q; alt=\&q;944365-8f04f1321143fd6a.png\&q;&g;&l;/p&g;\n&l;h3 id=\&q;第四阶段-–高速、综合化网络\&q;&g;第四阶段 –高速、综合化网络&l;a title=\&q;#第四阶段-–高速、综合化网络\&q; href=\&q;#第四阶段-–高速、综合化网络\&q;&g;&l;/a&g;&l;/h3&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;宽带综合业务数字网：信息高速公路&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;ATM 技术、ISDN、千兆以太网&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;交互性：网上电视点播、电视会议、可视电话、网上购物、网上银行、网络图书馆等高速、可视化。&l;/p&g;\n&l;p&g;Internet 就是这一代网络的典型代表，已经成为人类最重要的、最大的知识宝库。第四代计算机网络属于计算机网络的“继续发展”阶段。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;h2 id=\&q;网络性能指标\&q;&g;网络性能指标&l;a title=\&q;#网络性能指标\&q; href=\&q;#网络性能指标\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;速率相关\&q;&g;速率相关&l;a title=\&q;#速率相关\&q; href=\&q;#速率相关\&q;&g;&l;/a&g;&l;/h3&g;\n&l;ul&g;\n&l;li&g;**比特 bit：**数据计量单位 01 组成。&l;/li&g;\n&l;li&g;**速率 rate：**是指计算机网络中的主机在数字信道上，单位时间内从一端传送到另一端的数据量，即数据传输率，也称数据率或比特率。比特(bit)是数据量的最小单位，s(秒)是时间的最小单位。所以速率单位为 bit/s 或 bps(bit persecond)，类似的有 kb/s(k=10^3)、Mb/s(M=10^6)、Gb/s(G=10^9)、Tb/s(T=10^12)，1Byte=8bit 1B=8b1B/s=8b/s(或 1Bps=8bps)。&l;/li&g;\n&l;li&g;&l;strong&g;带宽 bandwidth： &l;strong&g;计算机网络中的主机在数字信道上，单位时间内从一端传送到另一端的最大数据量，即&l;/strong&g;最大速率&l;/strong&g;。单位是比特/秒。&l;/li&g;\n&l;li&g;**吞吐量 throughput：**吞吐量是指对网络、设备、端口或其他设施在单位时间内成功地传送数据的数量（以比特、字节等测量单位），也就是说吞吐量是指在没有帧丢失的情况下，设备能够接收并转发的最大数据速率。&l;/li&g;\n&l;/ul&g;\n&l;h3 id=\&q;时延-delay\&q;&g;时延 Delay&l;a title=\&q;#时延-delay\&q; href=\&q;#时延-delay\&q;&g;&l;/a&g;&l;/h3&g;\n&l;ul&g;\n&l;li&g;**节点处理时延 proc： **路由器或主机在收到数据包时，要花费一定时间进行处理，例如分析数据包的首部、进行首部差错检验，查找路由表为数据包选定准发接口，这就产生了处理时延。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/webp/1552854/1609563941408-5bd8b5b0-ca19-45b0-ab66-461a6d015739.webp#align=left&a;amp;display=inline&a;amp;height=540&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6.webp&a;amp;originHeight=540&a;amp;originWidth=1200&a;amp;size=13630&a;amp;status=done&a;amp;style=none&a;amp;width=1200\&q; alt=\&q;处理时延.webp\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;**排队时延 queue：**等待输出链路可用，进入路由器之后要先在输入队列中排队等待处理。在路由器确定了转发接口后，还要在输出队列中排队等待转发，这就产生了排队时延。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/webp/1552854/1609563918034-08b3ec0c-3504-4d69-bb98-2aad80593338.webp#align=left&a;amp;display=inline&a;amp;height=527&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6.webp&a;amp;originHeight=527&a;amp;originWidth=1200&a;amp;size=11614&a;amp;status=done&a;amp;style=none&a;amp;width=1200\&q; alt=\&q;排队时延.webp\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;**传输时延 trans：&l;strong&g;传输延迟也叫发送时延, 将所有分组推向链路的时间&l;/strong&g; 。**取决于路由器的拥塞程度&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/gif/1552854/1609563866718-31c6aaa4-6aaf-4d11-b2b8-849c22503661.gif#align=left&a;amp;display=inline&a;amp;height=803&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E5%8F%91%E9%80%81%E6%97%B6%E5%BB%B6.gif&a;amp;originHeight=803&a;amp;originWidth=1430&a;amp;size=504356&a;amp;status=done&a;amp;style=none&a;amp;width=1430\&q; alt=\&q;发送时延.gif\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;**传播时延 prop： **指电磁波在信道中传播一定距离需要花费的时间。取决于链路的物理性质。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/gif/1552854/1609563883081-9055d375-6516-49cd-b16f-59c4a821c950.gif#align=left&a;amp;display=inline&a;amp;height=803&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6.gif&a;amp;originHeight=803&a;amp;originWidth=1430&a;amp;size=403181&a;amp;status=done&a;amp;style=none&a;amp;width=1430\&q; alt=\&q;传播时延.gif\&q;&g;&l;br&g;\n&l;strong&g;总时延=发送时延+传播时延+处理时延+排队时延&l;/strong&g;&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609574077051-355314ec-4810-49c8-9baa-00c8ece3a68e.png#align=left&a;amp;display=inline&a;amp;height=196&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E6%80%BB%E6%97%B6%E5%BB%B6.png&a;amp;originHeight=196&a;amp;originWidth=738&a;amp;size=40807&a;amp;status=done&a;amp;style=none&a;amp;width=738\&q; alt=\&q;总时延.png\&q;&g;&l;/p&g;\n&l;h3 id=\&q;其他\&q;&g;其他&l;a title=\&q;#其他\&q; href=\&q;#其他\&q;&g;&l;/a&g;&l;/h3&g;\n&l;ul&g;\n&l;li&g;**时延带宽积： **时延带宽积表示链路可容纳的比特数，因此，链路的时延带宽积又称为以比特为单位的链路长度。时延带宽积=传播时延 × 带宽。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609574141848-36df6f84-33c7-445a-b4dd-25b99e9b4d02.png#align=left&a;amp;display=inline&a;amp;height=88&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E6%97%B6%E5%BB%B6%E5%B8%A6%E5%AE%BD%E7%A7%AF.png&a;amp;originHeight=88&a;amp;originWidth=346&a;amp;size=18780&a;amp;status=done&a;amp;style=none&a;amp;width=346\&q; alt=\&q;时延带宽积.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;**往返时间 RTT： **往返时间 RTT，表示从发送方发送数据开始，到发送方收到来自接收方的确认（接收方收到数据后便立即发送确认），总共经历的时间。往返时间一般就会包括分组在网络中的各种时延。在一定程度上反映了网络的拥塞程度。&l;/li&g;\n&l;li&g;**信道利用率： **信道利用率指出某信道有百分之几的时间是被利用的（有数据通过），等于发送时延除以发送时延加上往返传输时延。完全空闲的信道的利用率是零。利用率越接近于 1，时延急剧增大，信道利用率越高。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609574221620-2c42d54b-7d20-4d23-959b-eb4b36c60f98.png#align=left&a;amp;display=inline&a;amp;height=232&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87%E4%B8%8E%E6%97%B6%E5%BB%B6%E5%85%B3%E7%B3%BB.png&a;amp;originHeight=232&a;amp;originWidth=400&a;amp;size=29565&a;amp;status=done&a;amp;style=none&a;amp;width=400\&q; alt=\&q;信道利用率与时延关系.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h2 id=\&q;计算机网络的分类\&q;&g;计算机网络的分类&l;a title=\&q;#计算机网络的分类\&q; href=\&q;#计算机网络的分类\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;按照覆盖的地理范围进行分类，计算机网络可以分为局域网、城域网和广域网三类。&l;/p&g;\n&l;ol&g;\n&l;li&g;局域网(LAN)。局域网是一种在小区域内使用的，由多台计算机组成的网络，覆盖范围通常局限在 10 千米范围之内，属于一个单位或部门组建的小范围网。&l;/li&g;\n&l;li&g;城域网(MAN)。城域网是作用范围在广域网与局域网之间的网络，其网络覆盖范围通常可以延伸到整个城市，借助通信光纤将多个局域网联通公用城市网络形成大型网络，使得不仅局域网内的资源可以共享，局域网之间的资源也可以共享。&l;/li&g;\n&l;li&g;广域网(WAN) 广城网是一种远程网，涉及长距离的通信，覆盖范围可以是个国家或多个国家，甚至整个世界。由于广域网地理上的距离可以超过几千千米，所以信息衰减非常严重，这种网络一般要租用专线，通过接口信息处理协议和线路连接起来，构成网状结构，解决寻径问题。&l;/li&g;\n&l;/ol&g;\n&l;h2 id=\&q;常见网络的拓扑结构\&q;&g;常见网络的拓扑结构&l;a title=\&q;#常见网络的拓扑结构\&q; href=\&q;#常见网络的拓扑结构\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;星型拓扑\&q;&g;星型拓扑&l;a title=\&q;#星型拓扑\&q; href=\&q;#星型拓扑\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;星型拓扑是由中央节点和通过点到点通信链路接到中央节点的各个站点组成。&l;br&g;\n优点：可靠性高，方便管理，易于扩展，传输效率高.&l;br&g;\n缺点：线路利用率低，中心节点需要很高的可靠性和冗余度。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609565176185-983c5e3a-6cb9-4775-a936-93358db4e1e7.jpeg#align=left&a;amp;display=inline&a;amp;height=251&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E6%98%9F%E5%9E%8B%E6%8B%93%E6%89%91.jpg&a;amp;originHeight=251&a;amp;originWidth=271&a;amp;size=8804&a;amp;status=done&a;amp;style=none&a;amp;width=271\&q; alt=\&q;星型拓扑.jpg\&q;&g;&l;/p&g;\n&l;h3 id=\&q;总线拓扑\&q;&g;总线拓扑&l;a title=\&q;#总线拓扑\&q; href=\&q;#总线拓扑\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;总线拓扑结构采用一个信道作为传输媒体,所有站点都通过相应的硬件接口直接连到这一公共传输媒体上,该公共传输媒体即称为总线。&l;br&g;\n优点：费用较低，易于扩展，线路的利用率高；&l;br&g;\n缺点：可靠性不高，维护困难，传输效率低。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609564916595-98602437-9246-478d-8892-850f2502f43b.png#align=left&a;amp;display=inline&a;amp;height=786&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png&a;amp;originHeight=786&a;amp;originWidth=1238&a;amp;size=11594&a;amp;status=done&a;amp;style=none&a;amp;width=1238\&q; alt=\&q;总线结构.png\&q;&g;&l;/p&g;\n&l;h3 id=\&q;环型拓扑\&q;&g;环型拓扑&l;a title=\&q;#环型拓扑\&q; href=\&q;#环型拓扑\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;在环型拓扑中各节点通过环路接口连在一条首尾相连的闭合环型通信线路中，环路上任何节点均可以请求发送信息。&l;br&g;\n优点：令牌控制，没有线路竞争，实时性强，传输控制容易；&l;br&g;\n缺点：维护困难，可靠性不高&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609564978911-7b0ce576-6faa-4b81-97a3-39ab6084e8b2.png#align=left&a;amp;display=inline&a;amp;height=856&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E7%8E%AF%E5%9E%8B%E6%8B%93%E6%89%91.png&a;amp;originHeight=856&a;amp;originWidth=1162&a;amp;size=14900&a;amp;status=done&a;amp;style=none&a;amp;width=1162\&q; alt=\&q;环型拓扑.png\&q;&g;&l;/p&g;\n&l;h2 id=\&q;计算机网络交换技术\&q;&g;计算机网络交换技术&l;a title=\&q;#计算机网络交换技术\&q; href=\&q;#计算机网络交换技术\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;数据交换的基本概念：通常将数据在通信子网中各节点间的数据传输过程称为数据交换。&l;br&g;\n分类：网络中常用的数据交换技术可分为两大类：电路交换和存储转发交换，其中存储转发交换技术又可分为报文交换和分组交换。&l;/p&g;\n&l;h3 id=\&q;电路交换\&q;&g;电路交换&l;a title=\&q;#电路交换\&q; href=\&q;#电路交换\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;传统的电路交换要求每个主机之间必须直接连接, 假设网络中有 &l;img src=\&q;https://cdn.nlark.com/yuque/__latex/7b8b965ad4bca0e41ab51de7b31363a1.svg#card=math&a;amp;code=n&a;amp;height=10&a;amp;width=8\&q; alt=\&q;\&q;&g; 台主机, 就必须使用 &l;img src=\&q;https://cdn.nlark.com/yuque/__latex/29bddacb40c90e334700868b889400aa.svg#card=math&a;amp;code=C_n%5E2&a;amp;height=18&a;amp;width=18\&q; alt=\&q;\&q;&g; 条链路, 十分浪费资源. 为了改进, 引入交换机, 让主机连入到交换机上, 通过交换技术实现两台主机的连接.&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609573733564-7f5c72d3-0b03-4df2-aae9-a916db3723da.png#align=left&a;amp;display=inline&a;amp;height=149&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2.png&a;amp;originHeight=149&a;amp;originWidth=580&a;amp;size=26266&a;amp;status=done&a;amp;style=none&a;amp;width=580\&q; alt=\&q;电路交换.png\&q;&g;&l;br&g;\n从通信资源的分配角度来看，&l;strong&g;“交换”就是按照某种方式动态地分配传输线路的资源。&l;/strong&g;&l;br&g;\n&l;strong&g;电路交换的 3 个阶段&l;/strong&g;&l;/p&g;\n&l;ol&g;\n&l;li&g;建立连接&l;/li&g;\n&l;li&g;通信&l;/li&g;\n&l;li&g;关闭连接&l;/li&g;\n&l;/ol&g;\n&l;h3 id=\&q;报文交换\&q;&g;报文交换&l;a title=\&q;#报文交换\&q; href=\&q;#报文交换\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;报文整个地发送，一次一跳。报文交换是分组交换的前身。&l;/p&g;\n&l;p&g;报文交换采用&a;quot;存储-转发&a;quot;方式进行传送，无需事先建立线路，事后更无需拆除。它的优点是：线路利用率高、故障的影响小、可以实现多目的报文；缺点是：延迟时间长且不定、对中间节点的要求高、通信不可靠、失序等，不适合计算机网络，处理时间大于分组交换。&l;/p&g;\n&l;h3 id=\&q;分组交换\&q;&g;分组交换&l;a title=\&q;#分组交换\&q; href=\&q;#分组交换\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;分组交换是一种数位通信网络。它将资料组合成适当大小的区块，称为封包，再通过网络来传输。这个传送封包的网络是共享的，每个单位都可以独立把封包再传送出去，而且配置自己需要的资源。&l;/p&g;\n&l;p&g;分组又称为&l;strong&g;包&l;/strong&g;,而分组的首部也可称为“包头”。**分组是在互联网中传送的数据单元。**分组的首部包含了诸如目的地址和源地址等重要控制信息,每一个分组才能在互联网中独立地选择传输路径,并被正确地交付到分组传输的终点。&l;/p&g;\n&l;p&g;路由器是用来进行分组交换的。路由器收到一个分组,先暂时存储一下,检查其首部,查找转发表,按照首部中的目的地址,找到合适的接口转发出去,把分组交给下一个路由器。这样一步一步地(有时会经过几十个不同的路由器)以存储转发的方式,把分组交付最终的目的主机。各路由器之间必须经常交换彼此掌握的路由信息,以便创建和动态维护路由器中的转发表,使得转发表能够在整个网络拓扑发生变化时及时更新。&l;/p&g;\n&l;p&g;为了提高分组交换网的可靠性,互联网的核心部分常采用网状拓扑结构,使得当发生网络拥塞或少数结点、链路出现故障时,路由器可灵活地改变转发路由而不致引起通信的中断或全网的瘫痪。&l;/p&g;\n&l;p&g;** 分析：** 分组交换在传送数据之前不必先占用一条端到端的链路的通信资源。分组在哪段链路上传送才占用这段链路的通信资源。分组在传输时一段一段地断续占用通信资源（转发）,而且还省去了建立连接和释放连接的开销,因而数据的传输效率更高。同时可靠性更高。&l;/p&g;\n&l;p&g;但是，这种非端到端占用资源就会导致存储转发时需要排队，这就产生了时延。此外，分组所携带的首部种的控制信息也会占用一定的开销。&l;br&g;\n&l;strong&g;分组交换的特点：&l;/strong&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;&l;strong&g;存储转发传输:&l;/strong&g; 与报文交换机能够开始向输出链路传输该分组的第一个比特之前, 必须接收到整个分组. 仅当路由器接收到所有分组之后才能向链路传输该分组. 通过 &l;img src=\&q;https://cdn.nlark.com/yuque/__latex/8d9c307cb7f3c4a32822a51922d1ceaa.svg#card=math&a;amp;code=N&a;amp;height=13&a;amp;width=13\&q; alt=\&q;\&q;&g; 条速率均为 &l;img src=\&q;https://cdn.nlark.com/yuque/__latex/e1e1d3d40573127e9ee0480caf1283d6.svg#card=math&a;amp;code=R&a;amp;height=13&a;amp;width=11\&q; alt=\&q;\&q;&g; 的链路组成的路径, 从源到目的地发送一个分组, 端到端的时延是 &l;img src=\&q;https://cdn.nlark.com/yuque/__latex/d9659e2fce38b3757f2a1415f7d25c05.svg#card=math&a;amp;code=d_%7B%E7%AB%AF%E5%88%B0%E7%AB%AF%7D%3D%3DN%2AL%2FR&a;amp;height=22&a;amp;width=127\&q; alt=\&q;\&q;&g;&l;/li&g;\n&l;li&g;&l;strong&g;排队时延与分组丢失:&l;/strong&g; 对于每条相连的链路, 该分组交换机有一个输出缓存(输出队列)，用于存储路由器准备发往那条链路的分组。因此分组需要承受输出缓存的排队时延。&l;/li&g;\n&l;li&g;**转发表和路由选择协议: **当源主机要向目的地端系统发送一个分组时，源在该分组的首部包含了目的地的 IP 地址. 路由器有一个转发表，用于将目的地址映射为输出链路，路由器会根据分组的地址在转发表里面查找对应的输出链路。&l;/li&g;\n&l;/ul&g;\n&l;h3 id=\&q;3-种交换网络的对比\&q;&g;3 种交换网络的对比&l;a title=\&q;#3-种交换网络的对比\&q; href=\&q;#3-种交换网络的对比\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;分组交换与报文交换都是采用存储-转发交换方式. 报文交换以完整报文进行 “存储-转发”, 分组交换以较小的分组进行 “存储-转发”。&l;/p&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609573263204-c81c6330-3f6a-41fa-aaa2-7419ccbcbb18.png#align=left&a;amp;display=inline&a;amp;height=499&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=3%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%96%B9%E5%BC%8F.png&a;amp;originHeight=499&a;amp;originWidth=719&a;amp;size=55352&a;amp;status=done&a;amp;style=none&a;amp;width=719\&q; alt=\&q;3种交换方式.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h2 id=\&q;计算机网络协议基本概念\&q;&g;计算机网络协议基本概念&l;a title=\&q;#计算机网络协议基本概念\&q; href=\&q;#计算机网络协议基本概念\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;网络协议是为计算机网络中进行数据交换而建立的规则、标准或者说是约定的集合。&l;/p&g;\n&l;p&g;&l;strong&g;网络协议是由三个要素组成：&l;/strong&g;&l;br&g;\n(1)  语义。语义是解释控制信息每个部分的意义。它规定了需要发出何种控制信息，以及完成的动作与做出什么样的响应。例如数字减去数字是有意义的，数字减去文本一般来说就没有意义。&l;br&g;\n(2)  语法。语法是用户数据与控制信息的结构与格式，以及数据出现的顺序。例如，括号要成对，结束要使用分号等。&l;br&g;\n(3)  时序。时序是对事件发生顺序的详细说明。（也可称为“同步”）。  例如，可以先加上某个数值，然后再减去某个数值。&l;br&g;\n人们形象地把这三个要素描述为：语义表示要做什么，语法表示要怎么做，时序表示做的顺序。&l;/p&g;\n&l;h2 id=\&q;网络层次结构的划分\&q;&g;网络层次结构的划分&l;a title=\&q;#网络层次结构的划分\&q; href=\&q;#网络层次结构的划分\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;为什么要在网络中使用分层\&q;&g;为什么要在网络中使用分层&l;a title=\&q;#为什么要在网络中使用分层\&q; href=\&q;#为什么要在网络中使用分层\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;类比于在软件工程中使用分层结构，分层的目的是屏蔽底层细节。分层就是层层交付，下层向上层提供服务。对于上层来说，如同两个对等层之间直接交流，他们不关心底层的细节与实现，底层的存在是透明的。&l;/p&g;\n&l;p&g;在分层体系结构中，各层之间是完全独立的，某一层并不需要知道他的下一层是如何实现的，而仅仅是需要知道下层提供的服务。由于每一层都只是实现一种相对独立的功能，因而可以将一个难以处理的复杂问题分解为若干个小问题。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609575379387-ed0bc170-7962-4b47-bf5b-c2569eee68ac.png#align=left&a;amp;display=inline&a;amp;height=444&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E5%88%86%E5%B1%82%E7%9A%84%E6%84%8F%E4%B9%89.png&a;amp;originHeight=444&a;amp;originWidth=772&a;amp;size=346501&a;amp;status=done&a;amp;style=none&a;amp;width=772\&q; alt=\&q;分层的意义.png\&q;&g;&l;/p&g;\n&l;h3 id=\&q;tcp/ip-协议簇\&q;&g;TCP/IP 协议簇&l;a title=\&q;#tcp/ip-协议簇\&q; href=\&q;#tcp/ip-协议簇\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;现代网络使用的是 TCP/IP 协议簇， 但是在 TCP/IP 协议簇之前，还有一种协议理论： OSI 协议。 但由于 OSI 理论过于复杂，因此并没有得到广泛应用。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609575679674-8763c907-2e85-426b-9ea2-d4c89ca25128.png#align=left&a;amp;display=inline&a;amp;height=373&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcpip%E5%8D%8F%E8%AE%AE%E4%B8%8Eosi%E5%8D%8F%E8%AE%AE.png&a;amp;originHeight=373&a;amp;originWidth=642&a;amp;size=82436&a;amp;status=done&a;amp;style=none&a;amp;width=642\&q; alt=\&q;tcpip协议与osi协议.png\&q;&g;&l;br&g;\n互联网中广泛使用的是 TCP/IP 的四层协议，但是在教学过程中， 我们学习的是五层协议，注意区分。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609575853381-aa5dba0c-0e78-4f48-a13c-689ca9abc143.png#align=left&a;amp;display=inline&a;amp;height=829&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcpip.png&a;amp;originHeight=829&a;amp;originWidth=1417&a;amp;size=575336&a;amp;status=done&a;amp;style=none&a;amp;width=1417\&q; alt=\&q;tcpip.png\&q;&g;&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609576134814-290672b1-67fc-4be6-85ae-53870de0c031.png#align=left&a;amp;display=inline&a;amp;height=808&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcpip%E4%BA%94%E5%B1%82%E5%8D%8F%E8%AE%AE.png&a;amp;originHeight=808&a;amp;originWidth=1413&a;amp;size=692544&a;amp;status=done&a;amp;style=none&a;amp;width=1413\&q; alt=\&q;tcpip五层协议.png\&q;&g;&l;/p&g;\n&l;p&g;（1）应用层：&l;br&g;\n&l;strong&g;应用层协议定义的是应用进程间通信和交互的规则。&l;/strong&g;  这里的进程就是指主机中正在运行的程序。在互联网中的应用层协议很多,如域名系统&l;strong&g;DNS&l;/strong&g;,支持万维网应用的&l;strong&g;HTTP 协议&l;/strong&g;,支持电子邮件的&l;strong&g;SMTP 协议&l;/strong&g;,等等。&l;strong&g;应用层交互的数据单元称为报文(message)&l;/strong&g;。&l;/p&g;\n&l;p&g;（2）运输层：&l;br&g;\n&l;strong&g;负责向两台主机中进程之间的通信提供通用的数据传输服务。&l;strong&g;运输层主要使用两种协议：&l;strong&g;传输控制协议 TCP&l;/strong&g;(Transmission Control protocol，提供面向连接的、可靠的数据传输服务）和&l;/strong&g;用户数据报协议 UDP&l;/strong&g;(User Datagram Protocol，提供无连接的、尽最大努力的数据传输服务(不保证数据传输的可靠性)）。&l;/p&g;\n&l;p&g;（3）网络层：&l;br&g;\n** 网络层负责为分组交换网上的不同主机提供通信服务。**  在发送数据时,网络层把运输层产生的报文段或用户数据报封装成分组或包进行传送。在 TCP/IP 体系中,由于网络层使用 IP 协议,因此分组也叫做 IP 数据报,或简称为数据报。无论在哪一层传送的数据单元,都可笼统地用“分组”来表示。&l;strong&g;网络层的另一个任务就是要选择合适的路由,使源主机运输层所传下来的分组,能够通过网络中的路由器找到目的主机。&l;/strong&g;&l;br&g;\n**&l;br&g;\n（4）数据链路层：&l;br&g;\n数据链路层常简称为链路层。我们知道,两台主机之间的数据传输,总是在一段一段的链路上传送的,这就需要使用专门的链路层的协议。&l;strong&g;在两个相邻结点之间传送数据时,数据链路层将网络层交下来的 IP 数据报组装成帧(framing,在两个相邻结点间的链路上传送帧(fame)&l;/strong&g;。**每一帧包括数据和必要的控制信息(如同步信息、地址信息、差错控制等)。**&l;/p&g;\n&l;p&g;（5）物理层：&l;br&g;\n** 在物理层上所传数据的单位是比特。因此物理层要考虑用多大的电压代表“1”或“0”,以及接收方如何识别出发送方所发送的比特。**  物理层还要确定连接电缆的插头应当有多少根引脚以及各引脚应如何连接。请注意,&l;strong&g;传递信息所利用的些物理媒体,如双绞线、同轴电缆、光缆、无线信道等,并不在物理层协议之内而是在物理层协议的下面&l;/strong&g;。因此也有人把物理层下面的物理媒体当作第 0 层。&l;strong&g;注意 mac 地址并不属于物理层而是属于数据链路层。&l;/strong&g;&l;/p&g;\n&l;h1 id=\&q;应用层\&q;&g;应用层&l;a title=\&q;#应用层\&q; href=\&q;#应用层\&q;&g;&l;/a&g;&l;/h1&g;\n&l;p&g;应用层是网络协议栈的最上面的一层。应用层协议定义的是&l;strong&g;应用进程间通信和交互的规则&l;/strong&g;。 这里的进程就是指主机中正在运行的程序。在互联网中的应用层协议很多,如域名系统 DNS,支持万维网应用的 HTTP 协议,支持电子邮件的 SMTP 协议,等等。应用层交互的数据单元称为报文(message)。&l;/p&g;\n&l;h2 id=\&q;网络应用模型\&q;&g;&l;strong&g;网络应用模型&l;/strong&g;&l;a title=\&q;#网络应用模型\&q; href=\&q;#网络应用模型\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;应用层协议原理\&q;&g;应用层协议原理&l;a title=\&q;#应用层协议原理\&q; href=\&q;#应用层协议原理\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;** 研发网络应用程序的核心是写出能够运行在不同的端系统和通过网络彼此通信的程序**。例如，在网络应用程序中，有两个互相通信的不同程序：&l;strong&g;一个是运行在用户主机上的浏览器程序；另一个是运行在 Web 服务器主机上的 Web 服务器程序&l;/strong&g;。&l;/p&g;\n&l;h3 id=\&q;体系结构\&q;&g;体系结构&l;a title=\&q;#体系结构\&q; href=\&q;#体系结构\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;主要分为 &l;strong&g;p2p 模型&l;/strong&g;和 &l;strong&g;客户/服务器模型&l;/strong&g;&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609577797422-832ae7cb-4a78-42d9-8af0-100265c6ef24.png#align=left&a;amp;display=inline&a;amp;height=336&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=p2p%20cs.png&a;amp;originHeight=336&a;amp;originWidth=1278&a;amp;size=1290752&a;amp;status=done&a;amp;style=none&a;amp;width=1278\&q; alt=\&q;p2p cs.png\&q;&g;&l;br&g;\n(1) 在客户-服务器体系结构 (client-server architecture)中，有一个总是打开的主机称为服务器，它服务于来自许多其他称为客户的主机的请求。著名的应用程序包括 Web、FTP、Telnet 和电子邮件。&l;br&g;\n(2) 在一个 P2P 体系结构(P2P architecture)中,对位于数据中心的专用服务器有最小的(或者没有)依赖。相反，应用程序在间断连接的主机对之间使用直接通信，这些主机对被称为对等方。&l;/p&g;\n&l;h3 id=\&q;进程通信\&q;&g;进程通信&l;a title=\&q;#进程通信\&q; href=\&q;#进程通信\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;在以上两种体系结构中， 服务器或者客户的服务都是以进程的形式运行在主机上的。不同主机中的进程是如何进行信息通信的？&l;/p&g;\n&l;h4 id=\&q;客户与服务器进程\&q;&g;客户与服务器进程&l;a title=\&q;#客户与服务器进程\&q; href=\&q;#客户与服务器进程\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;在 CS 架构中，浏览器或者客户端被称为客户，Web 服务器被称为服务器。在 P2P 架构中， 一个进程充当两种角色：用户和服务器。&l;br&g;\n&l;strong&g;在一对进程之间的通信会话场景中，发起通信（即在会话开始时发起与其他进程的联系）的进程称为客户，在会话开始时等待联系的被称为服务器。&l;/strong&g;&l;/p&g;\n&l;h4 id=\&q;进程与计算机网络之间的接口\&q;&g;&l;strong&g;进程与计算机网络之间的接口&l;/strong&g;&l;a title=\&q;#进程与计算机网络之间的接口\&q; href=\&q;#进程与计算机网络之间的接口\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;在一台主机上肯定不止运行了一个进程， 分布在多个主机上的进程是如何进行通信的？实际上，每个进程之间会有一个 套接字(socket) 的软件接口存在，套接字是应用程序的内部接口，应用程序可以通过它发送或接收数据，可对其进行像对文件一样的打开、读写和关闭等操作。套接字允许应用程序将 I/O 插入到网络中，并与网络中的其他应用程序进行通信。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609579125125-830f2906-9895-46e0-921f-2ce4a2e20714.jpeg#align=left&a;amp;display=inline&a;amp;height=442&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=socket.jpg&a;amp;originHeight=442&a;amp;originWidth=638&a;amp;size=54128&a;amp;status=done&a;amp;style=none&a;amp;width=638\&q; alt=\&q;socket.jpg\&q;&g;&l;br&g;\nSocket 是同一台主机内的应用层和传输层之间的接口。  程序开发者对于传输层的控制仅限于: 1 选择传输层协议 2 也许可以设定几个传输层参数。&l;/p&g;\n&l;p&g;Socket 是对 TCP/IP 协议的封装，复杂的 TCP/IP 协议族隐藏在 Socket 接口后面。它的出现使得程序员能够更加方便地借助于 TCP/IP 协议栈通信。&l;/p&g;\n&l;h4 id=\&q;进程寻址\&q;&g;进程寻址&l;a title=\&q;#进程寻址\&q; href=\&q;#进程寻址\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;进程寻址用于解决 socket 往哪发送数据的问题。不同主机之间需要使用 IP 地址进行标识，同一主机上的进程用端口号进行标识。例如， Web 应用程序需要用 80 端口来标示，邮件服务器程序需要使用 25 来标示。&l;/p&g;\n&l;p&g;&l;strong&g;端口的分类：&l;/strong&g;&l;br&g;\n公认端口（WellKnownPorts）0-1023：其中 80 端口分配给 WWW 服务，21 端口分配给 FTP 服务等。访问网站默认访问服务器的 80 端口。&l;br&g;\n注册端口（RegisteredPorts）1024-49151：分配给用户进程或应用程序。这些进程主要是用户选择安装的一些应用程序，而不是已经分配好了公认端口的常用程序。&l;br&g;\n动态端口（Dynamic Ports）49152-65535：动态端口的范围是从 49152 到 65535。之所以称为动态端口，是因为它 一般不固定分配某种服务，而是动态。&l;/p&g;\n&l;h3 id=\&q;应用层协议\&q;&g;应用层协议&l;a title=\&q;#应用层协议\&q; href=\&q;#应用层协议\&q;&g;&l;/a&g;&l;/h3&g;\n&l;h4 id=\&q;应用程序的应用层协议选择\&q;&g;应用程序的应用层协议选择&l;a title=\&q;#应用程序的应用层协议选择\&q; href=\&q;#应用程序的应用层协议选择\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;应用层协议有很多， 应用程序应该怎样选择适合自己的应用层协议？主要从以下四个方面进行考量。&l;/p&g;\n&l;p&g;**数据传输是否可靠： **&l;br&g;\n分组在计算机网络中会存在丢包问题，丢包问题的严重性跟网络应用程序的性质有关，如果像是电子邮件、文件传输、远程主机、Web 文档传输的过程中出现问题，数据丢失可能会造成非常严重的后果。如果像是网络游戏，多人视频会议造成的影响可能比较小。鉴于此，数据传输的可靠性也是首先需要考虑的问题。因此，如果一个协议提供了这样的确保数据交付的服务，就认为提供了 可靠数据传输(reliable data transfer)，能够忍受数据丢失的应用被称为 容忍丢失的应用(loss-tolerant application)。&l;/p&g;\n&l;p&g;&l;strong&g;吞吐量：&l;/strong&g;&l;br&g;\n吞吐量就是在网络应用中数据传输过程中，发送进程能够向接收进程交付比特的速率。具有吞吐量要求的应用程序被称为 带宽敏感的应用(bandwidth-sensitive application)。带宽敏感的应用具有特定的吞吐量要求，而 弹性应用(elastic application) 能够根据当时可用的带宽或多或少地利用可供使用的吞吐量。&l;/p&g;\n&l;p&g;&l;strong&g;定时&l;/strong&g;&l;br&g;\n运输层协议也能提供定时保证，如同吞吐量保证一样，定时保证可以以多种形式实现。例如，可以设置发送方注入进套接字的每个比特到达接收方的套接字不迟于 100ms。这种服务对交互式实时应用程序非常适用。&l;/p&g;\n&l;p&g;&l;strong&g;安全性&l;/strong&g;&l;br&g;\n在发送主机中，运输层协议能够加密由发送进程传输的所有数据；在接收主机中，运输层协议能够在数据交付给接收进程之前解密这些数据。&l;br&g;\n&l;strong&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609580287078-77df36d5-4644-4246-844d-817521aa6576.png#align=left&a;amp;display=inline&a;amp;height=460&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8D%8F%E8%AE%AE%E9%80%89%E6%8B%A9.png&a;amp;originHeight=460&a;amp;originWidth=974&a;amp;size=93706&a;amp;status=done&a;amp;style=none&a;amp;width=974\&q; alt=\&q;应用程序的协议选择.png\&q;&g;&l;/strong&g;&l;/p&g;\n&l;h4 id=\&q;因特网能够提供的运输服务\&q;&g;因特网能够提供的运输服务&l;a title=\&q;#因特网能够提供的运输服务\&q; href=\&q;#因特网能够提供的运输服务\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;一个应用层协议需要选择适合他的运输层协议支撑他的该应用层协议的服务。&l;br&g;\n运输层提供了两种运输协议：&l;br&g;\n1）&l;strong&g;TCP 服务&l;/strong&g;&l;br&g;\n1 . 面向连接的服务&l;br&g;\n在应用层数据报发送后， TCP 让客户端和服务器互相交换运输层控制信息。这个握手过程就是提醒客户端和服务器需要准备好接受数据报。握手阶段后，一个  &l;code&g;TCP 连接(TCP Connection)&l;/code&g;  就建立了。这是一条全双工的连接，即&l;strong&g;连接双方的进程都可以在此连接上同时进行收发报文&l;/strong&g;。当应用程序结束报文发送后，必须拆除连接。&l;br&g;\n2 . 可靠的数据服务&l;br&g;\n通信进程能够依靠 TCP，无差错、按适当顺序交付所有发送的数据。应用程序能够依靠 TCP 将相同的字节流交付给接收方的套接字，没有字节的丢失和冗余。&l;br&g;\n3 . 拥塞控制&l;br&g;\nTCP 的拥塞控制并不一定为通信进程带来直接好处，但能为因特网带来整体好处。当接收方和发送方之间的网络出现拥塞时，TCP 的拥塞控制会抑制发送进程（客户端或服务器），我们会在后面具体探讨拥塞控制&l;br&g;\n2）&l;strong&g;UDP 服务&l;/strong&g;: 基于“尽力而为”的网络层&l;/p&g;\n&l;ol&g;\n&l;li&g;面向非连接&l;/li&g;\n&l;li&g;不可靠连接&l;/li&g;\n&l;li&g;没有拥塞控制&l;/li&g;\n&l;/ol&g;\n&l;h4 id=\&q;网络层与传输层之间的对比\&q;&g;网络层与传输层之间的对比&l;a title=\&q;#网络层与传输层之间的对比\&q; href=\&q;#网络层与传输层之间的对比\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;在之前我们介绍过了运输层的 tcp 和 udp，为了和应用层协议做区分，我们对比一下应用层和运输层。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609580585142-defc65dd-7bc3-44c2-80ea-b32323e3741e.png#align=left&a;amp;display=inline&a;amp;height=541&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E5%BA%94%E7%94%A8%E5%B1%82%E5%92%8C%E8%BF%90%E8%BE%93%E5%B1%82%E5%8C%BA%E5%88%AB.png&a;amp;originHeight=541&a;amp;originWidth=1652&a;amp;size=295389&a;amp;status=done&a;amp;style=none&a;amp;width=1652\&q; alt=\&q;应用层和运输层区别.png\&q;&g;&l;/p&g;\n&l;h4 id=\&q;常见的应用对应的应用层协议\&q;&g;常见的应用对应的应用层协议&l;a title=\&q;#常见的应用对应的应用层协议\&q; href=\&q;#常见的应用对应的应用层协议\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609580719934-1b0a8aec-24e2-4bcb-ab49-ec7690634057.png#align=left&a;amp;display=inline&a;amp;height=320&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E5%BA%94%E7%94%A8%E5%AF%B9%E5%BA%94%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE.png&a;amp;originHeight=320&a;amp;originWidth=805&a;amp;size=774476&a;amp;status=done&a;amp;style=none&a;amp;width=805\&q; alt=\&q;应用对应的应用层协议.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h2 id=\&q;web-和-http\&q;&g;Web 和 HTTP&l;a title=\&q;#web-和-http\&q; href=\&q;#web-和-http\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;关于-http\&q;&g;关于 HTTP&l;a title=\&q;#关于-http\&q; href=\&q;#关于-http\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;Web 即 World Wide Web。是全世界使用最广泛的网络应用。提供了文件以及其他 web 资源访问服务，所有的文件通过 URL（统一资源定位器）来定位。在浏览器中输入 url 就可以访问这网站的资源文件。&l;/p&g;\n&l;p&g;HTTP 协议（HyperText Transfer Protocol），它定义了网络通信中消息的结构，以及客户端和服务端如何交换消息，消息可以称为 HTTP 报文（HTTP Message）。HTTP 网络通信由客户端应用程序和服务端应用程序构成，客户端应用程序为 Web 浏览器，服务端应用程序为 Web 服务器。HTTP 通信的过程是：浏览器通过 URL 指定要访问的资源，然后发送 HTTP 请求给服务器，服务器收到请求后，响应 HTTP 请求。浏览器收到的服务器的响应信息后，渲染该资源文件。&l;/p&g;\n&l;p&g;&l;strong&g;关于 URL 统一资源定位器：&l;/strong&g;&l;br&g;\n&l;strong&g;例如 &l;a href=\&q;https://www.yzh.im:80/index.html%E3%80%82\&q;&g;https://www.yzh.im:80/index.html。&l;/a&g;&l;/strong&g;&l;br&g;\n**协议：**其中 &l;code&g;https://&l;/code&g; v 告诉浏览器使用何种协议。另外，浏览器也知道如何处理其他协议。例如， mailto: 协议指示浏览器打开邮件客户端；ftp:协议指示浏览器处理文件传输。&l;br&g;\n**主机：**&l;a href=\&q;http://www.yzh.im\&q;&g;www.yzh.im&l;/a&g; 是一个域名，它指示了需要向网络上的哪一台主机发起请求。当然，也可以直接向主机的 IP address 地址发起请求。&l;br&g;\n&l;strong&g;端口&l;/strong&g;：两个主机之间要发起 TCP 连接需要两个条件，主机 + 端口。它表示用于访问 Web 服务器上资源的入口。如果访问的该 Web 服务器使用 HTTP 协议的标准端口（HTTP 为 80，HTTPS 为 443）授予对其资源的访问权限，则通常省略此部分。否则端口就是 URI 必须的部分。&l;br&g;\n&l;strong&g;路径：&l;/strong&g;/index.html 代表访问服务器根目录下的 index.html 文件。&l;/p&g;\n&l;h3 id=\&q;http-分类\&q;&g;HTTP 分类&l;a title=\&q;#http-分类\&q; href=\&q;#http-分类\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;http 分为&l;strong&g;持久性连接和非持久性连接。&l;/strong&g;&l;br&g;\n&l;strong&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609584626100-bbb87ff3-fb6e-490d-ac36-d56671a8323c.png#align=left&a;amp;display=inline&a;amp;height=280&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=http%E8%BF%9E%E6%8E%A5%E5%88%86%E7%B1%BB.png&a;amp;originHeight=280&a;amp;originWidth=450&a;amp;size=18833&a;amp;status=done&a;amp;style=none&a;amp;width=450\&q; alt=\&q;http连接分类.png\&q;&g;&l;/strong&g;&l;/p&g;\n&l;ol&g;\n&l;li&g;&l;strong&g;非持久性连接&l;/strong&g;在每个 TCP 链接都在服务器发送完成后关闭。每个 TCP 连接只传输一个请求报文和响应报文。&l;/li&g;\n&l;li&g;在采用 HTTP 1.1 &l;strong&g;持续连接&l;/strong&g;的情况下，服务器在发送响应后保持该 TCP 连接打开不关闭。在相同的客户与服务器之间，后续的请求和响应报文能够通过相同的连接进行传送。&l;/li&g;\n&l;/ol&g;\n&l;h3 id=\&q;http-报文\&q;&g;HTTP 报文&l;a title=\&q;#http-报文\&q; href=\&q;#http-报文\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583445553-8ceaebf5-31db-423d-bc97-1134f330ab45.png#align=left&a;amp;display=inline&a;amp;height=576&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=http%E6%8A%A5%E6%96%87.png&a;amp;originHeight=576&a;amp;originWidth=1184&a;amp;size=289776&a;amp;status=done&a;amp;style=none&a;amp;width=1184\&q; alt=\&q;http报文.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h4 id=\&q;http-请求报文\&q;&g;HTTP 请求报文&l;a title=\&q;#http-请求报文\&q; href=\&q;#http-请求报文\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;请求报文格式如下&l;/p&g;\n&l;figure class=\&q;highlight bash\&q;&g;&l;table&g;&l;tr&g;&l;td class=\&q;gutter\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;1&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;2&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;3&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;4&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;5&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;td class=\&q;code\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;(Request Line) method URL Version&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;(Header Lines) header_field_name: value&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;               header_field_name: value&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;\t\t\t   ...&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;(Entity Body)  ...&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;/tr&g;&l;/table&g;&l;/figure&g;\n&l;p&g;&l;strong&g;字段说明：&l;/strong&g;&l;br&g;\n请求头（request line）中定义了 http 请求的关键参数。其中 Method 字段表示请求的方式，常用的请求方式为 GET，POST。URL 字段用来定位资源，Version 字段用来说明当前使用的协议版本。&l;br&g;\n头部行（Header Lines）中定义了可选的参数，用来辅助 HTTP 请求。&l;br&g;\n数据域（Entity Body） 用来传输数据。&l;/p&g;\n&l;p&g;&l;strong&g;例如：&l;/strong&g;&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583472002-66c2c4d6-5a14-4eff-aae4-ed3fdfdb42bf.png#align=left&a;amp;display=inline&a;amp;height=438&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=http%E8%AF%B7%E6%B1%82.png&a;amp;originHeight=438&a;amp;originWidth=1448&a;amp;size=80530&a;amp;status=done&a;amp;style=none&a;amp;width=1448\&q; alt=\&q;http请求.png\&q;&g;&l;/p&g;\n&l;h4 id=\&q;http-响应报文\&q;&g;HTTP 响应报文&l;a title=\&q;#http-响应报文\&q; href=\&q;#http-响应报文\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;格式如下：&l;/p&g;\n&l;figure class=\&q;highlight bash\&q;&g;&l;table&g;&l;tr&g;&l;td class=\&q;gutter\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;1&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;2&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;3&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;4&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;5&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;td class=\&q;code\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;(Status Line)  version status_code phrase&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;(Header Lines) header_field_name: value&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;               header_field_name: value&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;               ...&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;(Entity Body)  ...&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;/tr&g;&l;/table&g;&l;/figure&g;\n&l;p&g;&l;strong&g;字段说明：&l;/strong&g;&l;br&g;\n状态行（Status Line）定义了响应报文的关键参数。其中 Version 用来说明当前使用的协议版本，Status Code 表示请求结果的状态码，phrase 为状态码的说明。&l;br&g;\n头部行（Header Lines）中定义了可选的参数，用来辅助 HTTP 响应。&l;br&g;\n数据域（Entity Body） 用来传输数据。响应的数据一般是 HTML 文本，或者 JSON 文本。&l;br&g;\n常见的状态码&l;/p&g;\n&l;ul&g;\n&l;li&g;200 OK：请求成功。&l;/li&g;\n&l;li&g;301 Moved Permanently：资源位置永久移动，请求会自动重定向到资源新的 URL。&l;/li&g;\n&l;li&g;400 Bad Request：错误的请求。&l;/li&g;\n&l;li&g;404 Not Found：请求的资源不存在服务器中。&l;/li&g;\n&l;li&g;505 HTTP Version Not Supported：HTTP 协议版本不支持。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;例如：&l;/strong&g;&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583482907-021c64fe-6020-4c63-854f-0f32c8374a44.png#align=left&a;amp;display=inline&a;amp;height=189&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=http%E5%93%8D%E5%BA%94.png&a;amp;originHeight=189&a;amp;originWidth=1457&a;amp;size=20968&a;amp;status=done&a;amp;style=none&a;amp;width=1457\&q; alt=\&q;http响应.png\&q;&g;&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583745150-54b9f3fd-e138-4061-bcff-201f64758a2f.png#align=left&a;amp;display=inline&a;amp;height=700&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=http%E5%93%8D%E5%BA%94%E4%BD%93.png&a;amp;originHeight=700&a;amp;originWidth=1440&a;amp;size=100714&a;amp;status=done&a;amp;style=none&a;amp;width=1440\&q; alt=\&q;http响应体.png\&q;&g;&l;/p&g;\n&l;h2 id=\&q;cookie\&q;&g;Cookie&l;a title=\&q;#cookie\&q; href=\&q;#cookie\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;HTTP 服务器是无状态化的，这简化了服务器的设计，这让工程师可以去开发能同时处理大量数据的高性能服务器。但是有时 Web 站点希望能去识别用户，为此 HTTP 使用了 cookie 来进行用户跟踪。&l;br&g;\ncookie 技术有 4 个组件：&l;/p&g;\n&l;ul&g;\n&l;li&g;在 HTTP 响应报文中的一个 cookie 首部行；&l;/li&g;\n&l;li&g;在 HTTP 请求报文中的一个 cookie 首部行；&l;/li&g;\n&l;li&g;在用户端系统中保留有一个 cookie 文件，并由用户的浏览器进行管理；&l;/li&g;\n&l;li&g;位于 Web 站点的一个后端数据库。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609584847983-fb21c607-2348-4ef2-bea7-45706813c16f.png#align=left&a;amp;display=inline&a;amp;height=902&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=cookie.png&a;amp;originHeight=902&a;amp;originWidth=1054&a;amp;size=186169&a;amp;status=done&a;amp;style=none&a;amp;width=1054\&q; alt=\&q;cookie.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h2 id=\&q;dns\&q;&g;DNS&l;a title=\&q;#dns\&q; href=\&q;#dns\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;什么是-dns\&q;&g;什么是 dns&l;a title=\&q;#什么是-dns\&q; href=\&q;#什么是-dns\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;实现域名到主机 IP 的转换。DNS 是一个实现在多个 DNS 服务器的分布式数据库。一个应用层协议允许去查询分布式数据库。它提供了将域名转换为 IP 地址的服务。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609585289938-2953dcac-dc00-4cab-9f82-1898965de05b.png#align=left&a;amp;display=inline&a;amp;height=730&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=dns.png&a;amp;originHeight=730&a;amp;originWidth=1460&a;amp;size=47831&a;amp;status=done&a;amp;style=none&a;amp;width=1460\&q; alt=\&q;dns.png\&q;&g;&l;br&g;\nDNS 的全称是 Domain Name System,DNS ，它是一个由分层的 DNS 服务器（DNS server）实现的分布式数据库；它还是一个使得主机能够查询分布式数据库的应用层协议。&l;/p&g;\n&l;p&g;与 HTTP、FTP、SMTP 协议一样，DNS 协议也是应用层协议。&l;strong&g;它运行在 UDP 之上&l;/strong&g;，使用客户机/服务器模式在通信的端系统之间运行，在通信的端系统之间通过下面的端到端运输层协议来传送 DNS 报文。DNS 通常由其他应用层协议(包括 HTTP、FTP、SMTP)所使用，用于将用户提供的主机名解析为 IP 地址。&l;/p&g;\n&l;p&g;在浏览器中键入一个域名来访问网站，DNS 的工作流程如下：&l;br&g;\n【1】用户主机上运行着 DNS 应用的客户端&l;br&g;\n【2】浏览器从 URL 中提取出要访问的网站的主机名，将主机名传送给本机的 DNS 客户端&l;br&g;\n【3】DNS 客户端向 DNS 服务器发送一个包含主机名的请求&l;br&g;\n【4】DNS 客户端收到一份来自服务器的回答报文，其中包含对应于主机名的 IP 地址&l;br&g;\n【5】浏览器向对应的 IP 地址定位的 HTTP 服务器发起一个 TCP 连接&l;/p&g;\n&l;p&g;&l;strong&g;除了提供 IP 地址到主机名的转换，DNS 还提供了下面几种重要的服务:&l;/strong&g;&l;br&g;\n主机别名(host aliasing)，有着复杂的主机名的主机能够拥有一个或多个其他别名，比如说一台名为 &l;a href=\&q;http://relay1.west-coast.enterprise.com\&q;&g;relay1.west-coast.enterprise.com&l;/a&g; 的主机，同时会拥有 &l;a href=\&q;http://enterprise.com\&q;&g;enterprise.com&l;/a&g; 和 &l;a href=\&q;http://www.enterprise.com\&q;&g;www.enterprise.com&l;/a&g; 的两个主机别名，在这种情况下，&l;a href=\&q;http://relay1.west-coast.enterprise.com\&q;&g;relay1.west-coast.enterprise.com&l;/a&g; 也称为 规范主机名，而主机别名要比规范主机名更加容易记忆。应用程序可以调用 DNS 来获得主机别名对应的规范主机名以及主机的 IP 地址。&l;br&g;\n邮件服务器别名(mail server aliasing)，同样的，电子邮件的应用程序也可以调用 DNS 对提供的主机名进行解析。&l;br&g;\n负载分配(load distribution)，一个域名关联一组 IP 地址，多个服务器依次处理 HTTP 请求，从而减少了单个服务器的压力。&l;/p&g;\n&l;h3 id=\&q;dns-的工作概述\&q;&g;DNS 的工作概述&l;a title=\&q;#dns-的工作概述\&q; href=\&q;#dns-的工作概述\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;假设运行在用户主机上的某些应用程序（如 Web 浏览器或邮件阅读器） 需要将主机名转换为 IP 地址。这些应用程序将调用 DNS 的客户端，并指明需要被转换的主机名。用户主机上的 DNS 收到后，会使用 UDP 通过 53 端口向网络上发送一个 DNS 查询报文，经过一段时间后，用户主机上的 DNS 会收到一个主机名对应的 DNS 回答报文。因此，从用户主机的角度来看，DNS 就像是一个黑盒子，其内部的操作你无法看到。但是实际上，实现 DNS 这个服务的黑盒子非常复杂，它由分布于全球的大量 DNS 服务器以及定义了 DNS 服务器与查询主机通信方式的应用层协议组成。&l;/p&g;\n&l;p&g;DNS 最早的一种简单设计只是在因特网上使用一个 DNS 服务器。该服务器会包含所有的映射。这是一种&l;code&g;集中式&l;/code&g;的设计，这种设计并不适用于当今的互联网，因为互联网有着数量巨大并且持续增长的主机，这种集中式的设计会存在以下几个问题&l;/p&g;\n&l;ul&g;\n&l;li&g;&l;code&g;单点故障(a single point of failure)&l;/code&g;，如果 DNS 服务器崩溃，那么整个网络随之瘫痪。&l;/li&g;\n&l;li&g;&l;code&g;通信容量(traaffic volume)&l;/code&g;，单个 DNS 服务器不得不处理所有的 DNS 查询，这种查询级别可能是上百万上千万级&l;/li&g;\n&l;li&g;&l;code&g;远距离集中式数据库(distant centralized database)&l;/code&g;，单个 DNS 服务器不可能 &l;code&g;邻近&l;/code&g; 所有的用户，假设在美国的 DNS 服务器不可能临近让澳大利亚的查询使用，其中查询请求势必会经过低速和拥堵的链路，造成严重的时延。&l;/li&g;\n&l;li&g;&l;code&g;维护(maintenance)&l;/code&g;，维护成本巨大，而且还需要频繁更新。&l;/li&g;\n&l;/ul&g;\n&l;p&g;所以 DNS 不可能集中式设计，它完全没有可扩展能力，因此采用&l;code&g;分布式设计&l;/code&g;，所以这种设计的特点是 &l;strong&g;分布式、层次数据库。&l;/strong&g;&l;br&g;\n**&l;br&g;\n首先分布式设计首先解决的问题就是 DNS 服务器的扩展性问题，因此 DNS 使用了大量的 DNS 服务器，它们的组织模式一般是层次方式，并且分布在全世界范围内。**没有一台 DNS 服务器能够拥有因特网上所有主机的映射**。相反，这些映射分布在所有的 DNS 服务器上。&l;/p&g;\n&l;p&g;大致来说有三种 DNS 服务器：根 DNS 服务器、 顶级域(Top-Level Domain, TLD) DNS 服务器 和 权威 DNS 服务器 。这些服务器的层次模型如下图所示：&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586304943-b934dce3-0ca2-45d3-83b1-906cd169299a.png#align=left&a;amp;display=inline&a;amp;height=428&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=dns%20server.png&a;amp;originHeight=428&a;amp;originWidth=1167&a;amp;size=1501378&a;amp;status=done&a;amp;style=none&a;amp;width=1167\&q; alt=\&q;dns server.png\&q;&g;&l;br&g;\n假设现在一个 DNS 客户端想要知道 &l;a href=\&q;http://amazon.com\&q;&g;amazon.com&l;/a&g; 的 IP 地址，那么上面的域名服务器是如何解析的呢？首先，客户端会先根服务器之一进行关联，它将返回顶级域名 &l;code&g;com&l;/code&g; 的 TLD 服务器的 IP 地址。该客户则与这些 TLD 服务器之一联系，它将为 &l;a href=\&q;http://amazon.com\&q;&g;amazon.com&l;/a&g; 返回权威服务器的 IP 地址。最后，该客户与 &l;a href=\&q;http://amazom.com\&q;&g;amazom.com&l;/a&g; 权威服务器之一联系，它为 &l;a href=\&q;http://www.amazom.com\&q;&g;www.amazom.com&l;/a&g; 返回其 IP 地址。&l;br&g;\n我们现在来讨论一下上面域名服务器的层次系统&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;&l;code&g;根 DNS 服务器&l;/code&g; ，有 400 多个根域名服务器遍及全世界，这些根域名服务器由 13 个不同的组织管理。根域名服务器的清单和组织机构可以在 &l;a href=\&q;http://root-servers.org/\&q;&g;root-servers.org/&l;/a&g; 中找到，根域名服务器提供 TLD 服务器的 IP 地址。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;code&g;顶级域 DNS 服务器&l;/code&g;，对于每个顶级域名比如 com、org、net、edu 和 gov 和所有的国家级域名 uk、fr、ca 和 jp 都有 TLD 服务器或服务器集群。所有的顶级域列表参见 &l;a href=\&q;http://tld-list.com/\&q;&g;tld-list.com/&l;/a&g; 。TDL 服务器提供了权威 DNS 服务器的 IP 地址。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;code&g;权威 DNS 服务器&l;/code&g;，在因特网上具有公共可访问的主机，如 Web 服务器和邮件服务器，这些主机的组织机构必须提供可供访问的 DNS 记录，这些记录将这些主机的名字映射为 IP 地址。一个组织机构的权威 DNS 服务器收藏了这些 DNS 记录。&l;/p&g;\n&l;p&g;一般域名服务器的层次结构主要是以上三种，除此之外，还有另一类重要的 DNS 服务器，它是 &l;code&g;本地 DNS 服务器(local DNS server)&l;/code&g;。严格来说，本地 DNS 服务器并不属于上述层次结构，但是本地 DNS 服务器又是至关重要的。每个 ISP(Internet Service Provider) 比如居民区的 ISP 或者一个机构的 ISP 都有一台本地 DNS 服务器。当主机和 ISP 进行连接时，该 ISP 会提供一台主机的 IP 地址，该主机会具有一台或多台其本地 DNS 服务器的 IP 地址。通过访问网络连接，用户能够容易的确定 DNS 服务器的 IP 地址。当主机发出 DNS 请求后，该请求被发往本地 DNS 服务器，它起着代理的作用，并将该请求转发到 DNS 服务器层次系统中。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;h3 id=\&q;dns-的查询方式\&q;&g;DNS 的查询方式&l;a title=\&q;#dns-的查询方式\&q; href=\&q;#dns-的查询方式\&q;&g;&l;/a&g;&l;/h3&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;&l;strong&g;主机向本地域名服务器的查询一般都是采用递归查询&l;/strong&g;。如果主机所询问的本地域名服务器不知道被查询域名的 IP 地址，那么本地域名服务器就以 DNS 客户的身份，向其他根域名服务器继续发出查询请求报文。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;**本地域名服务器向根域名服务器的查询通常是采用迭代查询。**当根域名服务器收到本地域名服务器的迭代查询请求报文时，要么给出所要查询的 IP 地址，要么告诉本地域名服务器：“你下一步应当向哪一个域名服务器进行查询”。然后让本地域名服务器进行后续的查询。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609591833156-908981a3-6ffa-4c51-a8b9-70157750aa54.png#align=left&a;amp;display=inline&a;amp;height=1100&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=dns-parse.png&a;amp;originHeight=1100&a;amp;originWidth=1368&a;amp;size=158055&a;amp;status=done&a;amp;style=none&a;amp;width=1368\&q; alt=\&q;dns-parse.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h3 id=\&q;dns-缓存\&q;&g;&l;strong&g;DNS 缓存&l;/strong&g;&l;a title=\&q;#dns-缓存\&q; href=\&q;#dns-缓存\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;&l;code&g;DNS 缓存(DNS caching)&l;/code&g; 有时也叫做 DNS 解析器缓存，它是由操作系统维护的临时数据库，它包含有最近的网站和其他 Internet 域的访问记录。也就是说， DNS 缓存只是计算机为了满足快速的响应速度而把已加载过的资源缓存起来，再次访问时可以直接快速引用的一项技术和手段。那么 DNS 的缓存是如何工作的呢？&l;br&g;\n&l;strong&g;DNS 缓存的工作流程&l;/strong&g;&l;br&g;\n在浏览器向外部发出请求之前，计算机会拦截每个请求并在 DNS 缓存数据库中查找域名，该数据库包含有最近的域名列表，以及 DNS 首次发出请求时 DNS 为它们计算的地址。&l;/p&g;\n&l;h3 id=\&q;dns-记录和报文\&q;&g;&l;strong&g;DNS 记录和报文&l;/strong&g;&l;a title=\&q;#dns-记录和报文\&q; href=\&q;#dns-记录和报文\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;共同实现 DNS 分布式数据库的所有 DNS 服务器存储了&l;code&g;资源记录(Resource Record, RR)&l;/code&g;，RR 提供了主机名到 IP 地址的映射。每个 DNS 回答报文中会包含一条或多条资源记录。RR 记录用于回复客户端查询。&l;br&g;\n资源记录是一个包含了下列字段的 4 元组&l;/p&g;\n&l;figure class=\&q;highlight plain\&q;&g;&l;table&g;&l;tr&g;&l;td class=\&q;gutter\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;1&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;td class=\&q;code\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;(Name, Value, Type, TTL)&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;/tr&g;&l;/table&g;&l;/figure&g;\n&l;p&g;RR 会有不同的类型，下面是不同类型的 RR 汇总表&l;br&g;\nDNS RR 类型解释 A 记录 IPv4 主机记录，用于将域名映射到 IPv4 地址 AAAA 记录 IPv6 主机记录，用于将域名映射到 IPv6 地址 CNAME 记录别名记录，用于映射 DNS 域名的别名 MX 记录邮件交换器，用于将 DNS 域名映射到邮件服务器 PTR 记录指针，用于反向查找（IP 地址到域名解析）SRV 记录 SRV 记录，用于映射可用服务。&l;br&g;\n&l;strong&g;DNS 报文&l;/strong&g;&l;br&g;\nDNS 有两种报文，一种是查询报文，一种是响应报文，并且这两种报文有着相同的格式，下面是 DNS 的报文格式：&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586238924-6b69d612-d4a0-4728-9904-20e6af5a8af1.png#align=left&a;amp;display=inline&a;amp;height=572&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=dns%E6%8A%A5%E6%96%87.png&a;amp;originHeight=572&a;amp;originWidth=748&a;amp;size=37352&a;amp;status=done&a;amp;style=none&a;amp;width=748\&q; alt=\&q;dns报文.png\&q;&g;&l;br&g;\n下面对报文格式进行解释&l;/p&g;\n&l;ul&g;\n&l;li&g;前 12 个报文是 &l;code&g;首部区域&l;/code&g;，也就是说首部区域有 12 个字节，第一个字段（标识符）是一个 16 比特的数，用于标示该查询。这个标识符会被复制到对查询的回答报文中，以便让客户用它来匹配发送的请求和接受到的回答。 标志字段含有若干标志，标志字段表示为 1 比特，它用于指出报文是 0-查询报文还是 1-响应报文。&l;/li&g;\n&l;li&g;&l;code&g;问题区域&l;/code&g;包含着正在进行的查询信息。这个区域包括：1) 名字字段，包含正在被查询的主机名字；2) 类型字段，指出有关该名字的正被询问的问题类型，例如主机地址是与一个名字相关联（类型 A）还是与某个名字的邮件服务器相关联（类型 MX）。&l;/li&g;\n&l;li&g;在来自 DNS 服务器的回答中，回答区域包含了对最初请求的名字的资源记录。上面说过 DNS RR 记录是个四元组，而且元组中的 Type 会有不同的类型。在回答报文的回答区域中可以包含多条 RR，因此一个主机名能够有多个 IP 地址。&l;/li&g;\n&l;li&g;&l;code&g;权威区域&l;/code&g; 包含了其他权威服务器的记录&l;/li&g;\n&l;li&g;&l;code&g;附加区域&l;/code&g; 包含了其他有帮助的记录。&l;/li&g;\n&l;/ul&g;\n&l;h2 id=\&q;邮件协议\&q;&g;邮件协议&l;a title=\&q;#邮件协议\&q; href=\&q;#邮件协议\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;电子邮件\&q;&g;电子邮件&l;a title=\&q;#电子邮件\&q; href=\&q;#电子邮件\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586660795-ad0484f2-95d3-49be-8042-64ea82a9de25.png#align=left&a;amp;display=inline&a;amp;height=932&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE.png&a;amp;originHeight=932&a;amp;originWidth=1216&a;amp;size=3406481&a;amp;status=done&a;amp;style=none&a;amp;width=1216\&q; alt=\&q;邮件协议.png\&q;&g;&l;br&g;\n从图中我们可以看到它有三个主要组成部分：&l;code&g;用户代理(user agent)&l;/code&g;、&l;code&g;邮件服务器(mail server)&l;/code&g;、和&l;code&g;简单邮件传输协议(Simple Mail Transfer Protocol,SMTP)&l;/code&g;。下面我们就来描述一下邮件收发的过程。&l;/p&g;\n&l;p&g;用户代理允许用户阅读、回复、转发、保存和撰写报文。微软的 &l;code&g;Outlook&l;/code&g; 和 &l;code&g;Apple Mail&l;/code&g; 是电子邮件用户代理的例子。当用户编写完邮件时，他的用户代理向邮件服务器发送邮件，此时用户发送的邮件会放在邮件服务器的&l;code&g;外出消息队列(Outgoing message queue)&l;/code&g;中，当接收方用户想要阅读邮件时，他的用户代理直接从外出消息队列中去取得该报文。&l;/p&g;\n&l;p&g;邮件服务器构成了整个邮件系统的核心。每个接收方在其中的邮件服务器上会有一个&l;code&g;邮箱(mailbox)&l;/code&g; 存在。用户的邮箱管理和维护发送给他的报文。一个典型的邮件发送过程是：从发送方的用户代理开始，传输到发送方的邮件服务器，再传输到接收方的邮件服务器，然后在这里被分发到接收方的邮箱中。用接收方的用户想要从邮箱中读取邮件时，他的邮件服务器会对用户进行认证。如果发送方发送的邮件无法正确交付给接收方的服务器，那么发送方的用户代理会把邮件存储在一个&l;code&g;报文队列(message queue)&l;/code&g;中，并在以后尝试再次发送，通常每 30 分钟发送一次，如果一段时间后还发送不成功，服务器就会删除报文队列中的邮件并以电子邮件的方式通知发送方。&l;/p&g;\n&l;p&g;&l;code&g;SMTP&l;/code&g; 是因特网电子邮件中的主要的应用层协议。SMTP 也使用 TCP 作为运输层协议，保证数据传输的可靠性。&l;/p&g;\n&l;h3 id=\&q;smtp-协议传输过程\&q;&g;SMTP 协议传输过程&l;a title=\&q;#smtp-协议传输过程\&q; href=\&q;#smtp-协议传输过程\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;为了描述 SMTP 的基本操作，我们观察一下下面这种常见的情景。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586741602-dfb101f2-428e-4f04-84cf-72ac24aa09b3.png#align=left&a;amp;display=inline&a;amp;height=435&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=smtp%E5%8D%8F%E8%AE%AE.png&a;amp;originHeight=435&a;amp;originWidth=1209&a;amp;size=1580837&a;amp;status=done&a;amp;style=none&a;amp;width=1209\&q; alt=\&q;smtp协议.png\&q;&g;&l;br&g;\n我们假设 Alice 想给 Bob 发送一封简单的 ASCII 报文&l;/p&g;\n&l;p&g;我们假设 Alice 想给 Bob 发送一封简单的 ASCII 报文&l;/p&g;\n&l;ul&g;\n&l;li&g;Alice 调用她的邮件代理程序并提供 Bob 的邮件地址 （例如 &l;a href=\&q;mailto:bob@someschool.edu\&q;&g;bob@someschool.edu&l;/a&g;），编写邮件报文，然后指示用户代理发送该报文&l;/li&g;\n&l;li&g;Alice 的用户代理把报文发送给她的邮件服务器，在那里该报文被放在消息队列中。&l;/li&g;\n&l;li&g;运行在 Alice 的邮件服务器上的 SMTP 客户端发现了报文队列中的邮件，它就创建一个到运行在 Bob 邮件服务器上的 SMTP 服务器的 TCP 连接&l;/li&g;\n&l;li&g;在经过一些初始化 SMTP 握手后，SMTP 客户端通过该 TCP 连接发送 Alice 的邮件。&l;/li&g;\n&l;li&g;在 Bob 的邮件服务器上，SMTP 的服务端接收该邮件，Bob 的邮件服务器将邮件放在 Bob 的邮箱中&l;/li&g;\n&l;li&g;在 Bob 想要看邮件时，他会调用用户代理阅读该邮件&l;br&g;\n上面说的邮件其实就是报文，指的就是一系列 ASCII 码，SMTP 传输邮件之前，需要将二进制多媒体数据编码为 ASCII 码进行传输。&l;/li&g;\n&l;/ul&g;\n&l;p&g;SMTP 一般不使用中间邮件服务器发送邮件，即使这两个邮件服务器位于地球的两端也是这样的。TCP 连接通常直接连接 Alice 的邮件服务器和 Bob 的邮件服务器。&l;/p&g;\n&l;p&g;现在你知道了两台邮件服务器邮件发送的大体过程，那么，SMTP 是如何将邮件从 Alice 邮件服务器发送到 Bob 的邮件服务器的呢？主要分为下面三个阶段：&l;/p&g;\n&l;ul&g;\n&l;li&g;&l;code&g;建立连接&l;/code&g;：在这一阶段，SMTP 客户请求与服务器的 25 端口建立一个 TCP 连接。一旦连接建立，SMTP 服务器和客户就开始相互通告自己的域名，同时确认对方的域名。&l;/li&g;\n&l;li&g;&l;code&g;邮件传送&l;/code&g;：一旦连接建立后，就开始邮件传输。SMTP 依靠 TCP 能够将邮件准确无误地传输到接收方的邮件服务器中。SMTP 客户将邮件的源地址、目的地址和邮件的具体内容传递给 SMTP 服务器，SMTP 服务器进行相应的响应并接收邮件。&l;/li&g;\n&l;li&g;&l;code&g;连接释放&l;/code&g;：SMTP 客户发出退出命令，服务器在处理命令后进行响应，随后关闭 TCP 连接。&l;/li&g;\n&l;/ul&g;\n&l;p&g;下面我们分析一个实际的 SMTP 邮件发送过程，以下统称为&l;code&g;SMTP客户(C)&l;/code&g;和 &l;code&g;SMTP服务器(S)&l;/code&g;。客户的主机名为 &l;code&g;crepes.fr&l;/code&g;，服务器的主机名为 &l;code&g;hamburger.edu&l;/code&g;。以 C: 开头的 ASCII 码文本就是客户交给 TCP 套接字的那些行，以 S: 开头的 ASCII 码则是服务器发送给其 TCP 套接字的那些行。一旦创建了连接，就开始了如下过程&l;/p&g;\n&l;figure class=\&q;highlight plain\&q;&g;&l;table&g;&l;tr&g;&l;td class=\&q;gutter\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;1&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;2&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;3&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;4&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;5&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;6&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;7&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;8&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;9&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;10&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;11&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;12&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;13&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;14&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;15&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;td class=\&q;code\&q;&g;&l;pre&g;&l;span class=\&q;line\&q;&g;S: 220 hamburger.edu&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: HELO crepes.fr&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;S: 250 Hello crepes.fr, pleased to meet you&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: MAIL FROM: &a;lt;alice@crepes.fr&a;gt;&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;S: 250 alice@crepes.fr ... Sender ok&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: RCPT TO: &a;lt;bob@hamburger.edu&a;gt;&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;S: 250 bob@hamburder.edu ... Recipient ok&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: DATA&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;S: 354 Enter mail, end with &a;quot;.&a;quot; on a line by itself&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: Do you like ketchup?&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: How about pickles?&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: .&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;S: 250 Message accepted for delivery&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;C: QUIT&l;/span&g;&l;br&g;&l;span class=\&q;line\&q;&g;S: 221 hamburger.edu closing connection&l;/span&g;&l;br&g;&l;/pre&g;&l;/td&g;&l;/tr&g;&l;/table&g;&l;/figure&g;\n&l;p&g;在上述例子中，客户从邮件服务器 &l;a href=\&q;http://crepes.fr\&q;&g;crepes.fr&l;/a&g; 向邮件服务器 &l;a href=\&q;http://hamburger.edu\&q;&g;hamburger.edu&l;/a&g; 发送了一个报文 (&a;quot; Do you like ketchup? How about pickles? &a;quot;) 。作为对话的一部分，该客户发送了 5 条命令: &l;code&g;HELO(是 HELLO 的缩写)&l;/code&g;、 &l;code&g;MAMIL FROM&l;/code&g;、&l;code&g;RCPT TO&l;/code&g;、&l;code&g;DATA&l;/code&g; 以及 &l;code&g;QUIT&l;/code&g;。这些命令都是自解释的。&l;br&g;\n什么是自解释，就是不需要再进行解释了，命令自己就能解释自己所要表述的功能。&l;/p&g;\n&l;p&g;上面是一个简单的 SMTP 交换过程，包括了连接建立、邮件传送和连接释放三个具体过程。&l;/p&g;\n&l;ul&g;\n&l;li&g;首先建立 TCP 连接、SMTP 调用 TCP 协议的 25 号端口监听连接请求，然后客户端发送 HELO 指令用来表明自己是发送方的身份，然后服务端作出响应。&l;/li&g;\n&l;li&g;然后，客户端发送 MAIL FROM 命令，表明客户端的邮件地址是 &l;code&g;&a;lt;alice@crepes.fr&a;gt;&l;/code&g;，服务器以 OK 作为响应，表明准备接收。&l;/li&g;\n&l;li&g;客户端发送 RCPT TO 表明接收方的电子邮件地址，可以有多个 RCPT 行，即一份邮件可以同时发送给多个收件人。服务器端则表示是否愿意为收件人接收邮件。&l;/li&g;\n&l;li&g;协商结束后，客户端用 DATA 命令发送信息，结束标志是&l;code&g;CRLF.CRLF&l;/code&g; ，也就是 回车换行.回车换行。&l;/li&g;\n&l;li&g;最后，控制交互的任一端可选择终止会话，为此它发出一个 QUIT 命令，另一端用命令 221 响应，表示同意终止连接，双方将关闭连接。&l;/li&g;\n&l;/ul&g;\n&l;p&g;上述过程中会涉及几个类似 HTTP 的状态码。250 就表示 OK ，类似 HTTP 的 200。在命令成功时，服务器返回代码 250，如果失败则返回代码 550（命令无法识别）、451（处理时出错）、452（存储空间不够）、421（服务器不可用）等，354 则表示开始信息输入。&l;/p&g;\n&l;p&g;SMTP 的报文会有局限性，SMTP 的局限性表现在只能发送 ASCII 码格式的报文，不支持中文、法文、德文等，它也不支持语音、视频的数据。通过 &l;code&g;MIME协议&l;/code&g;，对 SMTP 补充。MIME 使用网络虚拟终端(NVT)标准，允许非 ASCII 码数据通过 SMTP 传输。&l;/p&g;\n&l;h3 id=\&q;smtp-与-http-的对比\&q;&g;SMTP 与 HTTP 的对比&l;a title=\&q;#smtp-与-http-的对比\&q; href=\&q;#smtp-与-http-的对比\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;这两个协议都用于从一台主机向另一台主机传送文件：HTTP 从 Web 服务器向 Web 客户端（通常是浏览器）传送文件，SMTP 是从一个邮件服务器向另一个邮件服务器传送文件（即电子邮件报文）。&l;br&g;\n这两个协议也会有几个重要的区别&l;/p&g;\n&l;ul&g;\n&l;li&g;首先，HTTP 是一个 &l;code&g;拉协议(pull protocol)&l;/code&g;，客户端发送请求，请求获取服务端的资源，然后服务端进行响应，把需要下载的文件传输给客户端；而 SMTP 是一个 &l;code&g;推协议(push protocol)&l;/code&g;，SMTP 的客户端会主动把邮件推送给 SMTP 的服务端。&l;/li&g;\n&l;li&g;第二个区别是，SMTP 要求每个报文都采用 7 比特的 ASCII 码格式，如果某报文包含了非 7 比特的 ASCII 自负或二进制数据，则该报文必须按照 7 比特 ASCII 码进行编码。HTTP 数据则不受这种限制。&l;/li&g;\n&l;li&g;第三个区别是如何处理一个既包含文本又包含图形的文档，HTTP 把每个对象封装到它自己的 HTTP 响应报文中，而 SMTP 则把所有报文对象放在一个报文之中。&l;/li&g;\n&l;/ul&g;\n&l;h3 id=\&q;邮件访问协议\&q;&g;邮件访问协议&l;a title=\&q;#邮件访问协议\&q; href=\&q;#邮件访问协议\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;在上述分析中，有一个疏漏的环节，那就是在 Alice 向 Bob 发送邮件的过程中，Bob 是如何通过运行在他本地 PC 上的用户代理，获得位于某 ISP 的邮件服务器上的他的邮件呢？注意到 Bob 的用户代理不能使用 SMTP 来取回邮件，因为取邮件时一个拉操作，而 SMTP 是一个推协议。因此我们要引入邮件访问协议，包括第三版的邮局协议（POP3）、因特网邮件访问协议（IMAP）以及 HTTP。&l;br&g;\n　　下图总结了应用于因特网电子邮件的一些协议：SMTP 用来将邮件从发送发的邮件服务器传输到接收方的邮件服务器。如 POP3 这样的邮件访问协议用来将邮件从接收方的邮件服务器传送到接收方的用户代理。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609587255896-cd928f92-8990-4b22-b4c6-5b80a303944c.png#align=left&a;amp;display=inline&a;amp;height=301&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E9%82%AE%E4%BB%B6%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE.png&a;amp;originHeight=301&a;amp;originWidth=1195&a;amp;size=1081231&a;amp;status=done&a;amp;style=none&a;amp;width=1195\&q; alt=\&q;邮件访问协议.png\&q;&g;&l;br&g;\n&l;strong&g;1）POP3&l;/strong&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;POP3 是 Post Office Protocol 3 的简称，即邮局协议的第 3 个版本，是 TCP/IP 协议族中的一员（默认端口是 110）。&l;/li&g;\n&l;li&g;它被用户代理用来邮件服务器取得邮件。POP3 采用的也是 C/S 通信模型，对应的 RFC 文档为 RFC1939。&l;/li&g;\n&l;li&g;POP3 支持电子邮件客户端下载服务器上的邮件，但是在客户端的操作（如移动邮件、标记已读等），不会反馈到服务器上，比如通过客户端收取了邮箱中的 3 封邮件并移动到其他文件夹，邮箱服务器上的这些邮件是没有同时被移动的 。&l;/li&g;\n&l;li&g;POP3 使用明文传输密码, 不对密码加密&l;/li&g;\n&l;li&g;POP3 建立在 TCP 连接上, 使用的是有连接的可靠数据传输服务&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;2) IMAP&l;/strong&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;IMAP 全称是 Internet Mail Access Protocol，即互联网邮件访问协议，是一个应用层协议（端口是 143）。用来从本地邮件客户端（Outlook Express、Foxmail、Mozilla Thunderbird 等）访问远程服务器上的邮件。&l;/li&g;\n&l;li&g;开启了 IMAP 后，您在电子邮件客户端收取的邮件仍然保留在服务器上，同时在客户端上的操作都会反馈到服务器上，如：删除邮件，标记已读等，服务器上的邮件也会做相应的动作。所以无论从浏览器登录邮箱或者客户端软件登录邮箱，看到的邮件以及状态都是一致的。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;3) 基于 Web 的电子邮件&l;/strong&g;&l;br&g;\n　　当用户用 Web 浏览器使用电子邮件时，用户和他远程邮箱之间的通信则通过 HTTP；然而，用户的邮件服务器在与其他的邮件服务器之间发送和接收邮件时，仍然使用的是 SMTP。&l;/p&g;\n&l;h2 id=\&q;cdn-内容分发\&q;&g;CDN 内容分发&l;a title=\&q;#cdn-内容分发\&q; href=\&q;#cdn-内容分发\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;网络视频需要消耗大量的网络带宽，很多网络视频公司会选择 CDN （Content Distribution Network）服务，来优化用户的体验。&l;br&g;\n一个 CDN 网络管理很多分布在世界各地的服务器，在每个服务器上复制了视频和其它资源文件的副本，用户请求 CDN，然后 CDN 提供一个离用户客户端距离较近的服务器同响应客户端请求，从而给用户更快更好的网络体验。CDN 的实现是利用了 DNS 拦截和重定向请求功能。&l;/p&g;\n&l;p&g;&l;strong&g;不使用 CDN 可能会出现的问题&l;/strong&g;&l;br&g;\n每个客户端都请求同一个地区的服务器（数据中心），服务器的带宽是一定的，请求太多造成客户端得到的资源吞吐量下降，会导致视频卡顿。&l;br&g;\n一个流行的视频会在同一个通信链路上多次传输，浪费网络带宽。&l;br&g;\n一个数据中心容易出现单点故障，导致整个服务不可用。&l;/p&g;\n&l;p&g;&l;strong&g;CDN 使用的过程&l;/strong&g;&l;/p&g;\n&l;ol&g;\n&l;li&g;用户访问一个视频的链接，如 &l;a href=\&q;http://video.netcinema.com/6Y7B23V\&q; target=\&q;_blank\&q; rel=\&q;external nofollow noopener\&q;&g;http://video.netcinema.com/6Y7B23V&l;/a&g; 。&l;/li&g;\n&l;li&g;浏览器查询客户端本地缓存是否存在该域名的 IP 地址。如果没有，继续下一步查询。&l;/li&g;\n&l;li&g;浏览器请求本地 DNS 服务器，查询 &l;a href=\&q;http://video.netcinema.com\&q;&g;video.netcinema.com&l;/a&g; 域名的 IP 地址。本地 DNS 服务器检查本地缓存是否存在该域名，不存在，则请求权威 DNS 服务器，查询 &l;a href=\&q;http://video.netcinema.com\&q;&g;video.netcinema.com&l;/a&g; 的 IP 地址。权威 DNS 服务器发现是 video 开头的域名，则返回 CDN 提供商的权威域名如 &l;a href=\&q;http://a105.kingcdn.com\&q;&g;a105.kingcdn.com&l;/a&g;。&l;/li&g;\n&l;li&g;本地 DNS 服务器请求权威域名服务器，查询 &l;a href=\&q;http://a105.kingcdn.com\&q;&g;a105.kingcdn.com&l;/a&g; 的 IP 地址，CDN 提供商根据客户端的地理位置，最终返回 CDN 系统中的一个 web 服务器 IP 地址。&l;/li&g;\n&l;li&g;本地 DNS 服务器把 IP 地址返回给浏览器。&l;/li&g;\n&l;li&g;浏览器通过 IP 地址与服务器建立 TCP 连接，发送视频访问请求。web 服务器返回视频内容给浏览器。&l;/li&g;\n&l;/ol&g;\n&l;p&g;&l;strong&g;CDN 是如何让客户端访问离自己最近的一个服务器&l;/strong&g;&l;br&g;\n**方法一：**使用 DNS 服务器响应一个离用户最近的服务器的 IP 地址。DNS 服务器通过查询 IP 位置数据库，获取客户端所在的城市。根据客户端所在的城市选一个最近的一个服务器的 IP 地址返回给客户端。&l;br&g;\n**方法二：**使用任播（Anycast）路由选择一个最近的服务器。CDN 分布世界各地的所有 Web 服务器使用同一个 IP 地址。路由器根据最少花费（Lowest Cost）的路由规则，选择一个离客户端最近的服务器。&l;/p&g;\n&l;h2 id=\&q;ftp\&q;&g;FTP&l;a title=\&q;#ftp\&q; href=\&q;#ftp\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;简介\&q;&g;简介&l;a title=\&q;#简介\&q; href=\&q;#简介\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;文件传送协议 FTP (File Transfer Protocol) 是互联网上使用得最广泛的&l;strong&g;文件传送协议&l;/strong&g;。&l;br&g;\nFTP 提供交互式的访问，&l;strong&g;允许客户指明文件的类型与格式，并允许文件具有存取权限&l;/strong&g;&l;br&g;\n网络环境下复制文件的复杂性：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;计算机存储数据的格式不同。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;文件的目录结构和文件命名的规定不同。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;对于相同的文件存取功能，操作系统使用的命令不同。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;访问控制方法不同。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;正是因为网络环境下复制文件的复杂性，因此就需要用到了 FTP 协议了。&l;/strong&g;&l;/p&g;\n&l;h3 id=\&q;过程\&q;&g;过程&l;a title=\&q;#过程\&q; href=\&q;#过程\&q;&g;&l;/a&g;&l;/h3&g;\n&l;ol&g;\n&l;li&g;\n&l;p&g;打开熟知端口（端口号为 21），使客户进程能够连接上。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;等待客户进程发出连接请求。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;启动从属进程来处理客户进程发来的请求。从属进程对客户进程的请求处理完毕后即终止，但从属进程在运行期间根据需要还可能创建其他一些子进程。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;回到等待状态，继续接受其他客户进程发来的请求。主进程与从属进程的处理是并发地进行。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;当客户进程向服务器进程发出建立连接请求时，要寻找连接服务器进程的熟知端口 (21)，同时还要告诉服务器进程自己的另一个端口号码，用于建立数据传送连接。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;接着**，服务器进程用自己传送数据的熟知端口 (20) 与客户进程所提供的端口号码建立数据传送连接。**&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;由于 FTP 使用了两个不同的端口号，&l;strong&g;所以数据连接与控制连接不会发生混乱&l;/strong&g;。&l;/p&g;\n&l;/li&g;\n&l;/ol&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609592044710-3834da0e-3b4d-4c1f-a0f8-54df1afba7a9.png#align=left&a;amp;display=inline&a;amp;height=1388&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=ftp%E7%AE%80%E4%BB%8B.png&a;amp;originHeight=1388&a;amp;originWidth=2552&a;amp;size=521815&a;amp;status=done&a;amp;style=none&a;amp;width=2552\&q; alt=\&q;ftp简介.png\&q;&g;&l;br&g;\nFTP 是使用了两个 TCP 连接的。好处：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;使协议更加简单和更容易实现。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;在传输文件时还可以利用控制连接（例如，客户发送请求终止传输）。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;h2 id=\&q;p2p\&q;&g;P2P&l;a title=\&q;#p2p\&q; href=\&q;#p2p\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;我们上面探讨的协议 HTTP、SMTP、DNS 都采用了&l;code&g;客户-服务器&l;/code&g; 模式，这种模式会极大依赖总是打开的基础设施服务器。而 &l;code&g;P2P&l;/code&g;是客户端与客户端模式，对总是打开的基础设施服务器有最小的依赖。&l;/p&g;\n&l;p&g;P2P 的全称是 &l;code&g;Peer-to-peer, P2P&l;/code&g; ，是一种分布式体系结构的计算机网络。在 P2P 体系中，所有的计算机和设备都被称为对等体，他们互相交换工作。对等网络中的每个对等方都等于其他对等方。网络中没有特权对等体，也没有主管理员设备。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609592256712-050455b7-213f-46ae-85b5-0d590e7d04cd.png#align=left&a;amp;display=inline&a;amp;height=450&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=p2p.png&a;amp;originHeight=450&a;amp;originWidth=800&a;amp;size=38171&a;amp;status=done&a;amp;style=none&a;amp;width=800\&q; alt=\&q;p2p.png\&q;&g;&l;/p&g;\n&l;p&g;从某种意义上说，对等网络是计算机世界中最平等的网络。每个对等方都相等，并且每个对等方具有与其他对等方相同的权利和义务。对等体同时是客户端和服务器。&l;/p&g;\n&l;p&g;实际上，对等网络中可用的每个资源都是在对等之间共享的，而无需任何中央服务器。P2P 网络中的共享资源可以是诸如处理器使用率，磁盘存储容量或网络带宽等。&l;/p&g;\n&l;h3 id=\&q;p2p-用来做什么\&q;&g;&l;strong&g;P2P 用来做什么&l;/strong&g;&l;a title=\&q;#p2p-用来做什么\&q; href=\&q;#p2p-用来做什么\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;P2P 的主要目标是共享资源并帮助计算机和设备协同工作，提供特定服务或执行特定任务。如前面说到的，P2P 用于共享各种计算资源，例如网络带宽或磁盘存储空间。 但是，对等网络最常见的例子是 Internet 上的文件共享。 对等网络非常适合文件共享，因为它们允许连接到它们计算机等同时接收文件和发送文件。&l;br&g;\n&l;code&g;BitTorrent&l;/code&g; 是 P2P 使用的主要协议。&l;/p&g;\n&l;h3 id=\&q;p2p-网络的作用\&q;&g;&l;strong&g;P2P 网络的作用&l;/strong&g;&l;a title=\&q;#p2p-网络的作用\&q; href=\&q;#p2p-网络的作用\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;P2P 网络具有一些使它们有用的特征&l;/p&g;\n&l;ul&g;\n&l;li&g;很难完全掉线，即使其中的一个对等方掉线，其他对等方仍在运行并进行通信。 为了使 P2P（对等）网络停止工作，你必须关闭所有对等网络。对等网络具有很强的可扩展性。 添加新的对等节点很容易，因为你无需在中央服务器上进行任何中央配置。&l;/li&g;\n&l;li&g;当涉及到文件共享时，对等网络越大，速度越快。 在 P2P 网络中的许多对等点上存储相同的文件意味着当某人需要下载文件时，该文件会同时从多个位置下载。&l;/li&g;\n&l;/ul&g;\n&l;h1 id=\&q;传输层\&q;&g;传输层&l;a title=\&q;#传输层\&q; href=\&q;#传输层\&q;&g;&l;/a&g;&l;/h1&g;\n&l;h2 id=\&q;传输层概述\&q;&g;传输层概述&l;a title=\&q;#传输层概述\&q; href=\&q;#传输层概述\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;传输层提供了进程间的逻辑通信，传输层向高层用户屏蔽了下面网络层的核心细节，使应用程序看起来像是在两个传输层实体之间有一条端到端的逻辑通信信道。&l;/p&g;\n&l;p&g;传输层两大重要的功能：&l;strong&g;复用 和 分用&l;/strong&g;。&l;/p&g;\n&l;ul&g;\n&l;li&g;复用：在发送端，多个应用进程公用一个传输层；&l;/li&g;\n&l;li&g;分用：在接收端，传输层会根据端口号将数据分派给不同的应用进程。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609642772869-02f02aa4-ba4e-4dff-b143-9c0a08c7b7ed.png#align=left&a;amp;display=inline&a;amp;height=605&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=%E7%AB%AF%E5%8F%A3%E5%A4%8D%E7%94%A8.png&a;amp;originHeight=605&a;amp;originWidth=919&a;amp;size=52572&a;amp;status=done&a;amp;style=none&a;amp;width=919\&q; alt=\&q;端口复用.png\&q;&g;&l;br&g;\n和网络层的区别：&l;/p&g;\n&l;ul&g;\n&l;li&g;网络层为不同主机提供通信服务，而传输层为不同主机的不同应用提供通信服务。&l;/li&g;\n&l;li&g;网络层只对报文头部进行差错检测，而传输层对整个报文进行差错检测。&l;/li&g;\n&l;/ul&g;\n&l;h2 id=\&q;可靠传输的原理\&q;&g;可靠传输的原理&l;a title=\&q;#可靠传输的原理\&q; href=\&q;#可靠传输的原理\&q;&g;&l;/a&g;&l;/h2&g;\n&l;p&g;理想的传输条件有以下两个特点：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;(1) 传输信道不产生差错。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;(2) 不管发送方以多快的速度发送数据，接收方总是来得及处理收到的数据。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;然而实际的网络都不具备以上两个理想条件**。必须使用一些可靠传输协议，在不可靠的传输信道实现可靠传输。**&l;/p&g;\n&l;h2 id=\&q;udp-和-tcp-的特点\&q;&g;UDP 和 TCP 的特点&l;a title=\&q;#udp-和-tcp-的特点\&q; href=\&q;#udp-和-tcp-的特点\&q;&g;&l;/a&g;&l;/h2&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;用户数据报协议 UDP（User Datagram Protocol）是无连接的，尽最大可能交付，没有拥塞控制，面向报文（对于应用程序传下来的报文不合并也不拆分，只是添加 UDP 首部），支持一对一、一对多、多对一和多对多的交互通信。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;传输控制协议 TCP（Transmission Control Protocol）是面向连接的，提供可靠交付，有流量控制，拥塞控制，提供全双工通信，面向字节流（把应用层传下来的报文看成字节流，把字节流组织成大小不等的数据块），每一条 TCP 连接只能是点对点的（一对一）。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;h2 id=\&q;udp\&q;&g;UDP&l;a title=\&q;#udp\&q; href=\&q;#udp\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;udp-概述\&q;&g;UDP 概述&l;a title=\&q;#udp-概述\&q; href=\&q;#udp-概述\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;UDP &l;strong&g;只在 IP 的数据报服务之上增加了很少一点的功能&l;/strong&g;：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;&l;strong&g;复用和分用&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;差错检测&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;UDP 特性：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;&l;strong&g;提供无连接服务&l;/strong&g;。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;在传送数据之前不需要先建立连接&l;/strong&g;。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;传送的数据单位协议是 UDP 报文或用户数据报。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;对方的运输层在收到 UDP 报文后，不需要给出任何确认。&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;虽然 UDP 不提供可靠交付，但在某些情况下 UDP 是一种最有效的工作方式。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;UDP 支持一对一、一对多、多对一和多对多的交互通信。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;UDP 的首部开销小，只有 8 个字节，比 TCP 的 20 个字节的首部要短&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;还要注意的是：&l;/p&g;\n&l;ol&g;\n&l;li&g;\n&l;p&g;&l;strong&g;IP 数据报要经过互连网中许多路由器的存储转发。&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;UDP 用户数据报是在运输层的&l;strong&g;端到端抽象的逻辑信道中传送的&l;/strong&g;。&l;/p&g;\n&l;/li&g;\n&l;/ol&g;\n&l;p&g;UDP 对应用层交下来的报文，&l;strong&g;既不合并，也不拆分，而是保留这些报文的边界。应用层交给 UDP 多长的报文，UDP 就照样发送，即一次发送一个报文。&l;/strong&g;&l;/p&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609642901498-78fa1773-c5d0-4397-a2a2-8d8f95635b72.jpeg#align=left&a;amp;display=inline&a;amp;height=804&a;amp;margin=%5Bobject%20Object%5D&a;amp;originHeight=804&a;amp;originWidth=1906&a;amp;size=0&a;amp;status=done&a;amp;style=none&a;amp;width=1906\&q; alt=\&q;\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h3 id=\&q;udp-首部格式\&q;&g;UDP 首部格式&l;a title=\&q;#udp-首部格式\&q; href=\&q;#udp-首部格式\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609593199355-1972c492-421d-4897-ba8d-fdcdc9cf1643.jpeg#align=left&a;amp;display=inline&a;amp;height=674&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=udp%E9%A6%96%E9%83%A8.jpg&a;amp;originHeight=674&a;amp;originWidth=1137&a;amp;size=175104&a;amp;status=done&a;amp;style=none&a;amp;width=1137\&q; alt=\&q;udp首部.jpg\&q;&g;&l;br&g;\n首部字段只有 8 个字节，包括源端口、目的端口、长度、检验和。12 字节的伪首部是为了计算检验和临时添加的。源端口号可有可无。&l;br&g;\n长度字段：UDP 数据报的整个长度，首部+数据字段。&l;br&g;\nUDP 检验和：用于差错校验，非必须，如果不使用校验和就将校验和字段置为全 0，如果校验和字段恰巧全为 0，就将校验和置为全 1。&l;br&g;\n分用时，找不到目的端口号，就丢弃报文，并且发送一个 ICMP，端口不可达的差错报文。&l;br&g;\n伪首部：也被称为伪 IP 首部，只在计算校验和的时候出现，既不向下传送也不向上递交。&l;br&g;\n伪首部的第三个字段固定全零。&l;br&g;\n伪首部第四个字段 17：封装 UDO 报文的 IP 数据报首部协议字段是 17。&l;br&g;\nUDP 长度：UDP 首部 8B+数据部分的长度（不包括伪首部）。&l;/p&g;\n&l;h3 id=\&q;udp-校验和计算\&q;&g;UDP 校验和计算&l;a title=\&q;#udp-校验和计算\&q; href=\&q;#udp-校验和计算\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;将一行看作一个整体，当作 4 个字节。&l;br&g;\n&l;strong&g;发送端：&l;/strong&g;&l;/p&g;\n&l;ol&g;\n&l;li&g;填上伪首部&l;/li&g;\n&l;li&g;全 0 填充校验和字段&l;/li&g;\n&l;li&g;全 0 填充数据部分（UDP 数据报要看着许多 4B 的字串拼接起来）&l;/li&g;\n&l;li&g;用伪首部+首部+数据部分采用二进制反码求和&l;/li&g;\n&l;li&g;把和求反码填入校验和字段&l;/li&g;\n&l;li&g;去掉伪首部，发送。&l;/li&g;\n&l;/ol&g;\n&l;p&g;&l;strong&g;接收端：&l;/strong&g;&l;/p&g;\n&l;ol&g;\n&l;li&g;填上伪首部&l;/li&g;\n&l;li&g;伪首部+首部+数据部分采用二进制反码求和&l;/li&g;\n&l;li&g;结果全为 1 则无差错，否则丢弃数据报、交给应用层上出差错的警告。&l;/li&g;\n&l;/ol&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609643131738-e5e8c8fa-3db0-4873-9c87-bac114b003b6.png#align=left&a;amp;display=inline&a;amp;height=1188&a;amp;margin=%5Bobject%20Object%5D&a;amp;originHeight=1188&a;amp;originWidth=1810&a;amp;size=0&a;amp;status=done&a;amp;style=none&a;amp;width=1810\&q; alt=\&q;\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h2 id=\&q;tcp\&q;&g;TCP&l;a title=\&q;#tcp\&q; href=\&q;#tcp\&q;&g;&l;/a&g;&l;/h2&g;\n&l;h3 id=\&q;tcp-概述\&q;&g;TCP 概述&l;a title=\&q;#tcp-概述\&q; href=\&q;#tcp-概述\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;&l;strong&g;面向字节流&l;/strong&g;&l;/p&g;\n&l;ol&g;\n&l;li&g;\n&l;p&g;TCP 中的“流”(stream)指的是流入或流出进程的字节序列。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;“面向字节流”的含义是：虽然应用程序和 TCP 的交互是一次一个数据块，&l;strong&g;但 TCP 把应用程序交下来的数据看成仅仅是一连串无结构的字节流。&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;接收方应用程序收到的字节流必须和发送方应用程序发出的字节流完全一样。&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;提供面向连接的服务。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;传送的数据单位协议是 TCP 报文段 (segment)。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;TCP 不提供广播或多播服务&l;/strong&g;。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;由于 &l;strong&g;TCP 要提供可靠的、面向连接的运输服务&l;/strong&g;，因此不可避免地&l;strong&g;增加了许多的开销&l;/strong&g;。这不仅使协议数据单元的首部增大很多，还要占用许多的处理机资源。&l;/p&g;\n&l;/li&g;\n&l;/ol&g;\n&l;p&g;TCP 报文段是在&l;strong&g;运输层抽象的端到端逻辑信道中传送&l;/strong&g;，这种信道是可靠的全双工信道。但这样的&l;strong&g;信道却不知道究竟经过了哪些路由器，而这些路由器也根本不知道上面的运输层是否建立了 TCP 连接。&l;/strong&g;&l;/p&g;\n&l;p&g;值得注意的：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;TCP 连接是一条&l;strong&g;虚连接&l;/strong&g;而不是一条真正的物理连接。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;TCP 对应用进程&l;strong&g;一次把多长的报文发送到 TCP 的缓存中是不关心的&l;/strong&g;。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;TCP 根据对方给出的&l;strong&g;窗口值和当前网络拥塞的程度来决定一个报文段应包含多少个字节（UDP 发送的报文长度是应用进程给出的）&l;/strong&g;&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;面向套接字接口： 端口号拼接到 (contatenated with) IP 地址即构成了套接字。&l;/strong&g;&l;/p&g;\n&l;h3 id=\&q;tcp-报文\&q;&g;TCP 报文&l;a title=\&q;#tcp-报文\&q; href=\&q;#tcp-报文\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609593247832-11b4e547-e18b-43c3-b224-60a68077e80b.png#align=left&a;amp;display=inline&a;amp;height=571&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F.png&a;amp;originHeight=571&a;amp;originWidth=1007&a;amp;size=188228&a;amp;status=done&a;amp;style=none&a;amp;width=1007\&q; alt=\&q;tcp首部格式.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;&l;strong&g;序号&l;/strong&g; ：用于对字节流进行编号，例如序号为 301，表示第一个字节的编号为 301，如果携带的数据长度为 100 字节，那么下一个报文段的序号应为 401。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;确认号&l;/strong&g; ：期望收到的下一个报文段的序号。例如 B 正确收到 A 发送来的一个报文段，序号为 501，携带的数据长度为 200 字节，因此 B 期望下一个报文段的序号为 701，B 发送给 A 的确认报文段中确认号就为 701。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;数据偏移&l;/strong&g; ：指的是数据部分距离报文段起始处的偏移量，实际上指的是首部的长度。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;确认 ACK&l;/strong&g; ：当 ACK=1 时确认号字段有效，否则无效。TCP 规定，在连接建立后所有传送的报文段都必须把 ACK 置 1。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;同步 SYN&l;/strong&g; ：在连接建立时用来同步序号。当 SYN=1，ACK=0 时表示这是一个连接请求报文段。若对方同意建立连接，则响应报文中 SYN=1，ACK=1。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;终止 FIN&l;/strong&g; ：用来释放一个连接，当 FIN=1 时，表示此报文段的发送方的数据已发送完毕，并要求释放连接。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;&l;strong&g;窗口&l;/strong&g; ：窗口值作为接收方让发送方设置其发送窗口的依据。之所以要有这个限制，是因为接收方的数据缓存空间是有限的。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;TCP 报文段首部的&l;strong&g;前 20 个字节是固定的，后面有 4n 字节是根据需要而增加的选项 (n 是整数)。因此 TCP 首部的最小长度是 20 字节。首部的最大长度是 40 字节。&l;/strong&g;&l;/p&g;\n&l;h3 id=\&q;tcp-连接管理\&q;&g;TCP 连接管理&l;a title=\&q;#tcp-连接管理\&q; href=\&q;#tcp-连接管理\&q;&g;&l;/a&g;&l;/h3&g;\n&l;h4 id=\&q;tcp-的三次握手\&q;&g;TCP 的三次握手&l;a title=\&q;#tcp-的三次握手\&q; href=\&q;#tcp-的三次握手\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609749752926-f2881acd-a384-4e4e-9d49-1709ab9b035a.png#align=left&a;amp;display=inline&a;amp;height=813&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E7%9A%843%E6%AC%A1%E6%8F%A1%E6%89%8B.png&a;amp;originHeight=813&a;amp;originWidth=1266&a;amp;size=222208&a;amp;status=done&a;amp;style=none&a;amp;width=1266\&q; alt=\&q;tcp的3次握手.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;p&g;假设 A 为客户端，B 为服务器端。&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;首先 B 处于 LISTEN（监听）状态，等待客户的连接请求。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;A 向 B 发送连接请求报文，SYN=1，ACK=0，选择一个初始的序号 x。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;B 收到连接请求报文，如果同意建立连接，则向 A 发送连接确认报文，SYN=1，ACK=1，确认号为 x+1，同时也选择一个初始的序号 y。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;A 收到 B 的连接确认报文后，还要向 B 发出确认，确认号为 y+1，序号为 x+1。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;B 收到 A 的确认后，连接建立。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;三次握手的原因&l;/strong&g;&l;br&g;\n第三次握手是为了防止失效的连接请求到达服务器，让服务器错误打开连接。&l;br&g;\n客户端发送的连接请求如果在网络中滞留，那么就会隔很长一段时间才能收到服务器端发回的连接确认。客户端等待一个超时重传时间之后，就会重新请求连接。但是这个滞留的连接请求最后还是会到达服务器，如果不进行三次握手，那么服务器就会打开两个连接。如果有第三次握手，客户端会忽略服务器之后发送的对滞留连接请求的连接确认，不进行第三次握手，因此就不会再次打开连接。&l;/p&g;\n&l;h4 id=\&q;tcp-的四次挥手\&q;&g;TCP 的四次挥手&l;a title=\&q;#tcp-的四次挥手\&q; href=\&q;#tcp-的四次挥手\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609749794273-e9357007-5e92-444b-b8cc-2b4dea2535c8.jpeg#align=left&a;amp;display=inline&a;amp;height=646&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE.jpg&a;amp;originHeight=646&a;amp;originWidth=934&a;amp;size=121856&a;amp;status=done&a;amp;style=none&a;amp;width=934\&q; alt=\&q;tcp连接释放.jpg\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;p&g;以下描述不讨论序号和确认号，因为序号和确认号的规则比较简单。并且不讨论 ACK，因为 ACK 在连接建立之后都为 1。&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;A 发送连接释放报文，FIN=1。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;B 收到之后发出确认，此时 TCP 属于半关闭状态，B 能向 A 发送数据但是 A 不能向 B 发送数据。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;当 B 不再需要连接时，发送连接释放报文，FIN=1。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;A 收到后发出确认，进入 TIME-WAIT 状态，等待 2 MSL（最大报文存活时间）后释放连接。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;B 收到 A 的确认后释放连接。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;strong&g;四次挥手的原因&l;/strong&g;&l;br&g;\n客户端发送了 FIN 连接释放报文之后，服务器收到了这个报文，就进入了 CLOSE-WAIT 状态。这个状态是为了让服务器端发送还未传送完毕的数据，传送完毕之后，服务器会发送 FIN 连接释放报文。&l;br&g;\n&l;strong&g;TIME_WAIT&l;/strong&g;&l;br&g;\n客户端接收到服务器端的 FIN 报文后进入此状态，此时并不是直接进入 CLOSED 状态，还需要等待一个时间计时器设置的时间 2MSL。这么做有两个理由：&l;/p&g;\n&l;ul&g;\n&l;li&g;\n&l;p&g;确保最后一个确认报文能够到达。如果 B 没收到 A 发送来的确认报文，那么就会重新发送连接释放请求报文，A 等待一段时间就是为了处理这种情况的发生。&l;/p&g;\n&l;/li&g;\n&l;li&g;\n&l;p&g;等待一段时间是为了让本连接持续时间内所产生的所有报文都从网络中消失，使得下一个新的连接不会出现旧的连接请求报文。&l;/p&g;\n&l;/li&g;\n&l;/ul&g;\n&l;h3 id=\&q;tcp-可靠传输\&q;&g;TCP 可靠传输&l;a title=\&q;#tcp-可靠传输\&q; href=\&q;#tcp-可靠传输\&q;&g;&l;/a&g;&l;/h3&g;\n&l;h3 id=\&q;tcp-流量控制\&q;&g;TCP 流量控制&l;a title=\&q;#tcp-流量控制\&q; href=\&q;#tcp-流量控制\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;流量控制是为了控制发送方发送速率，保证接收方来得及接收。&l;br&g;\n接收方发送的确认报文中的窗口字段可以用来控制发送方窗口大小，从而影响发送方的发送速率。将窗口字段设置为 0，则发送方不能发送数据。&l;/p&g;\n&l;p&g;&l;strong&g;TCP 使用滑动窗口机制来实现流量控制。&l;/strong&g;&l;br&g;\n窗口是缓存的一部分，用来暂时存放字节流。发送方和接收方各有一个窗口，接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小。&l;br&g;\n发送窗口内的字节都允许被发送，接收窗口内的字节都允许被接收。如果发送窗口左部的字节已经发送并且收到了确认，那么就将发送窗口向右滑动一定距离，直到左部第一个字节不是已发送并且已确认的状态；接收窗口的滑动类似，接收窗口左部字节已经发送确认并交付主机，就向右滑动接收窗口。&l;br&g;\n接收窗口只会对窗口内最后一个按序到达的字节进行确认，例如接收窗口已经收到的字节为 {31, 34, 35}，其中 {31} 按序到达，而 {34, 35} 就不是，因此只对字节 31 进行确认。发送方得到一个字节的确认之后，就知道这个字节之前的所有字节都已经被接收。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609749839622-e99e917b-12c7-4a32-aaea-bdd4f8a4fa39.jpeg#align=left&a;amp;display=inline&a;amp;height=474&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E6%95%B0%E6%8D%AE%E5%8F%91%E9%80%81.jpg&a;amp;originHeight=474&a;amp;originWidth=1055&a;amp;size=130048&a;amp;status=done&a;amp;style=none&a;amp;width=1055\&q; alt=\&q;tcp数据发送.jpg\&q;&g;&l;/p&g;\n&l;h3 id=\&q;tcp-拥塞控制\&q;&g;TCP 拥塞控制&l;a title=\&q;#tcp-拥塞控制\&q; href=\&q;#tcp-拥塞控制\&q;&g;&l;/a&g;&l;/h3&g;\n&l;p&g;如果网络出现拥塞，分组将会丢失，此时发送方会继续重传，从而导致网络拥塞程度更高。因此当出现拥塞时，应当控制发送方的速率。这一点和流量控制很像，但是出发点不同。流量控制是为了让接收方能来得及接收，而拥塞控制是为了降低整个网络的拥塞程度。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609749954050-a1d23a2d-ade7-484f-86a2-97e8396b32b0.png#align=left&a;amp;display=inline&a;amp;height=468&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BD%9C%E7%94%A8.png&a;amp;originHeight=468&a;amp;originWidth=870&a;amp;size=41637&a;amp;status=done&a;amp;style=none&a;amp;width=870\&q; alt=\&q;tcp拥塞控制的作用.png\&q;&g;&l;/p&g;\n&l;p&g;TCP 主要通过四个算法来进行拥塞控制：慢开始、拥塞避免、快重传、快恢复。&l;br&g;\n发送方需要维护一个叫做拥塞窗口（cwnd）的状态变量，注意拥塞窗口与发送方窗口的区别：拥塞窗口只是一个状态变量，实际决定发送方能发送多少数据的是发送方窗口。&l;br&g;\n为了便于讨论，做如下假设：&l;/p&g;\n&l;ul&g;\n&l;li&g;接收方有足够大的接收缓存，因此不会发生流量控制；&l;/li&g;\n&l;li&g;虽然 TCP 的窗口基于字节，但是这里设窗口的大小单位为报文段。&l;/li&g;\n&l;/ul&g;\n&l;p&g;&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609749990875-cdd31015-5f20-41e1-898a-377c898011a0.png#align=left&a;amp;display=inline&a;amp;height=754&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.png&a;amp;originHeight=754&a;amp;originWidth=1914&a;amp;size=159744&a;amp;status=done&a;amp;style=none&a;amp;width=1914\&q; alt=\&q;tcp拥塞窗口.png\&q; class=\&q;φcx\&q;&g;&l;/p&g;\n&l;h4 id=\&q;慢开始与拥塞避免\&q;&g;慢开始与拥塞避免&l;a title=\&q;#慢开始与拥塞避免\&q; href=\&q;#慢开始与拥塞避免\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;发送的最初执行慢开始，令 cwnd = 1，发送方只能发送 1 个报文段；当收到确认后，将 cwnd 加倍，因此之后发送方能够发送的报文段数量为：2、4、8 …&l;br&g;\n注意到慢开始每个轮次都将 cwnd 加倍，这样会让 cwnd 增长速度非常快，从而使得发送方发送的速度增长速度过快，网络拥塞的可能性也就更高。设置一个慢开始门限 ssthresh，当 cwnd &a;gt;= ssthresh 时，进入拥塞避免，每个轮次只将 cwnd 加 1。&l;br&g;\n如果出现了超时，则令 ssthresh = cwnd / 2，然后重新执行慢开始。&l;/p&g;\n&l;h4 id=\&q;快重传与快恢复\&q;&g;快重传与快恢复&l;a title=\&q;#快重传与快恢复\&q; href=\&q;#快重传与快恢复\&q;&g;&l;/a&g;&l;/h4&g;\n&l;p&g;在接收方，要求每次接收到报文段都应该对最后一个已收到的有序报文段进行确认。例如已经接收到 M 和 M，此时收到 M，应当发送对 M 的确认。&l;br&g;\n在发送方，如果收到三个重复确认，那么可以知道下一个报文段丢失，此时执行快重传，立即重传下一个报文段。例如收到三个 M，则 M 丢失，立即重传 M。&l;br&g;\n在这种情况下，只是丢失个别报文段，而不是网络拥塞。因此执行快恢复，令 ssthresh = cwnd / 2 ，cwnd = ssthresh，注意到此时直接进入拥塞避免。&l;br&g;\n慢开始和快恢复的快慢指的是 cwnd 的设定值，而不是 cwnd 的增长速率。慢开始 cwnd 设定为 1，而快恢复 cwnd 设定为 ssthresh。&l;br&g;\n&l;img src=\&q;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609750039254-84c1b797-8e70-4eea-88b7-1489fd0a4eda.png#align=left&a;amp;display=inline&a;amp;height=648&a;amp;margin=%5Bobject%20Object%5D&a;amp;name=tcp%E5%BF%AB%E9%87%8D%E4%BC%A0.png&a;amp;originHeight=648&a;amp;originWidth=1174&a;amp;size=148890&a;amp;status=done&a;amp;style=none&a;amp;width=1174\&q; alt=\&q;tcp快重传.png\&q;&g;**&l;/p&g;\n&l;div&g;&l;h1 id=\&q;推荐文章\&q;&g;推荐文章&l;a title=\&q;#推荐文章\&q; href=\&q;%e6%8e%a8%e8%8d%90%e6%96%87%e7%ab%a0\&q;&g;&l;/a&g;&l;/h1&g;&l;ul&g;&l;li&g;&l;a href=\&q;https://mvbbb.github.io/rptlxk/\&q;&g;计算机网络学习总结[转载][2]&l;/a&g;&l;/li&g;&l;li&g;&l;a href=\&q;https://mvbbb.github.io/cxnppw/\&q;&g;使用 Java 实现简单的 WebServer&l;/a&g;&l;/li&g;&l;/ul&g;&l;/div&g;&q;,&q;prev&q;:{&q;title&q;:&q;后端简介&q;,&q;link&q;:&q;lqm4qt&q;},&q;next&q;:{&q;title&q;:&q;Bye! My 2020&q;,&q;link&q;:&q;my2020&q;},&q;plink&q;:&q;https://mvbbb.github.io/hf30zm/&q;,&q;toc&q;:[{&q;id&q;:&q;前言&q;,&q;title&q;:&q;前言&q;,&q;index&q;:&q;1&q;},{&q;id&q;:&q;预备知识&q;,&q;title&q;:&q;预备知识&q;,&q;index&q;:&q;2&q;,&q;children&q;:[{&q;id&q;:&q;计算机网络发展的四个阶段&q;,&q;title&q;:&q;计算机网络发展的四个阶段&q;,&q;index&q;:&q;2.1&q;,&q;children&q;:[{&q;id&q;:&q;第一阶段（60-年代初期到-60-年代中期）&q;,&q;title&q;:&q;第一阶段（60 年代初期到 60 年代中期）&q;,&q;index&q;:&q;2.1.1&q;},{&q;id&q;:&q;第二阶段（60-年代中期到-70-年代中期）&q;,&q;title&q;:&q;第二阶段（60 年代中期到 70 年代中期）&q;,&q;index&q;:&q;2.1.2&q;},{&q;id&q;:&q;第三阶段（70-年代中期到-80-年代末期）&q;,&q;title&q;:&q;第三阶段（70 年代中期到 80 年代末期）&q;,&q;index&q;:&q;2.1.3&q;},{&q;id&q;:&q;第四阶段-–高速、综合化网络&q;,&q;title&q;:&q;第四阶段 –高速、综合化网络&q;,&q;index&q;:&q;2.1.4&q;}]},{&q;id&q;:&q;网络性能指标&q;,&q;title&q;:&q;网络性能指标&q;,&q;index&q;:&q;2.2&q;,&q;children&q;:[{&q;id&q;:&q;速率相关&q;,&q;title&q;:&q;速率相关&q;,&q;index&q;:&q;2.2.1&q;},{&q;id&q;:&q;时延-delay&q;,&q;title&q;:&q;时延 Delay&q;,&q;index&q;:&q;2.2.2&q;},{&q;id&q;:&q;其他&q;,&q;title&q;:&q;其他&q;,&q;index&q;:&q;2.2.3&q;}]},{&q;id&q;:&q;计算机网络的分类&q;,&q;title&q;:&q;计算机网络的分类&q;,&q;index&q;:&q;2.3&q;},{&q;id&q;:&q;常见网络的拓扑结构&q;,&q;title&q;:&q;常见网络的拓扑结构&q;,&q;index&q;:&q;2.4&q;,&q;children&q;:[{&q;id&q;:&q;星型拓扑&q;,&q;title&q;:&q;星型拓扑&q;,&q;index&q;:&q;2.4.1&q;},{&q;id&q;:&q;总线拓扑&q;,&q;title&q;:&q;总线拓扑&q;,&q;index&q;:&q;2.4.2&q;},{&q;id&q;:&q;环型拓扑&q;,&q;title&q;:&q;环型拓扑&q;,&q;index&q;:&q;2.4.3&q;}]},{&q;id&q;:&q;计算机网络交换技术&q;,&q;title&q;:&q;计算机网络交换技术&q;,&q;index&q;:&q;2.5&q;,&q;children&q;:[{&q;id&q;:&q;电路交换&q;,&q;title&q;:&q;电路交换&q;,&q;index&q;:&q;2.5.1&q;},{&q;id&q;:&q;报文交换&q;,&q;title&q;:&q;报文交换&q;,&q;index&q;:&q;2.5.2&q;},{&q;id&q;:&q;分组交换&q;,&q;title&q;:&q;分组交换&q;,&q;index&q;:&q;2.5.3&q;},{&q;id&q;:&q;3-种交换网络的对比&q;,&q;title&q;:&q;3 种交换网络的对比&q;,&q;index&q;:&q;2.5.4&q;}]},{&q;id&q;:&q;计算机网络协议基本概念&q;,&q;title&q;:&q;计算机网络协议基本概念&q;,&q;index&q;:&q;2.6&q;},{&q;id&q;:&q;网络层次结构的划分&q;,&q;title&q;:&q;网络层次结构的划分&q;,&q;index&q;:&q;2.7&q;,&q;children&q;:[{&q;id&q;:&q;为什么要在网络中使用分层&q;,&q;title&q;:&q;为什么要在网络中使用分层&q;,&q;index&q;:&q;2.7.1&q;},{&q;id&q;:&q;tcp/ip-协议簇&q;,&q;title&q;:&q;TCP&a;#x2F;IP 协议簇&q;,&q;index&q;:&q;2.7.2&q;}]}]},{&q;id&q;:&q;应用层&q;,&q;title&q;:&q;应用层&q;,&q;index&q;:&q;3&q;,&q;children&q;:[{&q;id&q;:&q;网络应用模型&q;,&q;title&q;:&q;网络应用模型&q;,&q;index&q;:&q;3.1&q;,&q;children&q;:[{&q;id&q;:&q;应用层协议原理&q;,&q;title&q;:&q;应用层协议原理&q;,&q;index&q;:&q;3.1.1&q;},{&q;id&q;:&q;体系结构&q;,&q;title&q;:&q;体系结构&q;,&q;index&q;:&q;3.1.2&q;},{&q;id&q;:&q;进程通信&q;,&q;title&q;:&q;进程通信&q;,&q;index&q;:&q;3.1.3&q;},{&q;id&q;:&q;应用层协议&q;,&q;title&q;:&q;应用层协议&q;,&q;index&q;:&q;3.1.4&q;}]},{&q;id&q;:&q;web-和-http&q;,&q;title&q;:&q;Web 和 HTTP&q;,&q;index&q;:&q;3.2&q;,&q;children&q;:[{&q;id&q;:&q;关于-http&q;,&q;title&q;:&q;关于 HTTP&q;,&q;index&q;:&q;3.2.1&q;},{&q;id&q;:&q;http-分类&q;,&q;title&q;:&q;HTTP 分类&q;,&q;index&q;:&q;3.2.2&q;},{&q;id&q;:&q;http-报文&q;,&q;title&q;:&q;HTTP 报文&q;,&q;index&q;:&q;3.2.3&q;}]},{&q;id&q;:&q;cookie&q;,&q;title&q;:&q;Cookie&q;,&q;index&q;:&q;3.3&q;},{&q;id&q;:&q;dns&q;,&q;title&q;:&q;DNS&q;,&q;index&q;:&q;3.4&q;,&q;children&q;:[{&q;id&q;:&q;什么是-dns&q;,&q;title&q;:&q;什么是 dns&q;,&q;index&q;:&q;3.4.1&q;},{&q;id&q;:&q;dns-的工作概述&q;,&q;title&q;:&q;DNS 的工作概述&q;,&q;index&q;:&q;3.4.2&q;},{&q;id&q;:&q;dns-的查询方式&q;,&q;title&q;:&q;DNS 的查询方式&q;,&q;index&q;:&q;3.4.3&q;},{&q;id&q;:&q;dns-缓存&q;,&q;title&q;:&q;DNS 缓存&q;,&q;index&q;:&q;3.4.4&q;},{&q;id&q;:&q;dns-记录和报文&q;,&q;title&q;:&q;DNS 记录和报文&q;,&q;index&q;:&q;3.4.5&q;}]},{&q;id&q;:&q;邮件协议&q;,&q;title&q;:&q;邮件协议&q;,&q;index&q;:&q;3.5&q;,&q;children&q;:[{&q;id&q;:&q;电子邮件&q;,&q;title&q;:&q;电子邮件&q;,&q;index&q;:&q;3.5.1&q;},{&q;id&q;:&q;smtp-协议传输过程&q;,&q;title&q;:&q;SMTP 协议传输过程&q;,&q;index&q;:&q;3.5.2&q;},{&q;id&q;:&q;smtp-与-http-的对比&q;,&q;title&q;:&q;SMTP 与 HTTP 的对比&q;,&q;index&q;:&q;3.5.3&q;},{&q;id&q;:&q;邮件访问协议&q;,&q;title&q;:&q;邮件访问协议&q;,&q;index&q;:&q;3.5.4&q;}]},{&q;id&q;:&q;cdn-内容分发&q;,&q;title&q;:&q;CDN 内容分发&q;,&q;index&q;:&q;3.6&q;},{&q;id&q;:&q;ftp&q;,&q;title&q;:&q;FTP&q;,&q;index&q;:&q;3.7&q;,&q;children&q;:[{&q;id&q;:&q;简介&q;,&q;title&q;:&q;简介&q;,&q;index&q;:&q;3.7.1&q;},{&q;id&q;:&q;过程&q;,&q;title&q;:&q;过程&q;,&q;index&q;:&q;3.7.2&q;}]},{&q;id&q;:&q;p2p&q;,&q;title&q;:&q;P2P&q;,&q;index&q;:&q;3.8&q;,&q;children&q;:[{&q;id&q;:&q;p2p-用来做什么&q;,&q;title&q;:&q;P2P 用来做什么&q;,&q;index&q;:&q;3.8.1&q;},{&q;id&q;:&q;p2p-网络的作用&q;,&q;title&q;:&q;P2P 网络的作用&q;,&q;index&q;:&q;3.8.2&q;}]}]},{&q;id&q;:&q;传输层&q;,&q;title&q;:&q;传输层&q;,&q;index&q;:&q;4&q;,&q;children&q;:[{&q;id&q;:&q;传输层概述&q;,&q;title&q;:&q;传输层概述&q;,&q;index&q;:&q;4.1&q;},{&q;id&q;:&q;可靠传输的原理&q;,&q;title&q;:&q;可靠传输的原理&q;,&q;index&q;:&q;4.2&q;},{&q;id&q;:&q;udp-和-tcp-的特点&q;,&q;title&q;:&q;UDP 和 TCP 的特点&q;,&q;index&q;:&q;4.3&q;},{&q;id&q;:&q;udp&q;,&q;title&q;:&q;UDP&q;,&q;index&q;:&q;4.4&q;,&q;children&q;:[{&q;id&q;:&q;udp-概述&q;,&q;title&q;:&q;UDP 概述&q;,&q;index&q;:&q;4.4.1&q;},{&q;id&q;:&q;udp-首部格式&q;,&q;title&q;:&q;UDP 首部格式&q;,&q;index&q;:&q;4.4.2&q;},{&q;id&q;:&q;udp-校验和计算&q;,&q;title&q;:&q;UDP 校验和计算&q;,&q;index&q;:&q;4.4.3&q;}]},{&q;id&q;:&q;tcp&q;,&q;title&q;:&q;TCP&q;,&q;index&q;:&q;4.5&q;,&q;children&q;:[{&q;id&q;:&q;tcp-概述&q;,&q;title&q;:&q;TCP 概述&q;,&q;index&q;:&q;4.5.1&q;},{&q;id&q;:&q;tcp-报文&q;,&q;title&q;:&q;TCP 报文&q;,&q;index&q;:&q;4.5.2&q;},{&q;id&q;:&q;tcp-连接管理&q;,&q;title&q;:&q;TCP 连接管理&q;,&q;index&q;:&q;4.5.3&q;},{&q;id&q;:&q;tcp-可靠传输&q;,&q;title&q;:&q;TCP 可靠传输&q;,&q;index&q;:&q;4.5.4&q;},{&q;id&q;:&q;tcp-流量控制&q;,&q;title&q;:&q;TCP 流量控制&q;,&q;index&q;:&q;4.5.5&q;},{&q;id&q;:&q;tcp-拥塞控制&q;,&q;title&q;:&q;TCP 拥塞控制&q;,&q;index&q;:&q;4.5.6&q;}]}]},{&q;id&q;:&q;推荐文章&q;,&q;title&q;:&q;推荐文章&q;,&q;index&q;:&q;5&q;}],&q;copyright&q;:{&q;author&q;:&q;Mvbbb&q;,&q;link&q;:&q;&l;a href=\&q;https://mvbbb.github.io/hf30zm/\&q; title=\&q;计算机网络学习总结[转载][1]\&q;&g;https://mvbbb.github.io/hf30zm/&l;/a&g;&q;,&q;license&q;:&q;Attribution-NonCommercial-NoDerivatives 4.0 International (&l;a href=\&q;https://creativecommons.org/licenses/by-nc-sa/4.0/\&q; rel=\&q;external nofollow noopener\&q; target=\&q;_blank\&q;&g;CC BY-NC-ND 4.0&l;/a&g;)&q;}}}</script></head><body lang="en"><div style="display:none"><script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1279526637&amp;web_id=1279526637"></script></div>
+<!-- hexo injector head_end start --><link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet"><link href="/styles.43478ea7e28ed563c48b.css" rel="stylesheet">
+<script src="/config.f667b9e14173c512056d.js"></script>
+
+<link rel="stylesheet" href="/theme.6191587147d30da44d8f.css" is="theme">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0">
+<!-- hexo injector body_begin start --><is-a class="φbm φk" ng-version="10.0.11"><is-l class="φeb φh"><div class="φel"><section class="φem"><header class="φec φf"><!----><is-c class="φed"><img draggable="false" class="φbw φw" src="images/avatar.jpg" alt="" title="" width="160" height="160"></is-c><!----><a href="" class="φef φa φu">Mvbbb</a><p class="φee">Who i am,who u are</p></header><div class="φeq φf"><a routerlink="/archives" class="φer φu" href="/archives"><span class="φd">45</span><span>Archives</span></a><a class="φer φu" href="/categories/Java"><span class="φd">14</span><span>Categories</span></a><!----><a routerlink="/tags" class="φer φu" href="/tags"><span class="φd">34</span><span>Tags</span></a><!----></div><!----><nav class="φen"><a class="φeo φbd φj φc φu φo" href="/">Home</a><!----><!----><!----><a class="φeo φbd φj φc φu φo" href="/about">About</a><!----><!----><!----><a class="φeo φbd φj φc φu φo" href="/search">Search</a><!----><!----><!----><!----><a target="_blank" rel="external nofollow noopener" class="φeo φbd φj φc φu φo" href="https://www.yuque.com/u1296515/zb4bwb">Yuque</a><!----><!----><!----></nav><!----><!----></section><footer class="φeg φeh"><div class="φej"><a target="_blank" rel="external nofollow noopener" class="φek φbg φu icon-email" href="mailto:3212618781@qq.com">email</a><a target="_blank" rel="external nofollow noopener" class="φek φbg φu icon-feed" href="https://mvbbb.github.io/rss2.xml">feed</a><a target="_blank" rel="external nofollow noopener" class="φek φbg φu icon-github" href="https://github.com/Mvbbb">github</a><a target="_blank" rel="external nofollow noopener" class="φek φbg φu icon-myspace" href="/links">myspace</a><!----></div><!----><p class="φbk φz">© 2019-2021 ❤ <a href="https://github.com/Mvbbb">Mvbbb</a></p><!----><!----><!----></footer></div></is-l><div class="φbo"><div class="φbn"><div class="φbs φbe"><main class="φbr φbf"><router-outlet></router-outlet><is-s class="φfx φf"><header class="φgh φgi" style="background-image:;background-color:;"><div class="φgq"><h1 class="φgt">计算机网络学习总结[转载][1]</h1><!----><p class="φgj φr"><span class="φgk φgo">Jan 2, 2021</span><a class="φgk φgm φu" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C">计算机网络</a><!----><!----><!----></p><!----><!----></div></header><article itemscope="" itemtype="http://schema.org/Article" class="φga" data-title="计算机网络学习总结[转载][1]"><div itemprop="articleBody" issnippet="" iszoomable="" class="φbk φh φz"><h1 id="前言">前言<a title="#前言" href="#前言"></a></h1>
+<p>这篇文章是我搜集各种资料之后整合出来的，<strong>仅用作个人学习使用</strong>。如有侵权请联系我，我立马删除。<br>
+本篇包含</p>
+<ul>
+<li>预备知识</li>
+<li>应用层</li>
+<li>传输层</li>
+</ul>
+<p>部分内容待完善</p>
+<ol>
+<li>数据链路层结构不够清晰</li>
+<li>TCP 可靠传输部分没写</li>
+</ol>
+<a id="more"></a>
+<h1 id="预备知识">预备知识<a title="#预备知识" href="#预备知识"></a></h1>
+<h2 id="计算机网络发展的四个阶段">计算机网络发展的四个阶段<a title="#计算机网络发展的四个阶段" href="#计算机网络发展的四个阶段"></a></h2>
+<h3 id="第一阶段（60-年代初期到-60-年代中期）">第一阶段（60 年代初期到 60 年代中期）<a title="#第一阶段（60-年代初期到-60-年代中期）" href="#第一阶段（60-年代初期到-60-年代中期）"></a></h3>
+<p>面向终端的计算机网络：主机是网络的中心和控制者，终端（键盘和显示器）分布在各处并与主机相连，用户通过本地的终端使用远程的主机。只提供终端和主机之间的通信，子网之间无法通信。</p>
+<h3 id="第二阶段（60-年代中期到-70-年代中期）">第二阶段（60 年代中期到 70 年代中期）<a title="#第二阶段（60-年代中期到-70-年代中期）" href="#第二阶段（60-年代中期到-70-年代中期）"></a></h3>
+<p>采用分组交换技术实现计算机 &nbsp;—&nbsp; 计算机之间的通信，使计算机网络的结构、概念都发生了变化，形成了通信子网和资源子网的网络结构。</p>
+<ul>
+<li>第二代计算机网络是计算机网络的“形成与发展”阶段</li>
+<li>美国的 ARPA 网就是第二代网络的代表: ARPA</li>
+</ul>
+<h3 id="第三阶段（70-年代中期到-80-年代末期）">第三阶段（70 年代中期到 80 年代末期）<a title="#第三阶段（70-年代中期到-80-年代末期）" href="#第三阶段（70-年代中期到-80-年代末期）"></a></h3>
+<p>现代计算机网络互连阶段，特征是网络体系结构的形成和网络协议的标准化。&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在计算机通信系统的基础之上，重视网络体系结构和协议标准化的研究，建立全网统一的通信规则，用通信协议软件来实现网络内部及网络与网络之间的通信，通过网络操作系统，对网络资源进行管理，极大的简化了用户的使用，使计算机网络对用户提供透明服务 &nbsp;。&nbsp;<br>
+1981 年国际标准化组织(ISO)制订：开放体系互联基本参考模型（OSI/RM），实现不同厂家生产的计算机之间实现互连。<br>
+TCP/IP 协议也是诞生于该阶段。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609562706939-cc384bc3-efa3-4658-8fb4-d0b6cf39cf3d.png#align=left&amp;display=inline&amp;height=395&amp;margin=%5Bobject%20Object%5D&amp;name=944365-8f04f1321143fd6a.png&amp;originHeight=395&amp;originWidth=620&amp;size=31180&amp;status=done&amp;style=none&amp;width=620" alt="944365-8f04f1321143fd6a.png"></p>
+<h3 id="第四阶段-–高速、综合化网络">第四阶段 –高速、综合化网络<a title="#第四阶段-–高速、综合化网络" href="#第四阶段-–高速、综合化网络"></a></h3>
+<ul>
+<li>
+<p>宽带综合业务数字网：信息高速公路</p>
+</li>
+<li>
+<p>ATM 技术、ISDN、千兆以太网</p>
+</li>
+<li>
+<p>交互性：网上电视点播、电视会议、可视电话、网上购物、网上银行、网络图书馆等高速、可视化。</p>
+<p>Internet 就是这一代网络的典型代表，已经成为人类最重要的、最大的知识宝库。第四代计算机网络属于计算机网络的“继续发展”阶段。</p>
+</li>
+</ul>
+<h2 id="网络性能指标">网络性能指标<a title="#网络性能指标" href="#网络性能指标"></a></h2>
+<h3 id="速率相关">速率相关<a title="#速率相关" href="#速率相关"></a></h3>
+<ul>
+<li>**比特 bit：**数据计量单位 01 组成。</li>
+<li>**速率 rate：**是指计算机网络中的主机在数字信道上，单位时间内从一端传送到另一端的数据量，即数据传输率，也称数据率或比特率。比特(bit)是数据量的最小单位，s(秒)是时间的最小单位。所以速率单位为 bit/s 或 bps(bit persecond)，类似的有 kb/s(k=10^3)、Mb/s(M=10^6)、Gb/s(G=10^9)、Tb/s(T=10^12)，1Byte=8bit 1B=8b1B/s=8b/s(或 1Bps=8bps)。</li>
+<li><strong>带宽 bandwidth： <strong>计算机网络中的主机在数字信道上，单位时间内从一端传送到另一端的最大数据量，即</strong>最大速率</strong>。单位是比特/秒。</li>
+<li>**吞吐量 throughput：**吞吐量是指对网络、设备、端口或其他设施在单位时间内成功地传送数据的数量（以比特、字节等测量单位），也就是说吞吐量是指在没有帧丢失的情况下，设备能够接收并转发的最大数据速率。</li>
+</ul>
+<h3 id="时延-delay">时延 Delay<a title="#时延-delay" href="#时延-delay"></a></h3>
+<ul>
+<li>**节点处理时延 proc： **路由器或主机在收到数据包时，要花费一定时间进行处理，例如分析数据包的首部、进行首部差错检验，查找路由表为数据包选定准发接口，这就产生了处理时延。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/webp/1552854/1609563941408-5bd8b5b0-ca19-45b0-ab66-461a6d015739.webp#align=left&amp;display=inline&amp;height=540&amp;margin=%5Bobject%20Object%5D&amp;name=%E5%A4%84%E7%90%86%E6%97%B6%E5%BB%B6.webp&amp;originHeight=540&amp;originWidth=1200&amp;size=13630&amp;status=done&amp;style=none&amp;width=1200" alt="处理时延.webp" class="φcx"></p>
+<ul>
+<li>**排队时延 queue：**等待输出链路可用，进入路由器之后要先在输入队列中排队等待处理。在路由器确定了转发接口后，还要在输出队列中排队等待转发，这就产生了排队时延。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/webp/1552854/1609563918034-08b3ec0c-3504-4d69-bb98-2aad80593338.webp#align=left&amp;display=inline&amp;height=527&amp;margin=%5Bobject%20Object%5D&amp;name=%E6%8E%92%E9%98%9F%E6%97%B6%E5%BB%B6.webp&amp;originHeight=527&amp;originWidth=1200&amp;size=11614&amp;status=done&amp;style=none&amp;width=1200" alt="排队时延.webp" class="φcx"></p>
+<ul>
+<li>**传输时延 trans：<strong>传输延迟也叫发送时延, 将所有分组推向链路的时间</strong> 。**取决于路由器的拥塞程度</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/gif/1552854/1609563866718-31c6aaa4-6aaf-4d11-b2b8-849c22503661.gif#align=left&amp;display=inline&amp;height=803&amp;margin=%5Bobject%20Object%5D&amp;name=%E5%8F%91%E9%80%81%E6%97%B6%E5%BB%B6.gif&amp;originHeight=803&amp;originWidth=1430&amp;size=504356&amp;status=done&amp;style=none&amp;width=1430" alt="发送时延.gif" class="φcx"></p>
+<ul>
+<li>**传播时延 prop： **指电磁波在信道中传播一定距离需要花费的时间。取决于链路的物理性质。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/gif/1552854/1609563883081-9055d375-6516-49cd-b16f-59c4a821c950.gif#align=left&amp;display=inline&amp;height=803&amp;margin=%5Bobject%20Object%5D&amp;name=%E4%BC%A0%E6%92%AD%E6%97%B6%E5%BB%B6.gif&amp;originHeight=803&amp;originWidth=1430&amp;size=403181&amp;status=done&amp;style=none&amp;width=1430" alt="传播时延.gif"><br>
+<strong>总时延=发送时延+传播时延+处理时延+排队时延</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609574077051-355314ec-4810-49c8-9baa-00c8ece3a68e.png#align=left&amp;display=inline&amp;height=196&amp;margin=%5Bobject%20Object%5D&amp;name=%E6%80%BB%E6%97%B6%E5%BB%B6.png&amp;originHeight=196&amp;originWidth=738&amp;size=40807&amp;status=done&amp;style=none&amp;width=738" alt="总时延.png"></p>
+<h3 id="其他">其他<a title="#其他" href="#其他"></a></h3>
+<ul>
+<li>**时延带宽积： **时延带宽积表示链路可容纳的比特数，因此，链路的时延带宽积又称为以比特为单位的链路长度。时延带宽积=传播时延 × 带宽。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609574141848-36df6f84-33c7-445a-b4dd-25b99e9b4d02.png#align=left&amp;display=inline&amp;height=88&amp;margin=%5Bobject%20Object%5D&amp;name=%E6%97%B6%E5%BB%B6%E5%B8%A6%E5%AE%BD%E7%A7%AF.png&amp;originHeight=88&amp;originWidth=346&amp;size=18780&amp;status=done&amp;style=none&amp;width=346" alt="时延带宽积.png" class="φcx"></p>
+<ul>
+<li>**往返时间 RTT： **往返时间 RTT，表示从发送方发送数据开始，到发送方收到来自接收方的确认（接收方收到数据后便立即发送确认），总共经历的时间。往返时间一般就会包括分组在网络中的各种时延。在一定程度上反映了网络的拥塞程度。</li>
+<li>**信道利用率： **信道利用率指出某信道有百分之几的时间是被利用的（有数据通过），等于发送时延除以发送时延加上往返传输时延。完全空闲的信道的利用率是零。利用率越接近于 1，时延急剧增大，信道利用率越高。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609574221620-2c42d54b-7d20-4d23-959b-eb4b36c60f98.png#align=left&amp;display=inline&amp;height=232&amp;margin=%5Bobject%20Object%5D&amp;name=%E4%BF%A1%E9%81%93%E5%88%A9%E7%94%A8%E7%8E%87%E4%B8%8E%E6%97%B6%E5%BB%B6%E5%85%B3%E7%B3%BB.png&amp;originHeight=232&amp;originWidth=400&amp;size=29565&amp;status=done&amp;style=none&amp;width=400" alt="信道利用率与时延关系.png" class="φcx"></p>
+<h2 id="计算机网络的分类">计算机网络的分类<a title="#计算机网络的分类" href="#计算机网络的分类"></a></h2>
+<p>按照覆盖的地理范围进行分类，计算机网络可以分为局域网、城域网和广域网三类。</p>
+<ol>
+<li>局域网(LAN)。局域网是一种在小区域内使用的，由多台计算机组成的网络，覆盖范围通常局限在 10 千米范围之内，属于一个单位或部门组建的小范围网。</li>
+<li>城域网(MAN)。城域网是作用范围在广域网与局域网之间的网络，其网络覆盖范围通常可以延伸到整个城市，借助通信光纤将多个局域网联通公用城市网络形成大型网络，使得不仅局域网内的资源可以共享，局域网之间的资源也可以共享。</li>
+<li>广域网(WAN) 广城网是一种远程网，涉及长距离的通信，覆盖范围可以是个国家或多个国家，甚至整个世界。由于广域网地理上的距离可以超过几千千米，所以信息衰减非常严重，这种网络一般要租用专线，通过接口信息处理协议和线路连接起来，构成网状结构，解决寻径问题。</li>
+</ol>
+<h2 id="常见网络的拓扑结构">常见网络的拓扑结构<a title="#常见网络的拓扑结构" href="#常见网络的拓扑结构"></a></h2>
+<h3 id="星型拓扑">星型拓扑<a title="#星型拓扑" href="#星型拓扑"></a></h3>
+<p>星型拓扑是由中央节点和通过点到点通信链路接到中央节点的各个站点组成。<br>
+优点：可靠性高，方便管理，易于扩展，传输效率高.<br>
+缺点：线路利用率低，中心节点需要很高的可靠性和冗余度。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609565176185-983c5e3a-6cb9-4775-a936-93358db4e1e7.jpeg#align=left&amp;display=inline&amp;height=251&amp;margin=%5Bobject%20Object%5D&amp;name=%E6%98%9F%E5%9E%8B%E6%8B%93%E6%89%91.jpg&amp;originHeight=251&amp;originWidth=271&amp;size=8804&amp;status=done&amp;style=none&amp;width=271" alt="星型拓扑.jpg"></p>
+<h3 id="总线拓扑">总线拓扑<a title="#总线拓扑" href="#总线拓扑"></a></h3>
+<p>总线拓扑结构采用一个信道作为传输媒体,所有站点都通过相应的硬件接口直接连到这一公共传输媒体上,该公共传输媒体即称为总线。<br>
+优点：费用较低，易于扩展，线路的利用率高；<br>
+缺点：可靠性不高，维护困难，传输效率低。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609564916595-98602437-9246-478d-8892-850f2502f43b.png#align=left&amp;display=inline&amp;height=786&amp;margin=%5Bobject%20Object%5D&amp;name=%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84.png&amp;originHeight=786&amp;originWidth=1238&amp;size=11594&amp;status=done&amp;style=none&amp;width=1238" alt="总线结构.png"></p>
+<h3 id="环型拓扑">环型拓扑<a title="#环型拓扑" href="#环型拓扑"></a></h3>
+<p>在环型拓扑中各节点通过环路接口连在一条首尾相连的闭合环型通信线路中，环路上任何节点均可以请求发送信息。<br>
+优点：令牌控制，没有线路竞争，实时性强，传输控制容易；<br>
+缺点：维护困难，可靠性不高<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609564978911-7b0ce576-6faa-4b81-97a3-39ab6084e8b2.png#align=left&amp;display=inline&amp;height=856&amp;margin=%5Bobject%20Object%5D&amp;name=%E7%8E%AF%E5%9E%8B%E6%8B%93%E6%89%91.png&amp;originHeight=856&amp;originWidth=1162&amp;size=14900&amp;status=done&amp;style=none&amp;width=1162" alt="环型拓扑.png"></p>
+<h2 id="计算机网络交换技术">计算机网络交换技术<a title="#计算机网络交换技术" href="#计算机网络交换技术"></a></h2>
+<p>数据交换的基本概念：通常将数据在通信子网中各节点间的数据传输过程称为数据交换。<br>
+分类：网络中常用的数据交换技术可分为两大类：电路交换和存储转发交换，其中存储转发交换技术又可分为报文交换和分组交换。</p>
+<h3 id="电路交换">电路交换<a title="#电路交换" href="#电路交换"></a></h3>
+<p>传统的电路交换要求每个主机之间必须直接连接, 假设网络中有 <img src="https://cdn.nlark.com/yuque/__latex/7b8b965ad4bca0e41ab51de7b31363a1.svg#card=math&amp;code=n&amp;height=10&amp;width=8" alt=""> 台主机, 就必须使用 <img src="https://cdn.nlark.com/yuque/__latex/29bddacb40c90e334700868b889400aa.svg#card=math&amp;code=C_n%5E2&amp;height=18&amp;width=18" alt=""> 条链路, 十分浪费资源. 为了改进, 引入交换机, 让主机连入到交换机上, 通过交换技术实现两台主机的连接.<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609573733564-7f5c72d3-0b03-4df2-aae9-a916db3723da.png#align=left&amp;display=inline&amp;height=149&amp;margin=%5Bobject%20Object%5D&amp;name=%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2.png&amp;originHeight=149&amp;originWidth=580&amp;size=26266&amp;status=done&amp;style=none&amp;width=580" alt="电路交换.png"><br>
+从通信资源的分配角度来看，<strong>“交换”就是按照某种方式动态地分配传输线路的资源。</strong><br>
+<strong>电路交换的 3 个阶段</strong></p>
+<ol>
+<li>建立连接</li>
+<li>通信</li>
+<li>关闭连接</li>
+</ol>
+<h3 id="报文交换">报文交换<a title="#报文交换" href="#报文交换"></a></h3>
+<p>报文整个地发送，一次一跳。报文交换是分组交换的前身。</p>
+<p>报文交换采用"存储-转发"方式进行传送，无需事先建立线路，事后更无需拆除。它的优点是：线路利用率高、故障的影响小、可以实现多目的报文；缺点是：延迟时间长且不定、对中间节点的要求高、通信不可靠、失序等，不适合计算机网络，处理时间大于分组交换。</p>
+<h3 id="分组交换">分组交换<a title="#分组交换" href="#分组交换"></a></h3>
+<p>分组交换是一种数位通信网络。它将资料组合成适当大小的区块，称为封包，再通过网络来传输。这个传送封包的网络是共享的，每个单位都可以独立把封包再传送出去，而且配置自己需要的资源。</p>
+<p>分组又称为<strong>包</strong>,而分组的首部也可称为“包头”。**分组是在互联网中传送的数据单元。**分组的首部包含了诸如目的地址和源地址等重要控制信息,每一个分组才能在互联网中独立地选择传输路径,并被正确地交付到分组传输的终点。</p>
+<p>路由器是用来进行分组交换的。路由器收到一个分组,先暂时存储一下,检查其首部,查找转发表,按照首部中的目的地址,找到合适的接口转发出去,把分组交给下一个路由器。这样一步一步地(有时会经过几十个不同的路由器)以存储转发的方式,把分组交付最终的目的主机。各路由器之间必须经常交换彼此掌握的路由信息,以便创建和动态维护路由器中的转发表,使得转发表能够在整个网络拓扑发生变化时及时更新。</p>
+<p>为了提高分组交换网的可靠性,互联网的核心部分常采用网状拓扑结构,使得当发生网络拥塞或少数结点、链路出现故障时,路由器可灵活地改变转发路由而不致引起通信的中断或全网的瘫痪。</p>
+<p>** 分析：** 分组交换在传送数据之前不必先占用一条端到端的链路的通信资源。分组在哪段链路上传送才占用这段链路的通信资源。分组在传输时一段一段地断续占用通信资源（转发）,而且还省去了建立连接和释放连接的开销,因而数据的传输效率更高。同时可靠性更高。</p>
+<p>但是，这种非端到端占用资源就会导致存储转发时需要排队，这就产生了时延。此外，分组所携带的首部种的控制信息也会占用一定的开销。<br>
+<strong>分组交换的特点：</strong></p>
+<ul>
+<li><strong>存储转发传输:</strong> 与报文交换机能够开始向输出链路传输该分组的第一个比特之前, 必须接收到整个分组. 仅当路由器接收到所有分组之后才能向链路传输该分组. 通过 <img src="https://cdn.nlark.com/yuque/__latex/8d9c307cb7f3c4a32822a51922d1ceaa.svg#card=math&amp;code=N&amp;height=13&amp;width=13" alt=""> 条速率均为 <img src="https://cdn.nlark.com/yuque/__latex/e1e1d3d40573127e9ee0480caf1283d6.svg#card=math&amp;code=R&amp;height=13&amp;width=11" alt=""> 的链路组成的路径, 从源到目的地发送一个分组, 端到端的时延是 <img src="https://cdn.nlark.com/yuque/__latex/d9659e2fce38b3757f2a1415f7d25c05.svg#card=math&amp;code=d_%7B%E7%AB%AF%E5%88%B0%E7%AB%AF%7D%3D%3DN%2AL%2FR&amp;height=22&amp;width=127" alt=""></li>
+<li><strong>排队时延与分组丢失:</strong> 对于每条相连的链路, 该分组交换机有一个输出缓存(输出队列)，用于存储路由器准备发往那条链路的分组。因此分组需要承受输出缓存的排队时延。</li>
+<li>**转发表和路由选择协议: **当源主机要向目的地端系统发送一个分组时，源在该分组的首部包含了目的地的 IP 地址. 路由器有一个转发表，用于将目的地址映射为输出链路，路由器会根据分组的地址在转发表里面查找对应的输出链路。</li>
+</ul>
+<h3 id="3-种交换网络的对比">3 种交换网络的对比<a title="#3-种交换网络的对比" href="#3-种交换网络的对比"></a></h3>
+<p>分组交换与报文交换都是采用存储-转发交换方式. 报文交换以完整报文进行 “存储-转发”, 分组交换以较小的分组进行 “存储-转发”。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609573263204-c81c6330-3f6a-41fa-aaa2-7419ccbcbb18.png#align=left&amp;display=inline&amp;height=499&amp;margin=%5Bobject%20Object%5D&amp;name=3%E7%A7%8D%E4%BA%A4%E6%8D%A2%E6%96%B9%E5%BC%8F.png&amp;originHeight=499&amp;originWidth=719&amp;size=55352&amp;status=done&amp;style=none&amp;width=719" alt="3种交换方式.png" class="φcx"></p>
+<h2 id="计算机网络协议基本概念">计算机网络协议基本概念<a title="#计算机网络协议基本概念" href="#计算机网络协议基本概念"></a></h2>
+<p>网络协议是为计算机网络中进行数据交换而建立的规则、标准或者说是约定的集合。</p>
+<p><strong>网络协议是由三个要素组成：</strong><br>
+(1)&nbsp; 语义。语义是解释控制信息每个部分的意义。它规定了需要发出何种控制信息，以及完成的动作与做出什么样的响应。例如数字减去数字是有意义的，数字减去文本一般来说就没有意义。<br>
+(2)&nbsp; 语法。语法是用户数据与控制信息的结构与格式，以及数据出现的顺序。例如，括号要成对，结束要使用分号等。<br>
+(3)&nbsp; 时序。时序是对事件发生顺序的详细说明。（也可称为“同步”）。&nbsp; 例如，可以先加上某个数值，然后再减去某个数值。<br>
+人们形象地把这三个要素描述为：语义表示要做什么，语法表示要怎么做，时序表示做的顺序。</p>
+<h2 id="网络层次结构的划分">网络层次结构的划分<a title="#网络层次结构的划分" href="#网络层次结构的划分"></a></h2>
+<h3 id="为什么要在网络中使用分层">为什么要在网络中使用分层<a title="#为什么要在网络中使用分层" href="#为什么要在网络中使用分层"></a></h3>
+<p>类比于在软件工程中使用分层结构，分层的目的是屏蔽底层细节。分层就是层层交付，下层向上层提供服务。对于上层来说，如同两个对等层之间直接交流，他们不关心底层的细节与实现，底层的存在是透明的。</p>
+<p>在分层体系结构中，各层之间是完全独立的，某一层并不需要知道他的下一层是如何实现的，而仅仅是需要知道下层提供的服务。由于每一层都只是实现一种相对独立的功能，因而可以将一个难以处理的复杂问题分解为若干个小问题。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609575379387-ed0bc170-7962-4b47-bf5b-c2569eee68ac.png#align=left&amp;display=inline&amp;height=444&amp;margin=%5Bobject%20Object%5D&amp;name=%E5%88%86%E5%B1%82%E7%9A%84%E6%84%8F%E4%B9%89.png&amp;originHeight=444&amp;originWidth=772&amp;size=346501&amp;status=done&amp;style=none&amp;width=772" alt="分层的意义.png"></p>
+<h3 id="tcp/ip-协议簇">TCP/IP 协议簇<a title="#tcp/ip-协议簇" href="#tcp/ip-协议簇"></a></h3>
+<p>现代网络使用的是 TCP/IP 协议簇， 但是在 TCP/IP 协议簇之前，还有一种协议理论： OSI 协议。 但由于 OSI 理论过于复杂，因此并没有得到广泛应用。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609575679674-8763c907-2e85-426b-9ea2-d4c89ca25128.png#align=left&amp;display=inline&amp;height=373&amp;margin=%5Bobject%20Object%5D&amp;name=tcpip%E5%8D%8F%E8%AE%AE%E4%B8%8Eosi%E5%8D%8F%E8%AE%AE.png&amp;originHeight=373&amp;originWidth=642&amp;size=82436&amp;status=done&amp;style=none&amp;width=642" alt="tcpip协议与osi协议.png"><br>
+互联网中广泛使用的是 TCP/IP 的四层协议，但是在教学过程中， 我们学习的是五层协议，注意区分。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609575853381-aa5dba0c-0e78-4f48-a13c-689ca9abc143.png#align=left&amp;display=inline&amp;height=829&amp;margin=%5Bobject%20Object%5D&amp;name=tcpip.png&amp;originHeight=829&amp;originWidth=1417&amp;size=575336&amp;status=done&amp;style=none&amp;width=1417" alt="tcpip.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609576134814-290672b1-67fc-4be6-85ae-53870de0c031.png#align=left&amp;display=inline&amp;height=808&amp;margin=%5Bobject%20Object%5D&amp;name=tcpip%E4%BA%94%E5%B1%82%E5%8D%8F%E8%AE%AE.png&amp;originHeight=808&amp;originWidth=1413&amp;size=692544&amp;status=done&amp;style=none&amp;width=1413" alt="tcpip五层协议.png"></p>
+<p>（1）应用层：<br>
+<strong>应用层协议定义的是应用进程间通信和交互的规则。</strong>&nbsp; 这里的进程就是指主机中正在运行的程序。在互联网中的应用层协议很多,如域名系统<strong>DNS</strong>,支持万维网应用的<strong>HTTP 协议</strong>,支持电子邮件的<strong>SMTP 协议</strong>,等等。<strong>应用层交互的数据单元称为报文(message)</strong>。</p>
+<p>（2）运输层：<br>
+<strong>负责向两台主机中进程之间的通信提供通用的数据传输服务。<strong>运输层主要使用两种协议：<strong>传输控制协议 TCP</strong>(Transmission Control protocol，提供面向连接的、可靠的数据传输服务）和</strong>用户数据报协议 UDP</strong>(User Datagram Protocol，提供无连接的、尽最大努力的数据传输服务(不保证数据传输的可靠性)）。</p>
+<p>（3）网络层：<br>
+** 网络层负责为分组交换网上的不同主机提供通信服务。**&nbsp; 在发送数据时,网络层把运输层产生的报文段或用户数据报封装成分组或包进行传送。在 TCP/IP 体系中,由于网络层使用 IP 协议,因此分组也叫做 IP 数据报,或简称为数据报。无论在哪一层传送的数据单元,都可笼统地用“分组”来表示。<strong>网络层的另一个任务就是要选择合适的路由,使源主机运输层所传下来的分组,能够通过网络中的路由器找到目的主机。</strong><br>
+**<br>
+（4）数据链路层：<br>
+数据链路层常简称为链路层。我们知道,两台主机之间的数据传输,总是在一段一段的链路上传送的,这就需要使用专门的链路层的协议。<strong>在两个相邻结点之间传送数据时,数据链路层将网络层交下来的 IP 数据报组装成帧(framing,在两个相邻结点间的链路上传送帧(fame)</strong>。**每一帧包括数据和必要的控制信息(如同步信息、地址信息、差错控制等)。**</p>
+<p>（5）物理层：<br>
+** 在物理层上所传数据的单位是比特。因此物理层要考虑用多大的电压代表“1”或“0”,以及接收方如何识别出发送方所发送的比特。**&nbsp; 物理层还要确定连接电缆的插头应当有多少根引脚以及各引脚应如何连接。请注意,<strong>传递信息所利用的些物理媒体,如双绞线、同轴电缆、光缆、无线信道等,并不在物理层协议之内而是在物理层协议的下面</strong>。因此也有人把物理层下面的物理媒体当作第 0 层。<strong>注意 mac 地址并不属于物理层而是属于数据链路层。</strong></p>
+<h1 id="应用层">应用层<a title="#应用层" href="#应用层"></a></h1>
+<p>应用层是网络协议栈的最上面的一层。应用层协议定义的是<strong>应用进程间通信和交互的规则</strong>。 这里的进程就是指主机中正在运行的程序。在互联网中的应用层协议很多,如域名系统 DNS,支持万维网应用的 HTTP 协议,支持电子邮件的 SMTP 协议,等等。应用层交互的数据单元称为报文(message)。</p>
+<h2 id="网络应用模型"><strong>网络应用模型</strong><a title="#网络应用模型" href="#网络应用模型"></a></h2>
+<h3 id="应用层协议原理">应用层协议原理<a title="#应用层协议原理" href="#应用层协议原理"></a></h3>
+<p>** 研发网络应用程序的核心是写出能够运行在不同的端系统和通过网络彼此通信的程序**。例如，在网络应用程序中，有两个互相通信的不同程序：<strong>一个是运行在用户主机上的浏览器程序；另一个是运行在 Web 服务器主机上的 Web 服务器程序</strong>。</p>
+<h3 id="体系结构">体系结构<a title="#体系结构" href="#体系结构"></a></h3>
+<p>主要分为 <strong>p2p 模型</strong>和 <strong>客户/服务器模型</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609577797422-832ae7cb-4a78-42d9-8af0-100265c6ef24.png#align=left&amp;display=inline&amp;height=336&amp;margin=%5Bobject%20Object%5D&amp;name=p2p%20cs.png&amp;originHeight=336&amp;originWidth=1278&amp;size=1290752&amp;status=done&amp;style=none&amp;width=1278" alt="p2p cs.png"><br>
+(1) 在客户-服务器体系结构 (client-server architecture)中，有一个总是打开的主机称为服务器，它服务于来自许多其他称为客户的主机的请求。著名的应用程序包括 Web、FTP、Telnet 和电子邮件。<br>
+(2) 在一个 P2P 体系结构(P2P architecture)中,对位于数据中心的专用服务器有最小的(或者没有)依赖。相反，应用程序在间断连接的主机对之间使用直接通信，这些主机对被称为对等方。</p>
+<h3 id="进程通信">进程通信<a title="#进程通信" href="#进程通信"></a></h3>
+<p>在以上两种体系结构中， 服务器或者客户的服务都是以进程的形式运行在主机上的。不同主机中的进程是如何进行信息通信的？</p>
+<h4 id="客户与服务器进程">客户与服务器进程<a title="#客户与服务器进程" href="#客户与服务器进程"></a></h4>
+<p>在 CS 架构中，浏览器或者客户端被称为客户，Web 服务器被称为服务器。在 P2P 架构中， 一个进程充当两种角色：用户和服务器。<br>
+<strong>在一对进程之间的通信会话场景中，发起通信（即在会话开始时发起与其他进程的联系）的进程称为客户，在会话开始时等待联系的被称为服务器。</strong></p>
+<h4 id="进程与计算机网络之间的接口"><strong>进程与计算机网络之间的接口</strong><a title="#进程与计算机网络之间的接口" href="#进程与计算机网络之间的接口"></a></h4>
+<p>在一台主机上肯定不止运行了一个进程， 分布在多个主机上的进程是如何进行通信的？实际上，每个进程之间会有一个 套接字(socket) 的软件接口存在，套接字是应用程序的内部接口，应用程序可以通过它发送或接收数据，可对其进行像对文件一样的打开、读写和关闭等操作。套接字允许应用程序将 I/O 插入到网络中，并与网络中的其他应用程序进行通信。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609579125125-830f2906-9895-46e0-921f-2ce4a2e20714.jpeg#align=left&amp;display=inline&amp;height=442&amp;margin=%5Bobject%20Object%5D&amp;name=socket.jpg&amp;originHeight=442&amp;originWidth=638&amp;size=54128&amp;status=done&amp;style=none&amp;width=638" alt="socket.jpg"><br>
+Socket 是同一台主机内的应用层和传输层之间的接口。&nbsp; 程序开发者对于传输层的控制仅限于: 1 选择传输层协议 2 也许可以设定几个传输层参数。</p>
+<p>Socket 是对 TCP/IP 协议的封装，复杂的 TCP/IP 协议族隐藏在 Socket 接口后面。它的出现使得程序员能够更加方便地借助于 TCP/IP 协议栈通信。</p>
+<h4 id="进程寻址">进程寻址<a title="#进程寻址" href="#进程寻址"></a></h4>
+<p>进程寻址用于解决 socket 往哪发送数据的问题。不同主机之间需要使用 IP 地址进行标识，同一主机上的进程用端口号进行标识。例如， Web 应用程序需要用 80 端口来标示，邮件服务器程序需要使用 25 来标示。</p>
+<p><strong>端口的分类：</strong><br>
+公认端口（WellKnownPorts）0-1023：其中 80 端口分配给 WWW 服务，21 端口分配给 FTP 服务等。访问网站默认访问服务器的 80 端口。<br>
+注册端口（RegisteredPorts）1024-49151：分配给用户进程或应用程序。这些进程主要是用户选择安装的一些应用程序，而不是已经分配好了公认端口的常用程序。<br>
+动态端口（Dynamic Ports）49152-65535：动态端口的范围是从 49152 到 65535。之所以称为动态端口，是因为它 一般不固定分配某种服务，而是动态。</p>
+<h3 id="应用层协议">应用层协议<a title="#应用层协议" href="#应用层协议"></a></h3>
+<h4 id="应用程序的应用层协议选择">应用程序的应用层协议选择<a title="#应用程序的应用层协议选择" href="#应用程序的应用层协议选择"></a></h4>
+<p>应用层协议有很多， 应用程序应该怎样选择适合自己的应用层协议？主要从以下四个方面进行考量。</p>
+<p>**数据传输是否可靠： **<br>
+分组在计算机网络中会存在丢包问题，丢包问题的严重性跟网络应用程序的性质有关，如果像是电子邮件、文件传输、远程主机、Web 文档传输的过程中出现问题，数据丢失可能会造成非常严重的后果。如果像是网络游戏，多人视频会议造成的影响可能比较小。鉴于此，数据传输的可靠性也是首先需要考虑的问题。因此，如果一个协议提供了这样的确保数据交付的服务，就认为提供了 可靠数据传输(reliable data transfer)，能够忍受数据丢失的应用被称为 容忍丢失的应用(loss-tolerant application)。</p>
+<p><strong>吞吐量：</strong><br>
+吞吐量就是在网络应用中数据传输过程中，发送进程能够向接收进程交付比特的速率。具有吞吐量要求的应用程序被称为 带宽敏感的应用(bandwidth-sensitive application)。带宽敏感的应用具有特定的吞吐量要求，而 弹性应用(elastic application) 能够根据当时可用的带宽或多或少地利用可供使用的吞吐量。</p>
+<p><strong>定时</strong><br>
+运输层协议也能提供定时保证，如同吞吐量保证一样，定时保证可以以多种形式实现。例如，可以设置发送方注入进套接字的每个比特到达接收方的套接字不迟于 100ms。这种服务对交互式实时应用程序非常适用。</p>
+<p><strong>安全性</strong><br>
+在发送主机中，运输层协议能够加密由发送进程传输的所有数据；在接收主机中，运输层协议能够在数据交付给接收进程之前解密这些数据。<br>
+<strong><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609580287078-77df36d5-4644-4246-844d-817521aa6576.png#align=left&amp;display=inline&amp;height=460&amp;margin=%5Bobject%20Object%5D&amp;name=%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8D%8F%E8%AE%AE%E9%80%89%E6%8B%A9.png&amp;originHeight=460&amp;originWidth=974&amp;size=93706&amp;status=done&amp;style=none&amp;width=974" alt="应用程序的协议选择.png"></strong></p>
+<h4 id="因特网能够提供的运输服务">因特网能够提供的运输服务<a title="#因特网能够提供的运输服务" href="#因特网能够提供的运输服务"></a></h4>
+<p>一个应用层协议需要选择适合他的运输层协议支撑他的该应用层协议的服务。<br>
+运输层提供了两种运输协议：<br>
+1）<strong>TCP 服务</strong><br>
+1 . 面向连接的服务<br>
+在应用层数据报发送后， TCP 让客户端和服务器互相交换运输层控制信息。这个握手过程就是提醒客户端和服务器需要准备好接受数据报。握手阶段后，一个 &nbsp;<code>TCP 连接(TCP Connection)</code>&nbsp; 就建立了。这是一条全双工的连接，即<strong>连接双方的进程都可以在此连接上同时进行收发报文</strong>。当应用程序结束报文发送后，必须拆除连接。<br>
+2 . 可靠的数据服务<br>
+通信进程能够依靠 TCP，无差错、按适当顺序交付所有发送的数据。应用程序能够依靠 TCP 将相同的字节流交付给接收方的套接字，没有字节的丢失和冗余。<br>
+3 . 拥塞控制<br>
+TCP 的拥塞控制并不一定为通信进程带来直接好处，但能为因特网带来整体好处。当接收方和发送方之间的网络出现拥塞时，TCP 的拥塞控制会抑制发送进程（客户端或服务器），我们会在后面具体探讨拥塞控制<br>
+2）<strong>UDP 服务</strong>: 基于“尽力而为”的网络层</p>
+<ol>
+<li>面向非连接</li>
+<li>不可靠连接</li>
+<li>没有拥塞控制</li>
+</ol>
+<h4 id="网络层与传输层之间的对比">网络层与传输层之间的对比<a title="#网络层与传输层之间的对比" href="#网络层与传输层之间的对比"></a></h4>
+<p>在之前我们介绍过了运输层的 tcp 和 udp，为了和应用层协议做区分，我们对比一下应用层和运输层。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609580585142-defc65dd-7bc3-44c2-80ea-b32323e3741e.png#align=left&amp;display=inline&amp;height=541&amp;margin=%5Bobject%20Object%5D&amp;name=%E5%BA%94%E7%94%A8%E5%B1%82%E5%92%8C%E8%BF%90%E8%BE%93%E5%B1%82%E5%8C%BA%E5%88%AB.png&amp;originHeight=541&amp;originWidth=1652&amp;size=295389&amp;status=done&amp;style=none&amp;width=1652" alt="应用层和运输层区别.png"></p>
+<h4 id="常见的应用对应的应用层协议">常见的应用对应的应用层协议<a title="#常见的应用对应的应用层协议" href="#常见的应用对应的应用层协议"></a></h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609580719934-1b0a8aec-24e2-4bcb-ab49-ec7690634057.png#align=left&amp;display=inline&amp;height=320&amp;margin=%5Bobject%20Object%5D&amp;name=%E5%BA%94%E7%94%A8%E5%AF%B9%E5%BA%94%E7%9A%84%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE.png&amp;originHeight=320&amp;originWidth=805&amp;size=774476&amp;status=done&amp;style=none&amp;width=805" alt="应用对应的应用层协议.png" class="φcx"></p>
+<h2 id="web-和-http">Web 和 HTTP<a title="#web-和-http" href="#web-和-http"></a></h2>
+<h3 id="关于-http">关于 HTTP<a title="#关于-http" href="#关于-http"></a></h3>
+<p>Web 即 World Wide Web。是全世界使用最广泛的网络应用。提供了文件以及其他 web 资源访问服务，所有的文件通过 URL（统一资源定位器）来定位。在浏览器中输入 url 就可以访问这网站的资源文件。</p>
+<p>HTTP 协议（HyperText Transfer Protocol），它定义了网络通信中消息的结构，以及客户端和服务端如何交换消息，消息可以称为 HTTP 报文（HTTP Message）。HTTP 网络通信由客户端应用程序和服务端应用程序构成，客户端应用程序为 Web 浏览器，服务端应用程序为 Web 服务器。HTTP 通信的过程是：浏览器通过 URL 指定要访问的资源，然后发送 HTTP 请求给服务器，服务器收到请求后，响应 HTTP 请求。浏览器收到的服务器的响应信息后，渲染该资源文件。</p>
+<p><strong>关于 URL 统一资源定位器：</strong><br>
+<strong>例如 <a href="https://www.yzh.im:80/index.html%E3%80%82">https://www.yzh.im:80/index.html。</a></strong><br>
+**协议：**其中 <code>https://</code>&nbsp;v 告诉浏览器使用何种协议。另外，浏览器也知道如何处理其他协议。例如， mailto: 协议指示浏览器打开邮件客户端；ftp:协议指示浏览器处理文件传输。<br>
+**主机：**<a href="http://www.yzh.im">www.yzh.im</a> 是一个域名，它指示了需要向网络上的哪一台主机发起请求。当然，也可以直接向主机的 IP address 地址发起请求。<br>
+<strong>端口</strong>：两个主机之间要发起 TCP 连接需要两个条件，主机 + 端口。它表示用于访问 Web 服务器上资源的入口。如果访问的该 Web 服务器使用 HTTP 协议的标准端口（HTTP 为 80，HTTPS 为 443）授予对其资源的访问权限，则通常省略此部分。否则端口就是 URI 必须的部分。<br>
+<strong>路径：</strong>/index.html 代表访问服务器根目录下的 index.html 文件。</p>
+<h3 id="http-分类">HTTP 分类<a title="#http-分类" href="#http-分类"></a></h3>
+<p>http 分为<strong>持久性连接和非持久性连接。</strong><br>
+<strong><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609584626100-bbb87ff3-fb6e-490d-ac36-d56671a8323c.png#align=left&amp;display=inline&amp;height=280&amp;margin=%5Bobject%20Object%5D&amp;name=http%E8%BF%9E%E6%8E%A5%E5%88%86%E7%B1%BB.png&amp;originHeight=280&amp;originWidth=450&amp;size=18833&amp;status=done&amp;style=none&amp;width=450" alt="http连接分类.png"></strong></p>
+<ol>
+<li><strong>非持久性连接</strong>在每个 TCP 链接都在服务器发送完成后关闭。每个 TCP 连接只传输一个请求报文和响应报文。</li>
+<li>在采用 HTTP 1.1 <strong>持续连接</strong>的情况下，服务器在发送响应后保持该 TCP 连接打开不关闭。在相同的客户与服务器之间，后续的请求和响应报文能够通过相同的连接进行传送。</li>
+</ol>
+<h3 id="http-报文">HTTP 报文<a title="#http-报文" href="#http-报文"></a></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583445553-8ceaebf5-31db-423d-bc97-1134f330ab45.png#align=left&amp;display=inline&amp;height=576&amp;margin=%5Bobject%20Object%5D&amp;name=http%E6%8A%A5%E6%96%87.png&amp;originHeight=576&amp;originWidth=1184&amp;size=289776&amp;status=done&amp;style=none&amp;width=1184" alt="http报文.png" class="φcx"></p>
+<h4 id="http-请求报文">HTTP 请求报文<a title="#http-请求报文" href="#http-请求报文"></a></h4>
+<p>请求报文格式如下</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(Request Line) method URL Version</span><br><span class="line">(Header Lines) header_field_name: value</span><br><span class="line">               header_field_name: value</span><br><span class="line">			   ...</span><br><span class="line">(Entity Body)  ...</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>字段说明：</strong><br>
+请求头（request line）中定义了 http 请求的关键参数。其中 Method 字段表示请求的方式，常用的请求方式为 GET，POST。URL 字段用来定位资源，Version 字段用来说明当前使用的协议版本。<br>
+头部行（Header Lines）中定义了可选的参数，用来辅助 HTTP 请求。<br>
+数据域（Entity Body） 用来传输数据。</p>
+<p><strong>例如：</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583472002-66c2c4d6-5a14-4eff-aae4-ed3fdfdb42bf.png#align=left&amp;display=inline&amp;height=438&amp;margin=%5Bobject%20Object%5D&amp;name=http%E8%AF%B7%E6%B1%82.png&amp;originHeight=438&amp;originWidth=1448&amp;size=80530&amp;status=done&amp;style=none&amp;width=1448" alt="http请求.png"></p>
+<h4 id="http-响应报文">HTTP 响应报文<a title="#http-响应报文" href="#http-响应报文"></a></h4>
+<p>格式如下：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(Status Line)  version status_code phrase</span><br><span class="line">(Header Lines) header_field_name: value</span><br><span class="line">               header_field_name: value</span><br><span class="line">               ...</span><br><span class="line">(Entity Body)  ...</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>字段说明：</strong><br>
+状态行（Status Line）定义了响应报文的关键参数。其中 Version 用来说明当前使用的协议版本，Status Code 表示请求结果的状态码，phrase 为状态码的说明。<br>
+头部行（Header Lines）中定义了可选的参数，用来辅助 HTTP 响应。<br>
+数据域（Entity Body） 用来传输数据。响应的数据一般是 HTML 文本，或者 JSON 文本。<br>
+常见的状态码</p>
+<ul>
+<li>200 OK：请求成功。</li>
+<li>301 Moved Permanently：资源位置永久移动，请求会自动重定向到资源新的 URL。</li>
+<li>400 Bad Request：错误的请求。</li>
+<li>404 Not Found：请求的资源不存在服务器中。</li>
+<li>505 HTTP Version Not Supported：HTTP 协议版本不支持。</li>
+</ul>
+<p><strong>例如：</strong><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583482907-021c64fe-6020-4c63-854f-0f32c8374a44.png#align=left&amp;display=inline&amp;height=189&amp;margin=%5Bobject%20Object%5D&amp;name=http%E5%93%8D%E5%BA%94.png&amp;originHeight=189&amp;originWidth=1457&amp;size=20968&amp;status=done&amp;style=none&amp;width=1457" alt="http响应.png"><br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609583745150-54b9f3fd-e138-4061-bcff-201f64758a2f.png#align=left&amp;display=inline&amp;height=700&amp;margin=%5Bobject%20Object%5D&amp;name=http%E5%93%8D%E5%BA%94%E4%BD%93.png&amp;originHeight=700&amp;originWidth=1440&amp;size=100714&amp;status=done&amp;style=none&amp;width=1440" alt="http响应体.png"></p>
+<h2 id="cookie">Cookie<a title="#cookie" href="#cookie"></a></h2>
+<p>HTTP 服务器是无状态化的，这简化了服务器的设计，这让工程师可以去开发能同时处理大量数据的高性能服务器。但是有时 Web 站点希望能去识别用户，为此 HTTP 使用了 cookie 来进行用户跟踪。<br>
+cookie 技术有 4 个组件：</p>
+<ul>
+<li>在 HTTP 响应报文中的一个 cookie 首部行；</li>
+<li>在 HTTP 请求报文中的一个 cookie 首部行；</li>
+<li>在用户端系统中保留有一个 cookie 文件，并由用户的浏览器进行管理；</li>
+<li>位于 Web 站点的一个后端数据库。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609584847983-fb21c607-2348-4ef2-bea7-45706813c16f.png#align=left&amp;display=inline&amp;height=902&amp;margin=%5Bobject%20Object%5D&amp;name=cookie.png&amp;originHeight=902&amp;originWidth=1054&amp;size=186169&amp;status=done&amp;style=none&amp;width=1054" alt="cookie.png" class="φcx"></p>
+<h2 id="dns">DNS<a title="#dns" href="#dns"></a></h2>
+<h3 id="什么是-dns">什么是 dns<a title="#什么是-dns" href="#什么是-dns"></a></h3>
+<p>实现域名到主机 IP 的转换。DNS 是一个实现在多个 DNS 服务器的分布式数据库。一个应用层协议允许去查询分布式数据库。它提供了将域名转换为 IP 地址的服务。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609585289938-2953dcac-dc00-4cab-9f82-1898965de05b.png#align=left&amp;display=inline&amp;height=730&amp;margin=%5Bobject%20Object%5D&amp;name=dns.png&amp;originHeight=730&amp;originWidth=1460&amp;size=47831&amp;status=done&amp;style=none&amp;width=1460" alt="dns.png"><br>
+DNS 的全称是 Domain Name System,DNS ，它是一个由分层的 DNS 服务器（DNS server）实现的分布式数据库；它还是一个使得主机能够查询分布式数据库的应用层协议。</p>
+<p>与 HTTP、FTP、SMTP 协议一样，DNS 协议也是应用层协议。<strong>它运行在 UDP 之上</strong>，使用客户机/服务器模式在通信的端系统之间运行，在通信的端系统之间通过下面的端到端运输层协议来传送 DNS 报文。DNS 通常由其他应用层协议(包括 HTTP、FTP、SMTP)所使用，用于将用户提供的主机名解析为 IP 地址。</p>
+<p>在浏览器中键入一个域名来访问网站，DNS 的工作流程如下：<br>
+【1】用户主机上运行着 DNS 应用的客户端<br>
+【2】浏览器从 URL 中提取出要访问的网站的主机名，将主机名传送给本机的 DNS 客户端<br>
+【3】DNS 客户端向 DNS 服务器发送一个包含主机名的请求<br>
+【4】DNS 客户端收到一份来自服务器的回答报文，其中包含对应于主机名的 IP 地址<br>
+【5】浏览器向对应的 IP 地址定位的 HTTP 服务器发起一个 TCP 连接</p>
+<p><strong>除了提供 IP 地址到主机名的转换，DNS 还提供了下面几种重要的服务:</strong><br>
+主机别名(host aliasing)，有着复杂的主机名的主机能够拥有一个或多个其他别名，比如说一台名为 <a href="http://relay1.west-coast.enterprise.com">relay1.west-coast.enterprise.com</a> 的主机，同时会拥有 <a href="http://enterprise.com">enterprise.com</a> 和 <a href="http://www.enterprise.com">www.enterprise.com</a> 的两个主机别名，在这种情况下，<a href="http://relay1.west-coast.enterprise.com">relay1.west-coast.enterprise.com</a> 也称为 规范主机名，而主机别名要比规范主机名更加容易记忆。应用程序可以调用 DNS 来获得主机别名对应的规范主机名以及主机的 IP 地址。<br>
+邮件服务器别名(mail server aliasing)，同样的，电子邮件的应用程序也可以调用 DNS 对提供的主机名进行解析。<br>
+负载分配(load distribution)，一个域名关联一组 IP 地址，多个服务器依次处理 HTTP 请求，从而减少了单个服务器的压力。</p>
+<h3 id="dns-的工作概述">DNS 的工作概述<a title="#dns-的工作概述" href="#dns-的工作概述"></a></h3>
+<p>假设运行在用户主机上的某些应用程序（如 Web 浏览器或邮件阅读器） 需要将主机名转换为 IP 地址。这些应用程序将调用 DNS 的客户端，并指明需要被转换的主机名。用户主机上的 DNS 收到后，会使用 UDP 通过 53 端口向网络上发送一个 DNS 查询报文，经过一段时间后，用户主机上的 DNS 会收到一个主机名对应的 DNS 回答报文。因此，从用户主机的角度来看，DNS 就像是一个黑盒子，其内部的操作你无法看到。但是实际上，实现 DNS 这个服务的黑盒子非常复杂，它由分布于全球的大量 DNS 服务器以及定义了 DNS 服务器与查询主机通信方式的应用层协议组成。</p>
+<p>DNS 最早的一种简单设计只是在因特网上使用一个 DNS 服务器。该服务器会包含所有的映射。这是一种<code>集中式</code>的设计，这种设计并不适用于当今的互联网，因为互联网有着数量巨大并且持续增长的主机，这种集中式的设计会存在以下几个问题</p>
+<ul>
+<li><code>单点故障(a single point of failure)</code>，如果 DNS 服务器崩溃，那么整个网络随之瘫痪。</li>
+<li><code>通信容量(traaffic volume)</code>，单个 DNS 服务器不得不处理所有的 DNS 查询，这种查询级别可能是上百万上千万级</li>
+<li><code>远距离集中式数据库(distant centralized database)</code>，单个 DNS 服务器不可能 <code>邻近</code> 所有的用户，假设在美国的 DNS 服务器不可能临近让澳大利亚的查询使用，其中查询请求势必会经过低速和拥堵的链路，造成严重的时延。</li>
+<li><code>维护(maintenance)</code>，维护成本巨大，而且还需要频繁更新。</li>
+</ul>
+<p>所以 DNS 不可能集中式设计，它完全没有可扩展能力，因此采用<code>分布式设计</code>，所以这种设计的特点是 <strong>分布式、层次数据库。</strong><br>
+**<br>
+首先分布式设计首先解决的问题就是 DNS 服务器的扩展性问题，因此 DNS 使用了大量的 DNS 服务器，它们的组织模式一般是层次方式，并且分布在全世界范围内。**没有一台 DNS 服务器能够拥有因特网上所有主机的映射**。相反，这些映射分布在所有的 DNS 服务器上。</p>
+<p>大致来说有三种 DNS 服务器：根 DNS 服务器、 顶级域(Top-Level Domain, TLD) DNS 服务器 和 权威 DNS 服务器 。这些服务器的层次模型如下图所示：<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586304943-b934dce3-0ca2-45d3-83b1-906cd169299a.png#align=left&amp;display=inline&amp;height=428&amp;margin=%5Bobject%20Object%5D&amp;name=dns%20server.png&amp;originHeight=428&amp;originWidth=1167&amp;size=1501378&amp;status=done&amp;style=none&amp;width=1167" alt="dns server.png"><br>
+假设现在一个 DNS 客户端想要知道 <a href="http://amazon.com">amazon.com</a> 的 IP 地址，那么上面的域名服务器是如何解析的呢？首先，客户端会先根服务器之一进行关联，它将返回顶级域名 <code>com</code> 的 TLD 服务器的 IP 地址。该客户则与这些 TLD 服务器之一联系，它将为 <a href="http://amazon.com">amazon.com</a> 返回权威服务器的 IP 地址。最后，该客户与 <a href="http://amazom.com">amazom.com</a> 权威服务器之一联系，它为 <a href="http://www.amazom.com">www.amazom.com</a> 返回其 IP 地址。<br>
+我们现在来讨论一下上面域名服务器的层次系统</p>
+<ul>
+<li>
+<p><code>根 DNS 服务器</code> ，有 400 多个根域名服务器遍及全世界，这些根域名服务器由 13 个不同的组织管理。根域名服务器的清单和组织机构可以在 <a href="http://root-servers.org/">root-servers.org/</a> 中找到，根域名服务器提供 TLD 服务器的 IP 地址。</p>
+</li>
+<li>
+<p><code>顶级域 DNS 服务器</code>，对于每个顶级域名比如 com、org、net、edu 和 gov 和所有的国家级域名 uk、fr、ca 和 jp 都有 TLD 服务器或服务器集群。所有的顶级域列表参见 <a href="http://tld-list.com/">tld-list.com/</a> 。TDL 服务器提供了权威 DNS 服务器的 IP 地址。</p>
+</li>
+<li>
+<p><code>权威 DNS 服务器</code>，在因特网上具有公共可访问的主机，如 Web 服务器和邮件服务器，这些主机的组织机构必须提供可供访问的 DNS 记录，这些记录将这些主机的名字映射为 IP 地址。一个组织机构的权威 DNS 服务器收藏了这些 DNS 记录。</p>
+<p>一般域名服务器的层次结构主要是以上三种，除此之外，还有另一类重要的 DNS 服务器，它是 <code>本地 DNS 服务器(local DNS server)</code>。严格来说，本地 DNS 服务器并不属于上述层次结构，但是本地 DNS 服务器又是至关重要的。每个 ISP(Internet Service Provider) 比如居民区的 ISP 或者一个机构的 ISP 都有一台本地 DNS 服务器。当主机和 ISP 进行连接时，该 ISP 会提供一台主机的 IP 地址，该主机会具有一台或多台其本地 DNS 服务器的 IP 地址。通过访问网络连接，用户能够容易的确定 DNS 服务器的 IP 地址。当主机发出 DNS 请求后，该请求被发往本地 DNS 服务器，它起着代理的作用，并将该请求转发到 DNS 服务器层次系统中。</p>
+</li>
+</ul>
+<h3 id="dns-的查询方式">DNS 的查询方式<a title="#dns-的查询方式" href="#dns-的查询方式"></a></h3>
+<ul>
+<li>
+<p><strong>主机向本地域名服务器的查询一般都是采用递归查询</strong>。如果主机所询问的本地域名服务器不知道被查询域名的 IP 地址，那么本地域名服务器就以 DNS 客户的身份，向其他根域名服务器继续发出查询请求报文。</p>
+</li>
+<li>
+<p>**本地域名服务器向根域名服务器的查询通常是采用迭代查询。**当根域名服务器收到本地域名服务器的迭代查询请求报文时，要么给出所要查询的 IP 地址，要么告诉本地域名服务器：“你下一步应当向哪一个域名服务器进行查询”。然后让本地域名服务器进行后续的查询。</p>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609591833156-908981a3-6ffa-4c51-a8b9-70157750aa54.png#align=left&amp;display=inline&amp;height=1100&amp;margin=%5Bobject%20Object%5D&amp;name=dns-parse.png&amp;originHeight=1100&amp;originWidth=1368&amp;size=158055&amp;status=done&amp;style=none&amp;width=1368" alt="dns-parse.png" class="φcx"></p>
+<h3 id="dns-缓存"><strong>DNS 缓存</strong><a title="#dns-缓存" href="#dns-缓存"></a></h3>
+<p><code>DNS 缓存(DNS caching)</code> 有时也叫做 DNS 解析器缓存，它是由操作系统维护的临时数据库，它包含有最近的网站和其他 Internet 域的访问记录。也就是说， DNS 缓存只是计算机为了满足快速的响应速度而把已加载过的资源缓存起来，再次访问时可以直接快速引用的一项技术和手段。那么 DNS 的缓存是如何工作的呢？<br>
+<strong>DNS 缓存的工作流程</strong><br>
+在浏览器向外部发出请求之前，计算机会拦截每个请求并在 DNS 缓存数据库中查找域名，该数据库包含有最近的域名列表，以及 DNS 首次发出请求时 DNS 为它们计算的地址。</p>
+<h3 id="dns-记录和报文"><strong>DNS 记录和报文</strong><a title="#dns-记录和报文" href="#dns-记录和报文"></a></h3>
+<p>共同实现 DNS 分布式数据库的所有 DNS 服务器存储了<code>资源记录(Resource Record, RR)</code>，RR 提供了主机名到 IP 地址的映射。每个 DNS 回答报文中会包含一条或多条资源记录。RR 记录用于回复客户端查询。<br>
+资源记录是一个包含了下列字段的 4 元组</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(Name, Value, Type, TTL)</span><br></pre></td></tr></tbody></table></figure>
+<p>RR 会有不同的类型，下面是不同类型的 RR 汇总表<br>
+DNS RR 类型解释 A 记录 IPv4 主机记录，用于将域名映射到 IPv4 地址 AAAA 记录 IPv6 主机记录，用于将域名映射到 IPv6 地址 CNAME 记录别名记录，用于映射 DNS 域名的别名 MX 记录邮件交换器，用于将 DNS 域名映射到邮件服务器 PTR 记录指针，用于反向查找（IP 地址到域名解析）SRV 记录 SRV 记录，用于映射可用服务。<br>
+<strong>DNS 报文</strong><br>
+DNS 有两种报文，一种是查询报文，一种是响应报文，并且这两种报文有着相同的格式，下面是 DNS 的报文格式：<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586238924-6b69d612-d4a0-4728-9904-20e6af5a8af1.png#align=left&amp;display=inline&amp;height=572&amp;margin=%5Bobject%20Object%5D&amp;name=dns%E6%8A%A5%E6%96%87.png&amp;originHeight=572&amp;originWidth=748&amp;size=37352&amp;status=done&amp;style=none&amp;width=748" alt="dns报文.png"><br>
+下面对报文格式进行解释</p>
+<ul>
+<li>前 12 个报文是 <code>首部区域</code>，也就是说首部区域有 12 个字节，第一个字段（标识符）是一个 16 比特的数，用于标示该查询。这个标识符会被复制到对查询的回答报文中，以便让客户用它来匹配发送的请求和接受到的回答。 标志字段含有若干标志，标志字段表示为 1 比特，它用于指出报文是 0-查询报文还是 1-响应报文。</li>
+<li><code>问题区域</code>包含着正在进行的查询信息。这个区域包括：1) 名字字段，包含正在被查询的主机名字；2) 类型字段，指出有关该名字的正被询问的问题类型，例如主机地址是与一个名字相关联（类型 A）还是与某个名字的邮件服务器相关联（类型 MX）。</li>
+<li>在来自 DNS 服务器的回答中，回答区域包含了对最初请求的名字的资源记录。上面说过 DNS RR 记录是个四元组，而且元组中的 Type 会有不同的类型。在回答报文的回答区域中可以包含多条 RR，因此一个主机名能够有多个 IP 地址。</li>
+<li><code>权威区域</code> 包含了其他权威服务器的记录</li>
+<li><code>附加区域</code> 包含了其他有帮助的记录。</li>
+</ul>
+<h2 id="邮件协议">邮件协议<a title="#邮件协议" href="#邮件协议"></a></h2>
+<h3 id="电子邮件">电子邮件<a title="#电子邮件" href="#电子邮件"></a></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586660795-ad0484f2-95d3-49be-8042-64ea82a9de25.png#align=left&amp;display=inline&amp;height=932&amp;margin=%5Bobject%20Object%5D&amp;name=%E9%82%AE%E4%BB%B6%E5%8D%8F%E8%AE%AE.png&amp;originHeight=932&amp;originWidth=1216&amp;size=3406481&amp;status=done&amp;style=none&amp;width=1216" alt="邮件协议.png"><br>
+从图中我们可以看到它有三个主要组成部分：<code>用户代理(user agent)</code>、<code>邮件服务器(mail server)</code>、和<code>简单邮件传输协议(Simple Mail Transfer Protocol,SMTP)</code>。下面我们就来描述一下邮件收发的过程。</p>
+<p>用户代理允许用户阅读、回复、转发、保存和撰写报文。微软的 <code>Outlook</code> 和 <code>Apple Mail</code> 是电子邮件用户代理的例子。当用户编写完邮件时，他的用户代理向邮件服务器发送邮件，此时用户发送的邮件会放在邮件服务器的<code>外出消息队列(Outgoing message queue)</code>中，当接收方用户想要阅读邮件时，他的用户代理直接从外出消息队列中去取得该报文。</p>
+<p>邮件服务器构成了整个邮件系统的核心。每个接收方在其中的邮件服务器上会有一个<code>邮箱(mailbox)</code> 存在。用户的邮箱管理和维护发送给他的报文。一个典型的邮件发送过程是：从发送方的用户代理开始，传输到发送方的邮件服务器，再传输到接收方的邮件服务器，然后在这里被分发到接收方的邮箱中。用接收方的用户想要从邮箱中读取邮件时，他的邮件服务器会对用户进行认证。如果发送方发送的邮件无法正确交付给接收方的服务器，那么发送方的用户代理会把邮件存储在一个<code>报文队列(message queue)</code>中，并在以后尝试再次发送，通常每 30 分钟发送一次，如果一段时间后还发送不成功，服务器就会删除报文队列中的邮件并以电子邮件的方式通知发送方。</p>
+<p><code>SMTP</code> 是因特网电子邮件中的主要的应用层协议。SMTP 也使用 TCP 作为运输层协议，保证数据传输的可靠性。</p>
+<h3 id="smtp-协议传输过程">SMTP 协议传输过程<a title="#smtp-协议传输过程" href="#smtp-协议传输过程"></a></h3>
+<p>为了描述 SMTP 的基本操作，我们观察一下下面这种常见的情景。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609586741602-dfb101f2-428e-4f04-84cf-72ac24aa09b3.png#align=left&amp;display=inline&amp;height=435&amp;margin=%5Bobject%20Object%5D&amp;name=smtp%E5%8D%8F%E8%AE%AE.png&amp;originHeight=435&amp;originWidth=1209&amp;size=1580837&amp;status=done&amp;style=none&amp;width=1209" alt="smtp协议.png"><br>
+我们假设 Alice 想给 Bob 发送一封简单的 ASCII 报文</p>
+<p>我们假设 Alice 想给 Bob 发送一封简单的 ASCII 报文</p>
+<ul>
+<li>Alice 调用她的邮件代理程序并提供 Bob 的邮件地址 （例如 <a href="mailto:bob@someschool.edu">bob@someschool.edu</a>），编写邮件报文，然后指示用户代理发送该报文</li>
+<li>Alice 的用户代理把报文发送给她的邮件服务器，在那里该报文被放在消息队列中。</li>
+<li>运行在 Alice 的邮件服务器上的 SMTP 客户端发现了报文队列中的邮件，它就创建一个到运行在 Bob 邮件服务器上的 SMTP 服务器的 TCP 连接</li>
+<li>在经过一些初始化 SMTP 握手后，SMTP 客户端通过该 TCP 连接发送 Alice 的邮件。</li>
+<li>在 Bob 的邮件服务器上，SMTP 的服务端接收该邮件，Bob 的邮件服务器将邮件放在 Bob 的邮箱中</li>
+<li>在 Bob 想要看邮件时，他会调用用户代理阅读该邮件<br>
+上面说的邮件其实就是报文，指的就是一系列 ASCII 码，SMTP 传输邮件之前，需要将二进制多媒体数据编码为 ASCII 码进行传输。</li>
+</ul>
+<p>SMTP 一般不使用中间邮件服务器发送邮件，即使这两个邮件服务器位于地球的两端也是这样的。TCP 连接通常直接连接 Alice 的邮件服务器和 Bob 的邮件服务器。</p>
+<p>现在你知道了两台邮件服务器邮件发送的大体过程，那么，SMTP 是如何将邮件从 Alice 邮件服务器发送到 Bob 的邮件服务器的呢？主要分为下面三个阶段：</p>
+<ul>
+<li><code>建立连接</code>：在这一阶段，SMTP 客户请求与服务器的 25 端口建立一个 TCP 连接。一旦连接建立，SMTP 服务器和客户就开始相互通告自己的域名，同时确认对方的域名。</li>
+<li><code>邮件传送</code>：一旦连接建立后，就开始邮件传输。SMTP 依靠 TCP 能够将邮件准确无误地传输到接收方的邮件服务器中。SMTP 客户将邮件的源地址、目的地址和邮件的具体内容传递给 SMTP 服务器，SMTP 服务器进行相应的响应并接收邮件。</li>
+<li><code>连接释放</code>：SMTP 客户发出退出命令，服务器在处理命令后进行响应，随后关闭 TCP 连接。</li>
+</ul>
+<p>下面我们分析一个实际的 SMTP 邮件发送过程，以下统称为<code>SMTP客户(C)</code>和 <code>SMTP服务器(S)</code>。客户的主机名为 <code>crepes.fr</code>，服务器的主机名为 <code>hamburger.edu</code>。以 C: 开头的 ASCII 码文本就是客户交给 TCP 套接字的那些行，以 S: 开头的 ASCII 码则是服务器发送给其 TCP 套接字的那些行。一旦创建了连接，就开始了如下过程</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">S: 220 hamburger.edu</span><br><span class="line">C: HELO crepes.fr</span><br><span class="line">S: 250 Hello crepes.fr, pleased to meet you</span><br><span class="line">C: MAIL FROM: &lt;alice@crepes.fr&gt;</span><br><span class="line">S: 250 alice@crepes.fr ... Sender ok</span><br><span class="line">C: RCPT TO: &lt;bob@hamburger.edu&gt;</span><br><span class="line">S: 250 bob@hamburder.edu ... Recipient ok</span><br><span class="line">C: DATA</span><br><span class="line">S: 354 Enter mail, end with "." on a line by itself</span><br><span class="line">C: Do you like ketchup?</span><br><span class="line">C: How about pickles?</span><br><span class="line">C: .</span><br><span class="line">S: 250 Message accepted for delivery</span><br><span class="line">C: QUIT</span><br><span class="line">S: 221 hamburger.edu closing connection</span><br></pre></td></tr></tbody></table></figure>
+<p>在上述例子中，客户从邮件服务器 <a href="http://crepes.fr">crepes.fr</a> 向邮件服务器 <a href="http://hamburger.edu">hamburger.edu</a> 发送了一个报文 (" Do you like ketchup? How about pickles? ") 。作为对话的一部分，该客户发送了 5 条命令: <code>HELO(是 HELLO 的缩写)</code>、 <code>MAMIL FROM</code>、<code>RCPT TO</code>、<code>DATA</code> 以及 <code>QUIT</code>。这些命令都是自解释的。<br>
+什么是自解释，就是不需要再进行解释了，命令自己就能解释自己所要表述的功能。</p>
+<p>上面是一个简单的 SMTP 交换过程，包括了连接建立、邮件传送和连接释放三个具体过程。</p>
+<ul>
+<li>首先建立 TCP 连接、SMTP 调用 TCP 协议的 25 号端口监听连接请求，然后客户端发送 HELO 指令用来表明自己是发送方的身份，然后服务端作出响应。</li>
+<li>然后，客户端发送 MAIL FROM 命令，表明客户端的邮件地址是 <code>&lt;alice@crepes.fr&gt;</code>，服务器以 OK 作为响应，表明准备接收。</li>
+<li>客户端发送 RCPT TO 表明接收方的电子邮件地址，可以有多个 RCPT 行，即一份邮件可以同时发送给多个收件人。服务器端则表示是否愿意为收件人接收邮件。</li>
+<li>协商结束后，客户端用 DATA 命令发送信息，结束标志是<code>CRLF.CRLF</code> ，也就是 回车换行.回车换行。</li>
+<li>最后，控制交互的任一端可选择终止会话，为此它发出一个 QUIT 命令，另一端用命令 221 响应，表示同意终止连接，双方将关闭连接。</li>
+</ul>
+<p>上述过程中会涉及几个类似 HTTP 的状态码。250 就表示 OK ，类似 HTTP 的 200。在命令成功时，服务器返回代码 250，如果失败则返回代码 550（命令无法识别）、451（处理时出错）、452（存储空间不够）、421（服务器不可用）等，354 则表示开始信息输入。</p>
+<p>SMTP 的报文会有局限性，SMTP 的局限性表现在只能发送 ASCII 码格式的报文，不支持中文、法文、德文等，它也不支持语音、视频的数据。通过 <code>MIME协议</code>，对 SMTP 补充。MIME 使用网络虚拟终端(NVT)标准，允许非 ASCII 码数据通过 SMTP 传输。</p>
+<h3 id="smtp-与-http-的对比">SMTP 与 HTTP 的对比<a title="#smtp-与-http-的对比" href="#smtp-与-http-的对比"></a></h3>
+<p>这两个协议都用于从一台主机向另一台主机传送文件：HTTP 从 Web 服务器向 Web 客户端（通常是浏览器）传送文件，SMTP 是从一个邮件服务器向另一个邮件服务器传送文件（即电子邮件报文）。<br>
+这两个协议也会有几个重要的区别</p>
+<ul>
+<li>首先，HTTP 是一个 <code>拉协议(pull protocol)</code>，客户端发送请求，请求获取服务端的资源，然后服务端进行响应，把需要下载的文件传输给客户端；而 SMTP 是一个 <code>推协议(push protocol)</code>，SMTP 的客户端会主动把邮件推送给 SMTP 的服务端。</li>
+<li>第二个区别是，SMTP 要求每个报文都采用 7 比特的 ASCII 码格式，如果某报文包含了非 7 比特的 ASCII 自负或二进制数据，则该报文必须按照 7 比特 ASCII 码进行编码。HTTP 数据则不受这种限制。</li>
+<li>第三个区别是如何处理一个既包含文本又包含图形的文档，HTTP 把每个对象封装到它自己的 HTTP 响应报文中，而 SMTP 则把所有报文对象放在一个报文之中。</li>
+</ul>
+<h3 id="邮件访问协议">邮件访问协议<a title="#邮件访问协议" href="#邮件访问协议"></a></h3>
+<p>在上述分析中，有一个疏漏的环节，那就是在 Alice 向 Bob 发送邮件的过程中，Bob 是如何通过运行在他本地 PC 上的用户代理，获得位于某 ISP 的邮件服务器上的他的邮件呢？注意到 Bob 的用户代理不能使用 SMTP 来取回邮件，因为取邮件时一个拉操作，而 SMTP 是一个推协议。因此我们要引入邮件访问协议，包括第三版的邮局协议（POP3）、因特网邮件访问协议（IMAP）以及 HTTP。<br>
+　　下图总结了应用于因特网电子邮件的一些协议：SMTP 用来将邮件从发送发的邮件服务器传输到接收方的邮件服务器。如 POP3 这样的邮件访问协议用来将邮件从接收方的邮件服务器传送到接收方的用户代理。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609587255896-cd928f92-8990-4b22-b4c6-5b80a303944c.png#align=left&amp;display=inline&amp;height=301&amp;margin=%5Bobject%20Object%5D&amp;name=%E9%82%AE%E4%BB%B6%E8%AE%BF%E9%97%AE%E5%8D%8F%E8%AE%AE.png&amp;originHeight=301&amp;originWidth=1195&amp;size=1081231&amp;status=done&amp;style=none&amp;width=1195" alt="邮件访问协议.png"><br>
+<strong>1）POP3</strong></p>
+<ul>
+<li>POP3 是 Post Office Protocol 3 的简称，即邮局协议的第 3 个版本，是 TCP/IP 协议族中的一员（默认端口是 110）。</li>
+<li>它被用户代理用来邮件服务器取得邮件。POP3 采用的也是 C/S 通信模型，对应的 RFC 文档为 RFC1939。</li>
+<li>POP3 支持电子邮件客户端下载服务器上的邮件，但是在客户端的操作（如移动邮件、标记已读等），不会反馈到服务器上，比如通过客户端收取了邮箱中的 3 封邮件并移动到其他文件夹，邮箱服务器上的这些邮件是没有同时被移动的 。</li>
+<li>POP3 使用明文传输密码, 不对密码加密</li>
+<li>POP3 建立在 TCP 连接上, 使用的是有连接的可靠数据传输服务</li>
+</ul>
+<p><strong>2) IMAP</strong></p>
+<ul>
+<li>IMAP 全称是 Internet Mail Access Protocol，即互联网邮件访问协议，是一个应用层协议（端口是 143）。用来从本地邮件客户端（Outlook Express、Foxmail、Mozilla Thunderbird 等）访问远程服务器上的邮件。</li>
+<li>开启了 IMAP 后，您在电子邮件客户端收取的邮件仍然保留在服务器上，同时在客户端上的操作都会反馈到服务器上，如：删除邮件，标记已读等，服务器上的邮件也会做相应的动作。所以无论从浏览器登录邮箱或者客户端软件登录邮箱，看到的邮件以及状态都是一致的。</li>
+</ul>
+<p><strong>3) 基于 Web 的电子邮件</strong><br>
+　　当用户用 Web 浏览器使用电子邮件时，用户和他远程邮箱之间的通信则通过 HTTP；然而，用户的邮件服务器在与其他的邮件服务器之间发送和接收邮件时，仍然使用的是 SMTP。</p>
+<h2 id="cdn-内容分发">CDN 内容分发<a title="#cdn-内容分发" href="#cdn-内容分发"></a></h2>
+<p>网络视频需要消耗大量的网络带宽，很多网络视频公司会选择 CDN （Content Distribution Network）服务，来优化用户的体验。<br>
+一个 CDN 网络管理很多分布在世界各地的服务器，在每个服务器上复制了视频和其它资源文件的副本，用户请求 CDN，然后 CDN 提供一个离用户客户端距离较近的服务器同响应客户端请求，从而给用户更快更好的网络体验。CDN 的实现是利用了 DNS 拦截和重定向请求功能。</p>
+<p><strong>不使用 CDN 可能会出现的问题</strong><br>
+每个客户端都请求同一个地区的服务器（数据中心），服务器的带宽是一定的，请求太多造成客户端得到的资源吞吐量下降，会导致视频卡顿。<br>
+一个流行的视频会在同一个通信链路上多次传输，浪费网络带宽。<br>
+一个数据中心容易出现单点故障，导致整个服务不可用。</p>
+<p><strong>CDN 使用的过程</strong></p>
+<ol>
+<li>用户访问一个视频的链接，如 <a href="http://video.netcinema.com/6Y7B23V" target="_blank" rel="external nofollow noopener">http://video.netcinema.com/6Y7B23V</a> 。</li>
+<li>浏览器查询客户端本地缓存是否存在该域名的 IP 地址。如果没有，继续下一步查询。</li>
+<li>浏览器请求本地 DNS 服务器，查询 <a href="http://video.netcinema.com">video.netcinema.com</a> 域名的 IP 地址。本地 DNS 服务器检查本地缓存是否存在该域名，不存在，则请求权威 DNS 服务器，查询 <a href="http://video.netcinema.com">video.netcinema.com</a> 的 IP 地址。权威 DNS 服务器发现是 video 开头的域名，则返回 CDN 提供商的权威域名如 <a href="http://a105.kingcdn.com">a105.kingcdn.com</a>。</li>
+<li>本地 DNS 服务器请求权威域名服务器，查询 <a href="http://a105.kingcdn.com">a105.kingcdn.com</a> 的 IP 地址，CDN 提供商根据客户端的地理位置，最终返回 CDN 系统中的一个 web 服务器 IP 地址。</li>
+<li>本地 DNS 服务器把 IP 地址返回给浏览器。</li>
+<li>浏览器通过 IP 地址与服务器建立 TCP 连接，发送视频访问请求。web 服务器返回视频内容给浏览器。</li>
+</ol>
+<p><strong>CDN 是如何让客户端访问离自己最近的一个服务器</strong><br>
+**方法一：**使用 DNS 服务器响应一个离用户最近的服务器的 IP 地址。DNS 服务器通过查询 IP 位置数据库，获取客户端所在的城市。根据客户端所在的城市选一个最近的一个服务器的 IP 地址返回给客户端。<br>
+**方法二：**使用任播（Anycast）路由选择一个最近的服务器。CDN 分布世界各地的所有 Web 服务器使用同一个 IP 地址。路由器根据最少花费（Lowest Cost）的路由规则，选择一个离客户端最近的服务器。</p>
+<h2 id="ftp">FTP<a title="#ftp" href="#ftp"></a></h2>
+<h3 id="简介">简介<a title="#简介" href="#简介"></a></h3>
+<p>文件传送协议 FTP (File Transfer Protocol) 是互联网上使用得最广泛的<strong>文件传送协议</strong>。<br>
+FTP 提供交互式的访问，<strong>允许客户指明文件的类型与格式，并允许文件具有存取权限</strong><br>
+网络环境下复制文件的复杂性：</p>
+<ul>
+<li>
+<p>计算机存储数据的格式不同。</p>
+</li>
+<li>
+<p>文件的目录结构和文件命名的规定不同。</p>
+</li>
+<li>
+<p>对于相同的文件存取功能，操作系统使用的命令不同。</p>
+</li>
+<li>
+<p>访问控制方法不同。</p>
+</li>
+</ul>
+<p><strong>正是因为网络环境下复制文件的复杂性，因此就需要用到了 FTP 协议了。</strong></p>
+<h3 id="过程">过程<a title="#过程" href="#过程"></a></h3>
+<ol>
+<li>
+<p>打开熟知端口（端口号为 21），使客户进程能够连接上。</p>
+</li>
+<li>
+<p>等待客户进程发出连接请求。</p>
+</li>
+<li>
+<p>启动从属进程来处理客户进程发来的请求。从属进程对客户进程的请求处理完毕后即终止，但从属进程在运行期间根据需要还可能创建其他一些子进程。</p>
+</li>
+<li>
+<p>回到等待状态，继续接受其他客户进程发来的请求。主进程与从属进程的处理是并发地进行。</p>
+</li>
+<li>
+<p>当客户进程向服务器进程发出建立连接请求时，要寻找连接服务器进程的熟知端口 (21)，同时还要告诉服务器进程自己的另一个端口号码，用于建立数据传送连接。</p>
+</li>
+<li>
+<p>接着**，服务器进程用自己传送数据的熟知端口 (20) 与客户进程所提供的端口号码建立数据传送连接。**</p>
+</li>
+<li>
+<p>由于 FTP 使用了两个不同的端口号，<strong>所以数据连接与控制连接不会发生混乱</strong>。</p>
+</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609592044710-3834da0e-3b4d-4c1f-a0f8-54df1afba7a9.png#align=left&amp;display=inline&amp;height=1388&amp;margin=%5Bobject%20Object%5D&amp;name=ftp%E7%AE%80%E4%BB%8B.png&amp;originHeight=1388&amp;originWidth=2552&amp;size=521815&amp;status=done&amp;style=none&amp;width=2552" alt="ftp简介.png"><br>
+FTP 是使用了两个 TCP 连接的。好处：</p>
+<ul>
+<li>
+<p>使协议更加简单和更容易实现。</p>
+</li>
+<li>
+<p>在传输文件时还可以利用控制连接（例如，客户发送请求终止传输）。</p>
+</li>
+</ul>
+<h2 id="p2p">P2P<a title="#p2p" href="#p2p"></a></h2>
+<p>我们上面探讨的协议 HTTP、SMTP、DNS 都采用了<code>客户-服务器</code> 模式，这种模式会极大依赖总是打开的基础设施服务器。而 <code>P2P</code>是客户端与客户端模式，对总是打开的基础设施服务器有最小的依赖。</p>
+<p>P2P 的全称是 <code>Peer-to-peer, P2P</code> ，是一种分布式体系结构的计算机网络。在 P2P 体系中，所有的计算机和设备都被称为对等体，他们互相交换工作。对等网络中的每个对等方都等于其他对等方。网络中没有特权对等体，也没有主管理员设备。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609592256712-050455b7-213f-46ae-85b5-0d590e7d04cd.png#align=left&amp;display=inline&amp;height=450&amp;margin=%5Bobject%20Object%5D&amp;name=p2p.png&amp;originHeight=450&amp;originWidth=800&amp;size=38171&amp;status=done&amp;style=none&amp;width=800" alt="p2p.png"></p>
+<p>从某种意义上说，对等网络是计算机世界中最平等的网络。每个对等方都相等，并且每个对等方具有与其他对等方相同的权利和义务。对等体同时是客户端和服务器。</p>
+<p>实际上，对等网络中可用的每个资源都是在对等之间共享的，而无需任何中央服务器。P2P 网络中的共享资源可以是诸如处理器使用率，磁盘存储容量或网络带宽等。</p>
+<h3 id="p2p-用来做什么"><strong>P2P 用来做什么</strong><a title="#p2p-用来做什么" href="#p2p-用来做什么"></a></h3>
+<p>P2P 的主要目标是共享资源并帮助计算机和设备协同工作，提供特定服务或执行特定任务。如前面说到的，P2P 用于共享各种计算资源，例如网络带宽或磁盘存储空间。 但是，对等网络最常见的例子是 Internet 上的文件共享。 对等网络非常适合文件共享，因为它们允许连接到它们计算机等同时接收文件和发送文件。<br>
+<code>BitTorrent</code> 是 P2P 使用的主要协议。</p>
+<h3 id="p2p-网络的作用"><strong>P2P 网络的作用</strong><a title="#p2p-网络的作用" href="#p2p-网络的作用"></a></h3>
+<p>P2P 网络具有一些使它们有用的特征</p>
+<ul>
+<li>很难完全掉线，即使其中的一个对等方掉线，其他对等方仍在运行并进行通信。 为了使 P2P（对等）网络停止工作，你必须关闭所有对等网络。对等网络具有很强的可扩展性。 添加新的对等节点很容易，因为你无需在中央服务器上进行任何中央配置。</li>
+<li>当涉及到文件共享时，对等网络越大，速度越快。 在 P2P 网络中的许多对等点上存储相同的文件意味着当某人需要下载文件时，该文件会同时从多个位置下载。</li>
+</ul>
+<h1 id="传输层">传输层<a title="#传输层" href="#传输层"></a></h1>
+<h2 id="传输层概述">传输层概述<a title="#传输层概述" href="#传输层概述"></a></h2>
+<p>传输层提供了进程间的逻辑通信，传输层向高层用户屏蔽了下面网络层的核心细节，使应用程序看起来像是在两个传输层实体之间有一条端到端的逻辑通信信道。</p>
+<p>传输层两大重要的功能：<strong>复用 和 分用</strong>。</p>
+<ul>
+<li>复用：在发送端，多个应用进程公用一个传输层；</li>
+<li>分用：在接收端，传输层会根据端口号将数据分派给不同的应用进程。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609642772869-02f02aa4-ba4e-4dff-b143-9c0a08c7b7ed.png#align=left&amp;display=inline&amp;height=605&amp;margin=%5Bobject%20Object%5D&amp;name=%E7%AB%AF%E5%8F%A3%E5%A4%8D%E7%94%A8.png&amp;originHeight=605&amp;originWidth=919&amp;size=52572&amp;status=done&amp;style=none&amp;width=919" alt="端口复用.png"><br>
+和网络层的区别：</p>
+<ul>
+<li>网络层为不同主机提供通信服务，而传输层为不同主机的不同应用提供通信服务。</li>
+<li>网络层只对报文头部进行差错检测，而传输层对整个报文进行差错检测。</li>
+</ul>
+<h2 id="可靠传输的原理">可靠传输的原理<a title="#可靠传输的原理" href="#可靠传输的原理"></a></h2>
+<p>理想的传输条件有以下两个特点：</p>
+<ul>
+<li>
+<p>(1) 传输信道不产生差错。</p>
+</li>
+<li>
+<p>(2) 不管发送方以多快的速度发送数据，接收方总是来得及处理收到的数据。</p>
+</li>
+</ul>
+<p>然而实际的网络都不具备以上两个理想条件**。必须使用一些可靠传输协议，在不可靠的传输信道实现可靠传输。**</p>
+<h2 id="udp-和-tcp-的特点">UDP 和 TCP 的特点<a title="#udp-和-tcp-的特点" href="#udp-和-tcp-的特点"></a></h2>
+<ul>
+<li>
+<p>用户数据报协议 UDP（User Datagram Protocol）是无连接的，尽最大可能交付，没有拥塞控制，面向报文（对于应用程序传下来的报文不合并也不拆分，只是添加 UDP 首部），支持一对一、一对多、多对一和多对多的交互通信。</p>
+</li>
+<li>
+<p>传输控制协议 TCP（Transmission Control Protocol）是面向连接的，提供可靠交付，有流量控制，拥塞控制，提供全双工通信，面向字节流（把应用层传下来的报文看成字节流，把字节流组织成大小不等的数据块），每一条 TCP 连接只能是点对点的（一对一）。</p>
+</li>
+</ul>
+<h2 id="udp">UDP<a title="#udp" href="#udp"></a></h2>
+<h3 id="udp-概述">UDP 概述<a title="#udp-概述" href="#udp-概述"></a></h3>
+<p>UDP <strong>只在 IP 的数据报服务之上增加了很少一点的功能</strong>：</p>
+<ul>
+<li>
+<p><strong>复用和分用</strong></p>
+</li>
+<li>
+<p><strong>差错检测</strong></p>
+</li>
+</ul>
+<p>UDP 特性：</p>
+<ul>
+<li>
+<p><strong>提供无连接服务</strong>。</p>
+</li>
+<li>
+<p><strong>在传送数据之前不需要先建立连接</strong>。</p>
+</li>
+<li>
+<p>传送的数据单位协议是 UDP 报文或用户数据报。</p>
+</li>
+<li>
+<p><strong>对方的运输层在收到 UDP 报文后，不需要给出任何确认。</strong></p>
+</li>
+<li>
+<p>虽然 UDP 不提供可靠交付，但在某些情况下 UDP 是一种最有效的工作方式。</p>
+</li>
+<li>
+<p>UDP 支持一对一、一对多、多对一和多对多的交互通信。</p>
+</li>
+<li>
+<p>UDP 的首部开销小，只有 8 个字节，比 TCP 的 20 个字节的首部要短</p>
+</li>
+</ul>
+<p>还要注意的是：</p>
+<ol>
+<li>
+<p><strong>IP 数据报要经过互连网中许多路由器的存储转发。</strong></p>
+</li>
+<li>
+<p>UDP 用户数据报是在运输层的<strong>端到端抽象的逻辑信道中传送的</strong>。</p>
+</li>
+</ol>
+<p>UDP 对应用层交下来的报文，<strong>既不合并，也不拆分，而是保留这些报文的边界。应用层交给 UDP 多长的报文，UDP 就照样发送，即一次发送一个报文。</strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609642901498-78fa1773-c5d0-4397-a2a2-8d8f95635b72.jpeg#align=left&amp;display=inline&amp;height=804&amp;margin=%5Bobject%20Object%5D&amp;originHeight=804&amp;originWidth=1906&amp;size=0&amp;status=done&amp;style=none&amp;width=1906" alt="" class="φcx"></p>
+<h3 id="udp-首部格式">UDP 首部格式<a title="#udp-首部格式" href="#udp-首部格式"></a></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609593199355-1972c492-421d-4897-ba8d-fdcdc9cf1643.jpeg#align=left&amp;display=inline&amp;height=674&amp;margin=%5Bobject%20Object%5D&amp;name=udp%E9%A6%96%E9%83%A8.jpg&amp;originHeight=674&amp;originWidth=1137&amp;size=175104&amp;status=done&amp;style=none&amp;width=1137" alt="udp首部.jpg"><br>
+首部字段只有 8 个字节，包括源端口、目的端口、长度、检验和。12 字节的伪首部是为了计算检验和临时添加的。源端口号可有可无。<br>
+长度字段：UDP 数据报的整个长度，首部+数据字段。<br>
+UDP 检验和：用于差错校验，非必须，如果不使用校验和就将校验和字段置为全 0，如果校验和字段恰巧全为 0，就将校验和置为全 1。<br>
+分用时，找不到目的端口号，就丢弃报文，并且发送一个 ICMP，端口不可达的差错报文。<br>
+伪首部：也被称为伪 IP 首部，只在计算校验和的时候出现，既不向下传送也不向上递交。<br>
+伪首部的第三个字段固定全零。<br>
+伪首部第四个字段 17：封装 UDO 报文的 IP 数据报首部协议字段是 17。<br>
+UDP 长度：UDP 首部 8B+数据部分的长度（不包括伪首部）。</p>
+<h3 id="udp-校验和计算">UDP 校验和计算<a title="#udp-校验和计算" href="#udp-校验和计算"></a></h3>
+<p>将一行看作一个整体，当作 4 个字节。<br>
+<strong>发送端：</strong></p>
+<ol>
+<li>填上伪首部</li>
+<li>全 0 填充校验和字段</li>
+<li>全 0 填充数据部分（UDP 数据报要看着许多 4B 的字串拼接起来）</li>
+<li>用伪首部+首部+数据部分采用二进制反码求和</li>
+<li>把和求反码填入校验和字段</li>
+<li>去掉伪首部，发送。</li>
+</ol>
+<p><strong>接收端：</strong></p>
+<ol>
+<li>填上伪首部</li>
+<li>伪首部+首部+数据部分采用二进制反码求和</li>
+<li>结果全为 1 则无差错，否则丢弃数据报、交给应用层上出差错的警告。</li>
+</ol>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609643131738-e5e8c8fa-3db0-4873-9c87-bac114b003b6.png#align=left&amp;display=inline&amp;height=1188&amp;margin=%5Bobject%20Object%5D&amp;originHeight=1188&amp;originWidth=1810&amp;size=0&amp;status=done&amp;style=none&amp;width=1810" alt="" class="φcx"></p>
+<h2 id="tcp">TCP<a title="#tcp" href="#tcp"></a></h2>
+<h3 id="tcp-概述">TCP 概述<a title="#tcp-概述" href="#tcp-概述"></a></h3>
+<p><strong>面向字节流</strong></p>
+<ol>
+<li>
+<p>TCP 中的“流”(stream)指的是流入或流出进程的字节序列。</p>
+</li>
+<li>
+<p>“面向字节流”的含义是：虽然应用程序和 TCP 的交互是一次一个数据块，<strong>但 TCP 把应用程序交下来的数据看成仅仅是一连串无结构的字节流。</strong></p>
+</li>
+<li>
+<p><strong>接收方应用程序收到的字节流必须和发送方应用程序发出的字节流完全一样。</strong></p>
+</li>
+<li>
+<p>提供面向连接的服务。</p>
+</li>
+<li>
+<p>传送的数据单位协议是 TCP 报文段 (segment)。</p>
+</li>
+<li>
+<p><strong>TCP 不提供广播或多播服务</strong>。</p>
+</li>
+<li>
+<p>由于 <strong>TCP 要提供可靠的、面向连接的运输服务</strong>，因此不可避免地<strong>增加了许多的开销</strong>。这不仅使协议数据单元的首部增大很多，还要占用许多的处理机资源。</p>
+</li>
+</ol>
+<p>TCP 报文段是在<strong>运输层抽象的端到端逻辑信道中传送</strong>，这种信道是可靠的全双工信道。但这样的<strong>信道却不知道究竟经过了哪些路由器，而这些路由器也根本不知道上面的运输层是否建立了 TCP 连接。</strong></p>
+<p>值得注意的：</p>
+<ul>
+<li>
+<p>TCP 连接是一条<strong>虚连接</strong>而不是一条真正的物理连接。</p>
+</li>
+<li>
+<p>TCP 对应用进程<strong>一次把多长的报文发送到 TCP 的缓存中是不关心的</strong>。</p>
+</li>
+<li>
+<p>TCP 根据对方给出的<strong>窗口值和当前网络拥塞的程度来决定一个报文段应包含多少个字节（UDP 发送的报文长度是应用进程给出的）</strong></p>
+</li>
+</ul>
+<p><strong>面向套接字接口： 端口号拼接到 (contatenated with) IP 地址即构成了套接字。</strong></p>
+<h3 id="tcp-报文">TCP 报文<a title="#tcp-报文" href="#tcp-报文"></a></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609593247832-11b4e547-e18b-43c3-b224-60a68077e80b.png#align=left&amp;display=inline&amp;height=571&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F.png&amp;originHeight=571&amp;originWidth=1007&amp;size=188228&amp;status=done&amp;style=none&amp;width=1007" alt="tcp首部格式.png" class="φcx"></p>
+<ul>
+<li>
+<p><strong>序号</strong> ：用于对字节流进行编号，例如序号为 301，表示第一个字节的编号为 301，如果携带的数据长度为 100 字节，那么下一个报文段的序号应为 401。</p>
+</li>
+<li>
+<p><strong>确认号</strong> ：期望收到的下一个报文段的序号。例如 B 正确收到 A 发送来的一个报文段，序号为 501，携带的数据长度为 200 字节，因此 B 期望下一个报文段的序号为 701，B 发送给 A 的确认报文段中确认号就为 701。</p>
+</li>
+<li>
+<p><strong>数据偏移</strong> ：指的是数据部分距离报文段起始处的偏移量，实际上指的是首部的长度。</p>
+</li>
+<li>
+<p><strong>确认 ACK</strong> ：当 ACK=1 时确认号字段有效，否则无效。TCP 规定，在连接建立后所有传送的报文段都必须把 ACK 置 1。</p>
+</li>
+<li>
+<p><strong>同步 SYN</strong> ：在连接建立时用来同步序号。当 SYN=1，ACK=0 时表示这是一个连接请求报文段。若对方同意建立连接，则响应报文中 SYN=1，ACK=1。</p>
+</li>
+<li>
+<p><strong>终止 FIN</strong> ：用来释放一个连接，当 FIN=1 时，表示此报文段的发送方的数据已发送完毕，并要求释放连接。</p>
+</li>
+<li>
+<p><strong>窗口</strong> ：窗口值作为接收方让发送方设置其发送窗口的依据。之所以要有这个限制，是因为接收方的数据缓存空间是有限的。</p>
+</li>
+</ul>
+<p>TCP 报文段首部的<strong>前 20 个字节是固定的，后面有 4n 字节是根据需要而增加的选项 (n 是整数)。因此 TCP 首部的最小长度是 20 字节。首部的最大长度是 40 字节。</strong></p>
+<h3 id="tcp-连接管理">TCP 连接管理<a title="#tcp-连接管理" href="#tcp-连接管理"></a></h3>
+<h4 id="tcp-的三次握手">TCP 的三次握手<a title="#tcp-的三次握手" href="#tcp-的三次握手"></a></h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609749752926-f2881acd-a384-4e4e-9d49-1709ab9b035a.png#align=left&amp;display=inline&amp;height=813&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E7%9A%843%E6%AC%A1%E6%8F%A1%E6%89%8B.png&amp;originHeight=813&amp;originWidth=1266&amp;size=222208&amp;status=done&amp;style=none&amp;width=1266" alt="tcp的3次握手.png" class="φcx"></p>
+<p>假设 A 为客户端，B 为服务器端。</p>
+<ul>
+<li>
+<p>首先 B 处于 LISTEN（监听）状态，等待客户的连接请求。</p>
+</li>
+<li>
+<p>A 向 B 发送连接请求报文，SYN=1，ACK=0，选择一个初始的序号 x。</p>
+</li>
+<li>
+<p>B 收到连接请求报文，如果同意建立连接，则向 A 发送连接确认报文，SYN=1，ACK=1，确认号为 x+1，同时也选择一个初始的序号 y。</p>
+</li>
+<li>
+<p>A 收到 B 的连接确认报文后，还要向 B 发出确认，确认号为 y+1，序号为 x+1。</p>
+</li>
+<li>
+<p>B 收到 A 的确认后，连接建立。</p>
+</li>
+</ul>
+<p><strong>三次握手的原因</strong><br>
+第三次握手是为了防止失效的连接请求到达服务器，让服务器错误打开连接。<br>
+客户端发送的连接请求如果在网络中滞留，那么就会隔很长一段时间才能收到服务器端发回的连接确认。客户端等待一个超时重传时间之后，就会重新请求连接。但是这个滞留的连接请求最后还是会到达服务器，如果不进行三次握手，那么服务器就会打开两个连接。如果有第三次握手，客户端会忽略服务器之后发送的对滞留连接请求的连接确认，不进行第三次握手，因此就不会再次打开连接。</p>
+<h4 id="tcp-的四次挥手">TCP 的四次挥手<a title="#tcp-的四次挥手" href="#tcp-的四次挥手"></a></h4>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609749794273-e9357007-5e92-444b-b8cc-2b4dea2535c8.jpeg#align=left&amp;display=inline&amp;height=646&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE.jpg&amp;originHeight=646&amp;originWidth=934&amp;size=121856&amp;status=done&amp;style=none&amp;width=934" alt="tcp连接释放.jpg" class="φcx"></p>
+<p>以下描述不讨论序号和确认号，因为序号和确认号的规则比较简单。并且不讨论 ACK，因为 ACK 在连接建立之后都为 1。</p>
+<ul>
+<li>
+<p>A 发送连接释放报文，FIN=1。</p>
+</li>
+<li>
+<p>B 收到之后发出确认，此时 TCP 属于半关闭状态，B 能向 A 发送数据但是 A 不能向 B 发送数据。</p>
+</li>
+<li>
+<p>当 B 不再需要连接时，发送连接释放报文，FIN=1。</p>
+</li>
+<li>
+<p>A 收到后发出确认，进入 TIME-WAIT 状态，等待 2 MSL（最大报文存活时间）后释放连接。</p>
+</li>
+<li>
+<p>B 收到 A 的确认后释放连接。</p>
+</li>
+</ul>
+<p><strong>四次挥手的原因</strong><br>
+客户端发送了 FIN 连接释放报文之后，服务器收到了这个报文，就进入了 CLOSE-WAIT 状态。这个状态是为了让服务器端发送还未传送完毕的数据，传送完毕之后，服务器会发送 FIN 连接释放报文。<br>
+<strong>TIME_WAIT</strong><br>
+客户端接收到服务器端的 FIN 报文后进入此状态，此时并不是直接进入 CLOSED 状态，还需要等待一个时间计时器设置的时间 2MSL。这么做有两个理由：</p>
+<ul>
+<li>
+<p>确保最后一个确认报文能够到达。如果 B 没收到 A 发送来的确认报文，那么就会重新发送连接释放请求报文，A 等待一段时间就是为了处理这种情况的发生。</p>
+</li>
+<li>
+<p>等待一段时间是为了让本连接持续时间内所产生的所有报文都从网络中消失，使得下一个新的连接不会出现旧的连接请求报文。</p>
+</li>
+</ul>
+<h3 id="tcp-可靠传输">TCP 可靠传输<a title="#tcp-可靠传输" href="#tcp-可靠传输"></a></h3>
+<h3 id="tcp-流量控制">TCP 流量控制<a title="#tcp-流量控制" href="#tcp-流量控制"></a></h3>
+<p>流量控制是为了控制发送方发送速率，保证接收方来得及接收。<br>
+接收方发送的确认报文中的窗口字段可以用来控制发送方窗口大小，从而影响发送方的发送速率。将窗口字段设置为 0，则发送方不能发送数据。</p>
+<p><strong>TCP 使用滑动窗口机制来实现流量控制。</strong><br>
+窗口是缓存的一部分，用来暂时存放字节流。发送方和接收方各有一个窗口，接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小。<br>
+发送窗口内的字节都允许被发送，接收窗口内的字节都允许被接收。如果发送窗口左部的字节已经发送并且收到了确认，那么就将发送窗口向右滑动一定距离，直到左部第一个字节不是已发送并且已确认的状态；接收窗口的滑动类似，接收窗口左部字节已经发送确认并交付主机，就向右滑动接收窗口。<br>
+接收窗口只会对窗口内最后一个按序到达的字节进行确认，例如接收窗口已经收到的字节为 {31, 34, 35}，其中 {31} 按序到达，而 {34, 35} 就不是，因此只对字节 31 进行确认。发送方得到一个字节的确认之后，就知道这个字节之前的所有字节都已经被接收。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/jpeg/1552854/1609749839622-e99e917b-12c7-4a32-aaea-bdd4f8a4fa39.jpeg#align=left&amp;display=inline&amp;height=474&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E6%95%B0%E6%8D%AE%E5%8F%91%E9%80%81.jpg&amp;originHeight=474&amp;originWidth=1055&amp;size=130048&amp;status=done&amp;style=none&amp;width=1055" alt="tcp数据发送.jpg"></p>
+<h3 id="tcp-拥塞控制">TCP 拥塞控制<a title="#tcp-拥塞控制" href="#tcp-拥塞控制"></a></h3>
+<p>如果网络出现拥塞，分组将会丢失，此时发送方会继续重传，从而导致网络拥塞程度更高。因此当出现拥塞时，应当控制发送方的速率。这一点和流量控制很像，但是出发点不同。流量控制是为了让接收方能来得及接收，而拥塞控制是为了降低整个网络的拥塞程度。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609749954050-a1d23a2d-ade7-484f-86a2-97e8396b32b0.png#align=left&amp;display=inline&amp;height=468&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BD%9C%E7%94%A8.png&amp;originHeight=468&amp;originWidth=870&amp;size=41637&amp;status=done&amp;style=none&amp;width=870" alt="tcp拥塞控制的作用.png"></p>
+<p>TCP 主要通过四个算法来进行拥塞控制：慢开始、拥塞避免、快重传、快恢复。<br>
+发送方需要维护一个叫做拥塞窗口（cwnd）的状态变量，注意拥塞窗口与发送方窗口的区别：拥塞窗口只是一个状态变量，实际决定发送方能发送多少数据的是发送方窗口。<br>
+为了便于讨论，做如下假设：</p>
+<ul>
+<li>接收方有足够大的接收缓存，因此不会发生流量控制；</li>
+<li>虽然 TCP 的窗口基于字节，但是这里设窗口的大小单位为报文段。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609749990875-cdd31015-5f20-41e1-898a-377c898011a0.png#align=left&amp;display=inline&amp;height=754&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E6%8B%A5%E5%A1%9E%E7%AA%97%E5%8F%A3.png&amp;originHeight=754&amp;originWidth=1914&amp;size=159744&amp;status=done&amp;style=none&amp;width=1914" alt="tcp拥塞窗口.png" class="φcx"></p>
+<h4 id="慢开始与拥塞避免">慢开始与拥塞避免<a title="#慢开始与拥塞避免" href="#慢开始与拥塞避免"></a></h4>
+<p>发送的最初执行慢开始，令 cwnd = 1，发送方只能发送 1 个报文段；当收到确认后，将 cwnd 加倍，因此之后发送方能够发送的报文段数量为：2、4、8 …<br>
+注意到慢开始每个轮次都将 cwnd 加倍，这样会让 cwnd 增长速度非常快，从而使得发送方发送的速度增长速度过快，网络拥塞的可能性也就更高。设置一个慢开始门限 ssthresh，当 cwnd &gt;= ssthresh 时，进入拥塞避免，每个轮次只将 cwnd 加 1。<br>
+如果出现了超时，则令 ssthresh = cwnd / 2，然后重新执行慢开始。</p>
+<h4 id="快重传与快恢复">快重传与快恢复<a title="#快重传与快恢复" href="#快重传与快恢复"></a></h4>
+<p>在接收方，要求每次接收到报文段都应该对最后一个已收到的有序报文段进行确认。例如已经接收到 M 和 M，此时收到 M，应当发送对 M 的确认。<br>
+在发送方，如果收到三个重复确认，那么可以知道下一个报文段丢失，此时执行快重传，立即重传下一个报文段。例如收到三个 M，则 M 丢失，立即重传 M。<br>
+在这种情况下，只是丢失个别报文段，而不是网络拥塞。因此执行快恢复，令 ssthresh = cwnd / 2 ，cwnd = ssthresh，注意到此时直接进入拥塞避免。<br>
+慢开始和快恢复的快慢指的是 cwnd 的设定值，而不是 cwnd 的增长速率。慢开始 cwnd 设定为 1，而快恢复 cwnd 设定为 ssthresh。<br>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/1552854/1609750039254-84c1b797-8e70-4eea-88b7-1489fd0a4eda.png#align=left&amp;display=inline&amp;height=648&amp;margin=%5Bobject%20Object%5D&amp;name=tcp%E5%BF%AB%E9%87%8D%E4%BC%A0.png&amp;originHeight=648&amp;originWidth=1174&amp;size=148890&amp;status=done&amp;style=none&amp;width=1174" alt="tcp快重传.png">**</p>
+<div><h1 id="推荐文章">推荐文章<a title="#推荐文章" href="%e6%8e%a8%e8%8d%90%e6%96%87%e7%ab%a0"></a></h1><ul><li><a href="https://mvbbb.github.io/rptlxk/">计算机网络学习总结[转载][2]</a></li><li><a href="https://mvbbb.github.io/cxnppw/">使用 Java 实现简单的 WebServer</a></li></ul></div></div><is-f class="φcc φv φs"><!----><ul class="φcg"><li class="φce"><strong class="φcf">Author<span>:</span></strong><p class="φcd">Mvbbb</p></li><li class="φce"><strong class="φcf">Link<span>:</span></strong><p class="φcd"><a href="https://mvbbb.github.io/hf30zm/" title="计算机网络学习总结[转载][1]">https://mvbbb.github.io/hf30zm/</a></p></li><li class="φce"><strong class="φcf">Copyright<span>:</span></strong><p class="φcd">Attribution-NonCommercial-NoDerivatives 4.0 International (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noopener" target="_blank">CC BY-NC-ND 4.0</a>)</p></li><!----></ul><!----></is-f><!----><!----><!----></article><footer class="φgb φh"><div class="φgg"><is-m class="φet"><a class="φeu φs φq" href="/tags/NetWork">NetWork</a></is-m><is-m class="φet"><a class="φeu φs φq" href="/tags/TCP">TCP</a></is-m><!----></div><!----><div class="φgc"><a class="φgd φgf φu" href="/lqm4qt">后端简介</a><!----><a class="φgd φge φu" href="/my2020">Bye! My 2020</a><!----></div><!----></footer><is-e class="φbz φh"><div issnippet="" class="φbh"><div id="tcomment"></div>
+
+
+</div><!----><!----><!----><!----></is-e><!----><!----><!----></is-s><!----></main><!----></div></div></div><is-g class="φch"><div class="φcq"><span class="φbg icon-up"></span><span class="φbg icon-down"></span><!----><span class="φbg icon-toc"></span><!----><span class="φbg icon-search"></span><!----></div><div class="φcj φck"><svg class="φcp"><defs><filter id="dp"><feGaussianBlur in="SourceGraphic" stdDeviation="2"></feGaussianBlur></filter></defs><circle filter="url(#dp)" fill="rgba(0,0,0,.3)" cx="50%" cy="52%" r="44%"></circle><circle cx="50%" cy="50%" r="44%" class="φcl φbb"></circle><circle cx="50%" cy="50%" r="48%" class="φco φba" stroke-dasharray="0% 314.15926%"></circle><!----><g class="φcm"><circle r=".2rem" cx="0" cy="-.8rem"></circle><circle r=".2rem"></circle><circle r=".2rem" cx="0" cy=".8rem"></circle></g><!----></svg></div></is-g><is-n class="φev φf"><div class="φex φey φn"><a class="φfa φu"><span class="φfb φd">1 </span><!----><span class="φfc">前言</span></a><!----></div><div class="φex φey φn"><a class="φfa φu"><span class="φfb φd">2 </span><!----><span class="φfc">预备知识</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">2.1 </span><!----><span class="φfc">计算机网络发展的四个阶段</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">2.1.1 </span><!----><span class="φfc">第一阶段（60 年代初期到 60 年代中期）</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.1.2 </span><!----><span class="φfc">第二阶段（60 年代中期到 70 年代中期）</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.1.3 </span><!----><span class="φfc">第三阶段（70 年代中期到 80 年代末期）</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.1.4 </span><!----><span class="φfc">第四阶段 –高速、综合化网络</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.2 </span><!----><span class="φfc">网络性能指标</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">2.2.1 </span><!----><span class="φfc">速率相关</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.2.2 </span><!----><span class="φfc">时延 Delay</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.2.3 </span><!----><span class="φfc">其他</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.3 </span><!----><span class="φfc">计算机网络的分类</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.4 </span><!----><span class="φfc">常见网络的拓扑结构</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">2.4.1 </span><!----><span class="φfc">星型拓扑</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.4.2 </span><!----><span class="φfc">总线拓扑</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.4.3 </span><!----><span class="φfc">环型拓扑</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.5 </span><!----><span class="φfc">计算机网络交换技术</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">2.5.1 </span><!----><span class="φfc">电路交换</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.5.2 </span><!----><span class="φfc">报文交换</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.5.3 </span><!----><span class="φfc">分组交换</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.5.4 </span><!----><span class="φfc">3 种交换网络的对比</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.6 </span><!----><span class="φfc">计算机网络协议基本概念</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.7 </span><!----><span class="φfc">网络层次结构的划分</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">2.7.1 </span><!----><span class="φfc">为什么要在网络中使用分层</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">2.7.2 </span><!----><span class="φfc">TCP/IP 协议簇</span></a><!----></div><!----><!----><!----></div><!----><!----><!----></div><div class="φex φey φn"><a class="φfa φu"><span class="φfb φd">3 </span><!----><span class="φfc">应用层</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.1 </span><!----><span class="φfc">网络应用模型</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.1.1 </span><!----><span class="φfc">应用层协议原理</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.1.2 </span><!----><span class="φfc">体系结构</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.1.3 </span><!----><span class="φfc">进程通信</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.1.4 </span><!----><span class="φfc">应用层协议</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.2 </span><!----><span class="φfc">Web 和 HTTP</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.2.1 </span><!----><span class="φfc">关于 HTTP</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.2.2 </span><!----><span class="φfc">HTTP 分类</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.2.3 </span><!----><span class="φfc">HTTP 报文</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.3 </span><!----><span class="φfc">Cookie</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.4 </span><!----><span class="φfc">DNS</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.4.1 </span><!----><span class="φfc">什么是 dns</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.4.2 </span><!----><span class="φfc">DNS 的工作概述</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.4.3 </span><!----><span class="φfc">DNS 的查询方式</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.4.4 </span><!----><span class="φfc">DNS 缓存</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.4.5 </span><!----><span class="φfc">DNS 记录和报文</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.5 </span><!----><span class="φfc">邮件协议</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.5.1 </span><!----><span class="φfc">电子邮件</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.5.2 </span><!----><span class="φfc">SMTP 协议传输过程</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.5.3 </span><!----><span class="φfc">SMTP 与 HTTP 的对比</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.5.4 </span><!----><span class="φfc">邮件访问协议</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.6 </span><!----><span class="φfc">CDN 内容分发</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.7 </span><!----><span class="φfc">FTP</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.7.1 </span><!----><span class="φfc">简介</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.7.2 </span><!----><span class="φfc">过程</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.8 </span><!----><span class="φfc">P2P</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">3.8.1 </span><!----><span class="φfc">P2P 用来做什么</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">3.8.2 </span><!----><span class="φfc">P2P 网络的作用</span></a><!----></div><!----><!----><!----></div><!----><!----><!----></div><div class="φex φey φn"><a class="φfa φu"><span class="φfb φd">4 </span><!----><span class="φfc">传输层</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">4.1 </span><!----><span class="φfc">传输层概述</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.2 </span><!----><span class="φfc">可靠传输的原理</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.3 </span><!----><span class="φfc">UDP 和 TCP 的特点</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.4 </span><!----><span class="φfc">UDP</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">4.4.1 </span><!----><span class="φfc">UDP 概述</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.4.2 </span><!----><span class="φfc">UDP 首部格式</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.4.3 </span><!----><span class="φfc">UDP 校验和计算</span></a><!----></div><!----><!----><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5 </span><!----><span class="φfc">TCP</span></a><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5.1 </span><!----><span class="φfc">TCP 概述</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5.2 </span><!----><span class="φfc">TCP 报文</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5.3 </span><!----><span class="φfc">TCP 连接管理</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5.4 </span><!----><span class="φfc">TCP 可靠传输</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5.5 </span><!----><span class="φfc">TCP 流量控制</span></a><!----></div><div class="φex"><a class="φfa φu"><span class="φfb φd">4.5.6 </span><!----><span class="φfc">TCP 拥塞控制</span></a><!----></div><!----><!----><!----></div><!----><!----><!----></div><div class="φex φey φn"><a class="φfa φu"><span class="φfb φd">5 </span><!----><span class="φfc">推荐文章</span></a><!----></div><!----></is-n><!----><!----></is-a><!-- hexo injector body_begin end --><!-- hexo injector body_end start --><script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script><script src="/runtime.b15aa7186c559b492b7d.js"></script><script src="/polyfills.824ff89b5f3ca4543a31.js"></script><script src="/main.03652fc423a687c817e8.js"></script><!-- hexo injector body_end end -->
+
+</body></html>

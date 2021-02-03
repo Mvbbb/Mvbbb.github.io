@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Yu</title>
+    <link>https://mvbbb.github.io/</link>
+    
+    <atom:link href="https://mvbbb.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>Who i am,who u are</description>
+    <pubDate>Wed, 03 Feb 2021 04:20:57 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Python与算法竞赛以及常用模板</title>
+      <link>https://mvbbb.github.io/nmmxgt/</link>
+      <guid>https://mvbbb.github.io/nmmxgt/</guid>
+      <pubDate>Tue, 02 Feb 2021 11:17:54 GMT</pubDate>
+      
+      <description>&lt;p&gt;tags:[Python,算法]&lt;br&gt;
+categories:[教程与记录]&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;多花点时间在算法上, instead of framework&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      
+      <comments>https://mvbbb.github.io/nmmxgt/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>关于PageHelper 分页插件的使用以及其中的坑</title>
+      <link>https://mvbbb.github.io/wwi0un/</link>
+      <guid>https://mvbbb.github.io/wwi0un/</guid>
+      <pubDate>Mon, 01 Feb 2021 10:05:47 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;categories:[Java,Spring]&lt;br&gt;
+tags:[mybatis,SpringBoot,MySql]&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;如何使用&quot;&gt;如何使用&lt;a title=&quot;#如何使用&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://mvbbb.github.io/wwi0un/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>mybatis-generator-maven插件与lombok的引入</title>
+      <link>https://mvbbb.github.io/iq1x0p/</link>
+      <guid>https://mvbbb.github.io/iq1x0p/</guid>
+      <pubDate>Thu, 28 Jan 2021 13:48:46 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;插件介绍&quot;&gt;插件介绍&lt;a title=&quot;#插件介绍&quot; href=&quot;#插件介绍&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;mybatis 通过 xml 配置文件将 java 工程中的对象与数据库建立联系, 但是当数据库中的表过多之后, 编写 xml 就是一件令人头疼的事. 使用 &lt;code&gt;mybatis-generator&lt;/code&gt;  插件可以减去编写 xml,pojo,dao 的烦恼.&lt;br&gt;
+该插件的特点:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;生成 pojo 与 数据库结构对应. 每个 pojo 类对应数据库中的一张表, 每个字段对应表中的一个属性&lt;/li&gt;
+&lt;li&gt;会为每个 pojo 自动生成 getter/setter 方法&lt;/li&gt;
+&lt;li&gt;自动生成 &lt;code&gt;mapper.xml&lt;/code&gt; , 提供了一些基础的 CRUD sql 语句&lt;/li&gt;
+&lt;li&gt;会为每个 pojo 生成对应的 dao, 并提供一些最基本的 CRUD 操作&lt;/li&gt;
+&lt;/ol&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E6%95%99%E7%A8%8B%E4%B8%8E%E8%AE%B0%E5%BD%95/">教程与记录</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/mybatis/">mybatis</category>
+      
+      <category domain="https://mvbbb.github.io/tags/SpringBoot/">SpringBoot</category>
+      
+      
+      <comments>https://mvbbb.github.io/iq1x0p/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>静态资源映射</title>
+      <link>https://mvbbb.github.io/mbrk53/</link>
+      <guid>https://mvbbb.github.io/mbrk53/</guid>
+      <pubDate>Wed, 20 Jan 2021 09:00:44 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;前言：&lt;/strong&gt;&lt;br&gt;
+SpringBoot 默认将 &lt;code&gt;resources&lt;/code&gt;  目录下的&lt;code&gt;/static,/public,/resources,/META-INF/resources&lt;/code&gt;设置为静态资源路径&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景一: 所有的静态资源访问都通过一个特定的前缀, 以区分静态请求或者动态请求&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/Java/">Java</category>
+      
+      <category domain="https://mvbbb.github.io/categories/Java/Spring/">Spring</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/SpringBoot/">SpringBoot</category>
+      
+      
+      <comments>https://mvbbb.github.io/mbrk53/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>【网络协议】TCP分段与IP分片</title>
+      <link>https://mvbbb.github.io/olnngo/</link>
+      <guid>https://mvbbb.github.io/olnngo/</guid>
+      <pubDate>Mon, 04 Jan 2021 13:23:50 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/ns_code/article/details/30109789&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener&quot;&gt;https://blog.csdn.net/ns_code/article/details/30109789&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/f9a5b07d99a2&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener&quot;&gt;https://www.jianshu.com/p/f9a5b07d99a2&lt;/a&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/olnngo/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>准备迁移了</title>
+      <link>https://mvbbb.github.io/qwgn6n/</link>
+      <guid>https://mvbbb.github.io/qwgn6n/</guid>
+      <pubDate>Mon, 04 Jan 2021 11:15:50 GMT</pubDate>
+      
+      <description>&lt;p&gt;今天遇到一个特别恼火的事儿，写了一篇有点长的文章，然后通过的 coding 的自动部署老是部署失败。初步判断是由于 yuque-hexo 插件在生成文章时用时过长，被判定超时导致的。&lt;br&gt;
+&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609759786899-08d4e493-db8d-4304-876e-92d3c13b79ce.png#align=left&amp;amp;display=inline&amp;amp;height=246&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=492&amp;amp;originWidth=810&amp;amp;size=61282&amp;amp;status=done&amp;amp;style=none&amp;amp;width=405&quot; alt=&quot;image.png&quot;&gt;&lt;br&gt;
+&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2021/png/1552854/1609759396067-703b17e0-df06-4048-8d4b-6193ba38b22b.png#align=left&amp;amp;display=inline&amp;amp;height=287&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=574&amp;amp;originWidth=1555&amp;amp;size=109592&amp;amp;status=done&amp;amp;style=none&amp;amp;width=777.5&quot; alt=&quot;image.png&quot;&gt;&lt;br&gt;
+加之 coding 打算逐步下线他免费提供的静态网页托管，代之的是腾讯云提供的存储桶托管，虽说稳定性是提高了，但是 COS 是要付费的，不能白嫖了。&lt;/p&gt;
+&lt;p&gt;准备弃用 Coding 的持续集成功能了，并将博客部署到 GitHub，以后使用 GitHub action 了。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Github Action 的使用者基数大，出现问题更容易找到解决方案&lt;/li&gt;
+&lt;li&gt;逛 GitHub 项目的时候发现许多项目都使用到了 GitHub action，需要进一步了解一下。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;虽说部署到 GitHub 之后虽然说访问速度会下降，但是影响也不算大，用梯子就行了。&lt;/p&gt;
+&lt;p&gt;放假之后再迁移，现在先复习。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/daily/">daily</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/qwgn6n/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>计算机网络学习总结[转载][2]</title>
+      <link>https://mvbbb.github.io/rptlxk/</link>
+      <guid>https://mvbbb.github.io/rptlxk/</guid>
+      <pubDate>Mon, 04 Jan 2021 08:52:50 GMT</pubDate>
+      
+      <description>&lt;p&gt;本篇包含&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络层&lt;/li&gt;
+&lt;li&gt;数据链路层&lt;/li&gt;
+&lt;li&gt;物理层&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/NetWork/">NetWork</category>
+      
+      <category domain="https://mvbbb.github.io/tags/TCP/">TCP</category>
+      
+      
+      <comments>https://mvbbb.github.io/rptlxk/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>后端简介</title>
+      <link>https://mvbbb.github.io/lqm4qt/</link>
+      <guid>https://mvbbb.github.io/lqm4qt/</guid>
+      <pubDate>Sun, 03 Jan 2021 10:17:43 GMT</pubDate>
+      
+      <description>&lt;p&gt;这篇文章是写给团队大一同学的，主要简单的介绍一下后端方向。&lt;br&gt;
+准备时间挺仓促的， 不能面面俱到。之后再改改。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E6%95%99%E7%A8%8B%E4%B8%8E%E8%AE%B0%E5%BD%95/">教程与记录</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/">知识分享</category>
+      
+      
+      <comments>https://mvbbb.github.io/lqm4qt/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>计算机网络学习总结[转载][1]</title>
+      <link>https://mvbbb.github.io/hf30zm/</link>
+      <guid>https://mvbbb.github.io/hf30zm/</guid>
+      <pubDate>Sat, 02 Jan 2021 03:37:56 GMT</pubDate>
+      
+      <description>&lt;h1 id=&quot;前言&quot;&gt;前言&lt;a title=&quot;#前言&quot; href=&quot;#前言&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;这篇文章是我搜集各种资料之后整合出来的，&lt;strong&gt;仅用作个人学习使用&lt;/strong&gt;。如有侵权请联系我，我立马删除。&lt;br&gt;
+本篇包含&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;预备知识&lt;/li&gt;
+&lt;li&gt;应用层&lt;/li&gt;
+&lt;li&gt;传输层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;部分内容待完善&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据链路层结构不够清晰&lt;/li&gt;
+&lt;li&gt;TCP 可靠传输部分没写&lt;/li&gt;
+&lt;/ol&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/NetWork/">NetWork</category>
+      
+      <category domain="https://mvbbb.github.io/tags/TCP/">TCP</category>
+      
+      
+      <comments>https://mvbbb.github.io/hf30zm/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Bye! My 2020</title>
+      <link>https://mvbbb.github.io/my2020/</link>
+      <guid>https://mvbbb.github.io/my2020/</guid>
+      <pubDate>Thu, 31 Dec 2020 23:00:00 GMT</pubDate>
+      
+      <description>2020. One more bad year as well as 2019.</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/daily/">daily</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/daily/">daily</category>
+      
+      <category domain="https://mvbbb.github.io/tags/Emotion/">Emotion</category>
+      
+      <category domain="https://mvbbb.github.io/tags/Life/">Life</category>
+      
+      <category domain="https://mvbbb.github.io/tags/Study/">Study</category>
+      
+      
+    </item>
+    
+    <item>
+      <title>数据结构笔记归档</title>
+      <link>https://mvbbb.github.io/hb7vve/</link>
+      <guid>https://mvbbb.github.io/hb7vve/</guid>
+      <pubDate>Wed, 23 Dec 2020 04:30:41 GMT</pubDate>
+      
+      <description>&lt;p&gt;一些之前写的笔记. 因为公式编码的原因, 在 Hexo 上渲染出错, 就将他们放在了语雀上.&lt;br&gt;
+&lt;a href=&quot;https://www.yuque.com/u1296515/pvmgka/wzg71l&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener&quot;&gt;数据结构知识点&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.yuque.com/u1296515/pvmgka/cgfkep&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener&quot;&gt;树图基础&lt;/a&gt;&lt;br&gt;
+&lt;a href=&quot;https://www.yuque.com/u1296515/pvmgka/hz07i0&quot; target=&quot;_blank&quot; rel=&quot;external nofollow noopener&quot;&gt;哈夫曼编码&lt;/a&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</category>
+      
+      <category domain="https://mvbbb.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/hb7vve/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>20/12/1 近期规划</title>
+      <link>https://mvbbb.github.io/izwdvz/</link>
+      <guid>https://mvbbb.github.io/izwdvz/</guid>
+      <pubDate>Tue, 01 Dec 2020 12:50:08 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;要点记录:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SQL 练习&lt;/li&gt;
+&lt;li&gt;计算机网络&lt;/li&gt;
+&lt;li&gt;操作系统&lt;/li&gt;
+&lt;li&gt;Spring 相关&lt;/li&gt;
+&lt;li&gt;英语六级&lt;/li&gt;
+&lt;li&gt;Java 实践&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;安排计划&lt;/strong&gt;&lt;br&gt;
+1 . SQL 练习: 最近几天加强练习, 周末上机实验写不出来就尴尬了&lt;/p&gt;
+&lt;p&gt;2 . 计算机网络: 还需要写一个简单的代理服务器程序, 还要看可靠数据传输原理. 代理服务器的事儿可以先放一放, 可靠数据传输原理明天上课应该可以搞定.&lt;/p&gt;
+&lt;p&gt;3 . 操作系统: 先把学习通的几百道题做完, 不过还好, 已经做了许多了, 发现了很多遗忘或者不懂东西.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;快表命中率, 访问时间… 的计算方法&lt;/li&gt;
+&lt;li&gt;经典同步问题的 pv 操作&lt;/li&gt;
+&lt;li&gt;文件系统/IO 可以说是一窍不通, 之前学了也忘得差不多了&lt;/li&gt;
+&lt;li&gt;页/段/段页存储, 物理地址, 虚地址… 的相关计算&lt;/li&gt;
+&lt;li&gt;各种调度算法英文单词对应的中文含义&lt;/li&gt;
+&lt;li&gt;记录型信号量和整型信号量的区别&lt;/li&gt;
+&lt;li&gt;长/中/短程调度的区别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4 . Spring 相关: 现在还有点迷, 迷, 迷.&lt;/p&gt;
+&lt;p&gt;5 . 英语六级: 呵呵, 迎来的又是一次裸考, 下次一定过. 失眠的时候背背单词已经是我做出的最大努力了.&lt;/p&gt;
+&lt;p&gt;6 . Java 实践: 实在是不想再写了, 把之前的推翻了一遍又一遍, 累了, 不改了, “修车” 功能也懒得实现了.&lt;br&gt;
+&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2020/png/1552854/1606828494558-1f76c232-af2c-4a36-9e3d-1a7edf9f0e10.png#align=left&amp;amp;display=inline&amp;amp;height=300&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=599&amp;amp;originWidth=759&amp;amp;size=64034&amp;amp;status=done&amp;amp;style=none&amp;amp;width=379.5&quot; alt=&quot;image.png&quot;&gt;&lt;br&gt;
+&lt;strong&gt;One More thing&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;…&lt;/strong&gt; &lt;strong&gt;Better not to say…&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Unhappy !&lt;/p&gt;
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=86 src=&quot;//music.163.com/outchain/player?type=2&amp;id=329368&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/daily/">daily</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/izwdvz/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>使用 Java 实现简单的 WebServer</title>
+      <link>https://mvbbb.github.io/cxnppw/</link>
+      <guid>https://mvbbb.github.io/cxnppw/</guid>
+      <pubDate>Tue, 24 Nov 2020 13:43:44 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;Web Server 的功能: 根据用户提供的 Http request, Web Server 返回对应的 Http response. Web Server 也只不过是一个 Application.&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/Java/">Java</category>
+      
+      <category domain="https://mvbbb.github.io/tags/Socket/">Socket</category>
+      
+      <category domain="https://mvbbb.github.io/tags/NetWork/">NetWork</category>
+      
+      <category domain="https://mvbbb.github.io/tags/Http/">Http</category>
+      
+      
+      <comments>https://mvbbb.github.io/cxnppw/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在服务器上部署运行Socket</title>
+      <link>https://mvbbb.github.io/bvgh8x/</link>
+      <guid>https://mvbbb.github.io/bvgh8x/</guid>
+      <pubDate>Fri, 20 Nov 2020 05:46:46 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2020/png/1552854/1605851968328-a1a7a928-e184-4948-88b4-e7993eeb9cdf.png#align=left&amp;amp;display=inline&amp;amp;height=31&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=62&amp;amp;originWidth=1079&amp;amp;size=13086&amp;amp;status=done&amp;amp;style=none&amp;amp;width=539.5&quot; alt=&quot;image.png&quot;&gt;&lt;br&gt;
+环境: JDK11+Centos7&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/bvgh8x/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>文件上传下载</title>
+      <link>https://mvbbb.github.io/vuhe3q/</link>
+      <guid>https://mvbbb.github.io/vuhe3q/</guid>
+      <pubDate>Fri, 13 Nov 2020 06:47:34 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;上传功能&quot;&gt;上传功能&lt;a title=&quot;#上传功能&quot; href=&quot;#上传功能&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;需要使用到&lt;img</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/Java/">Java</category>
+      
+      <category domain="https://mvbbb.github.io/categories/Java/JavaWeb/">JavaWeb</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/vuhe3q/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>过滤器-监听器</title>
+      <link>https://mvbbb.github.io/oz6abw/</link>
+      <guid>https://mvbbb.github.io/oz6abw/</guid>
+      <pubDate>Mon, 09 Nov 2020 09:57:39 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;过滤器解决-response-中文乱码&quot;&gt;过滤器解决 response 中文乱码&lt;a title=&quot;#过滤器解决-response-中文乱码&quot; href=&quot;#过滤器解决-response-中文乱码&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;img</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/Java/">Java</category>
+      
+      <category domain="https://mvbbb.github.io/categories/Java/JavaWeb/">JavaWeb</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/oz6abw/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>反射与注解</title>
+      <link>https://mvbbb.github.io/ptidvw/</link>
+      <guid>https://mvbbb.github.io/ptidvw/</guid>
+      <pubDate>Mon, 09 Nov 2020 06:48:54 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;获取类加载器&quot;&gt;获取类加载器&lt;a title=&quot;#获取类加载器&quot; href=&quot;#获取类加载器&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/Java/">Java</category>
+      
+      <category domain="https://mvbbb.github.io/categories/Java/JavaSe/">JavaSe</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/ptidvw/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>近期规划-碎碎念</title>
+      <link>https://mvbbb.github.io/gmx84f/</link>
+      <guid>https://mvbbb.github.io/gmx84f/</guid>
+      <pubDate>Sat, 07 Nov 2020 08:59:27 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;要点记录&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;操作系统&lt;/li&gt;
+&lt;li&gt;JavaSe&lt;/li&gt;
+&lt;li&gt;JavaWeb
+&lt;ul&gt;
+&lt;li&gt;Ajax&lt;/li&gt;
+&lt;li&gt;Bootstrap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;计算机网络&lt;/li&gt;
+&lt;li&gt;大学物理&lt;/li&gt;
+&lt;li&gt;英语 6 级&lt;/li&gt;
+&lt;li&gt;算法&lt;/li&gt;
+&lt;li&gt;SQL 练习&lt;/li&gt;
+&lt;li&gt;线性代数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;安排安排&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;重点先解决操作系统, 重点是分页和分段的相关计算, 以及**PV 大题, **由于 IO 和文件系统学校不讲就暂时先放一放&lt;/li&gt;
+&lt;li&gt;然后是计算机网络, 比较重要, 还没搞清楚学校的教学计划, 究竟是像操作系统那样的枯燥知识点的堆砌还是啥的.&lt;/li&gt;
+&lt;li&gt;大学物理上课就没听懂过, 想拖一拖, 但是又害怕挂科… 又懒得学.&lt;/li&gt;
+&lt;li&gt;英语六级考前一周突击一下, 做几套真题, 上次差一点点就过了, 可惜了, 之前还想的是大一就把 4/6 级搞定的, 可是因为疫情原因, 大一下不能参加 6 级考试 到了现在, 英语水平直线下降, 难过.&lt;/li&gt;
+&lt;li&gt;线性代数, 大一上的时候学了, 现在他们开课要学线代, 我是忘得差不多了, 再跟着学一次(有时间的话)&lt;/li&gt;
+&lt;li&gt;SQL 练习, 上课的时候没事就练一下, 生疏了可不好&lt;/li&gt;
+&lt;li&gt;算法算法算法, 很重要, 我知道, Take Action please!!!&lt;/li&gt;
+&lt;li&gt;JavaWeb, 不想学理论专业课的时候就学他, 不急, 寒假的时候再把重点放在他身上&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;One More thing&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;…&lt;/strong&gt; &lt;strong&gt;Better not to say…&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/daily/">daily</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/daily/">daily</category>
+      
+      <category domain="https://mvbbb.github.io/tags/%E9%A1%B9%E7%9B%AE/">项目</category>
+      
+      
+      <comments>https://mvbbb.github.io/gmx84f/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Linux服务器安装 MySql 8.0并配置远程连接</title>
+      <link>https://mvbbb.github.io/sb74kg/</link>
+      <guid>https://mvbbb.github.io/sb74kg/</guid>
+      <pubDate>Thu, 05 Nov 2020 13:04:14 GMT</pubDate>
+      
+      <description>&lt;p&gt;配置了一个下午, 终于配置成功了, 决定把今天遇到的坑都写下来&lt;br&gt;
+&lt;img src=&quot;https://cdn.nlark.com/yuque/0/2020/png/1552854/1604581632853-dd30b637-a843-4b71-889c-ccebea99c75c.png#align=left&amp;amp;display=inline&amp;amp;height=119&amp;amp;margin=%5Bobject%20Object%5D&amp;amp;name=image.png&amp;amp;originHeight=238&amp;amp;originWidth=1199&amp;amp;size=34794&amp;amp;status=done&amp;amp;style=none&amp;amp;width=599.5&quot; alt=&quot;image.png&quot;&gt;&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E6%95%99%E7%A8%8B%E4%B8%8E%E8%AE%B0%E5%BD%95/">教程与记录</category>
+      
+      
+      
+      <comments>https://mvbbb.github.io/sb74kg/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>内存管理</title>
+      <link>https://mvbbb.github.io/ldcb18/</link>
+      <guid>https://mvbbb.github.io/ldcb18/</guid>
+      <pubDate>Wed, 21 Oct 2020 05:51:37 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h1 id=&quot;内存管理概念&quot;&gt;内存管理概念&lt;a title=&quot;#内存管理概念&quot; href=&quot;#内存管理概念&quot;&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;覆盖, 交换, 连续分配算法&lt;br&gt;
+工作集: 某段时间间隔内, 实际访问的页面的集合&lt;br&gt;
+&lt;img</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://mvbbb.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</category>
+      
+      
+      <category domain="https://mvbbb.github.io/tags/OS/">OS</category>
+      
+      
+      <comments>https://mvbbb.github.io/ldcb18/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
